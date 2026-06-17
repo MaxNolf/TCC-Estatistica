@@ -1,0 +1,27 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.10)  10 JUN 2026 11:02
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**metodologia.tex
+(./metodologia.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
+! Undefined control sequence.
+l.4 \chapter
+            {Metodologia}
+? 
+! Emergency stop.
+l.4 
+    
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 14 strings out of 467538
+ 360 string characters out of 5423724
+ 433736 words of memory out of 5000000
+ 29018 multiletter control sequences out of 15000+600000
+ 627721 words of font info for 40 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 12i,0n,13p,109b,8s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

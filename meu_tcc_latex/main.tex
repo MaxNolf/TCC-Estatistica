@@ -1,0 +1,56 @@
+\documentclass[
+	12pt,
+	oneside,
+	a4paper,
+	chapter=TITLE,
+	section=TITLE,
+	subsection=TITLE,
+	subsubsection=TITLE,
+	english,
+	french,
+	spanish,
+	brazilian % Corrigido para evitar o aviso de 2026
+]{abntex2}
+
+% Importa toda a lógica e pacotes
+\input{preamble}
+
+% ---
+% Dados do Trabalho (Personalize aqui)
+% ---
+\titulo{Análise das Propriedades Estatísticas de Dollar Bars vs Time Bars e seus Impactos em Modelos GARCH}
+\autor{Seu Nome Completo}
+\local{Sua Cidade}
+\data{2026}
+\orientador{Nome do seu Orientador}
+\instituicao{Sua Universidade -- Curso de Estatística}
+\preambulo{Trabalho de Conclusão de Curso apresentado ao curso de Estatística como requisito parcial para obtenção do título de Bacharel.}
+
+\begin{document}
+
+\selectlanguage{brazilian}
+\frenchspacing 
+
+% Elementos Pré-Textuais
+\pretextual
+\input{sections/00-pre-textual}
+
+% Elementos Textuais
+\textual
+\include{sections/01-introducao}
+\include{sections/02-referencial}
+\include{sections/03-metodologia}
+\include{sections/04-resultados}
+\include{sections/05-conclusao}
+
+% Elementos Pós-Textuais
+\postextual
+\bibliography{references}
+
+% Apêndices e Anexos (Opcional)
+\begin{apendicesenv}
+    \partapendices
+    \include{sections/apendice_a}
+\end{apendicesenv}
+
+\end{document}

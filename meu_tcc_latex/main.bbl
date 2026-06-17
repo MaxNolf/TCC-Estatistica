@@ -1,0 +1,94 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Akaike 1974]{akaike1974}
+\abntrefinfo{Akaike}{AKAIKE}{1974}
+{AKAIKE, H. A new look at the statistical model identification.
+\emph{IEEE Transactions on Automatic Control}, v.~19, n.~6, p. 716--723, 1974.}
+
+\bibitem[Andersen et al. 2003]{andersen2003}
+\abntrefinfo{Andersen et al.}{ANDERSEN et al.}{2003}
+{ANDERSEN, T.~G. et al. Modeling and forecasting realized volatility.
+\emph{Econometrica}, v.~71, n.~2, p. 579--625, 2003.}
+
+\bibitem[Bollerslev 1986]{bollerslev1986}
+\abntrefinfo{Bollerslev}{BOLLERSLEV}{1986}
+{BOLLERSLEV, T. Generalized autoregressive conditional heteroskedasticity.
+\emph{Journal of Econometrics}, v.~31, n.~3, p. 307--327, 1986.}
+
+\bibitem[Bollerslev, Chou e Kroner 1992]{bollerslev1992}
+\abntrefinfo{Bollerslev, Chou e Kroner}{BOLLERSLEV; CHOU; KRONER}{1992}
+{BOLLERSLEV, T.; CHOU, R.~Y.; KRONER, K.~F. {ARCH} modeling in finance: A
+  review of the theory and empirical evidence. In:  \emph{Journal of
+  Econometrics}. [S.l.: s.n.], 1992. v.~52, n.~1--2, p. 5--59.}
+
+\bibitem[Box e Jenkins 1970]{box1970}
+\abntrefinfo{Box e Jenkins}{BOX; JENKINS}{1970}
+{BOX, G. E.~P.; JENKINS, G.~M. \emph{Time Series Analysis: Forecasting and
+  Control}. San Francisco: Holden-Day, 1970.}
+
+\bibitem[Diebold 2015]{diebold2015}
+\abntrefinfo{Diebold}{DIEBOLD}{2015}
+{DIEBOLD, F.~X. Comparing predictive accuracy, twenty years later: A personal
+  perspective on the use and abuse of diebold--mariano tests.
+\emph{Journal of Business \& Economic Statistics}, v.~33, n.~1, p. 1--24,
+  2015.}
+
+\bibitem[Diebold e Mariano 1995]{diebold1995}
+\abntrefinfo{Diebold e Mariano}{DIEBOLD; MARIANO}{1995}
+{DIEBOLD, F.~X.; MARIANO, R.~S. Comparing predictive accuracy.
+\emph{Journal of Business \& Economic Statistics}, v.~13, n.~3, p. 253--263,
+  1995.}
+
+\bibitem[Efron e Tibshirani 1993]{efron1993}
+\abntrefinfo{Efron e Tibshirani}{EFRON; TIBSHIRANI}{1993}
+{EFRON, B.; TIBSHIRANI, R.~J. \emph{An Introduction to the Bootstrap}. Boca
+  Raton, FL: CRC Press, 1993.}
+
+\bibitem[Engle 1982]{engle1982}
+\abntrefinfo{Engle}{ENGLE}{1982}
+{ENGLE, R.~F. Autoregressive conditional heteroscedasticity with estimates of
+  the variance of {United Kingdom} inflation.
+\emph{Econometrica}, v.~50, n.~4, p. 987--1007, 1982.}
+
+\bibitem[Mincer e Zarnowitz 1969]{mincer1969}
+\abntrefinfo{Mincer e Zarnowitz}{MINCER; ZARNOWITZ}{1969}
+{MINCER, J.~A.; ZARNOWITZ, V. The evaluation of economic forecasts. In:
+  \emph{Economic Forecasts and Expectations: Analysis of Forecasting Behavior
+  and Performance}. [S.l.]: National Bureau of Economic Research, 1969. p.
+  3--46.}
+
+\bibitem[Patton 2011]{patton2011}
+\abntrefinfo{Patton}{PATTON}{2011}
+{PATTON, A.~J. Volatility forecast comparison using imperfect volatility
+  proxies.
+\emph{Journal of Econometrics}, v.~160, n.~1, p. 246--256, 2011.}
+
+\bibitem[Prado 2018]{lopez2018advances}
+\abntrefinfo{Prado}{PRADO}{2018}
+{PRADO, M. L{\'o}pez~de. \emph{Advances in Financial Machine Learning}.
+  Hoboken, NJ: John Wiley \& Sons, 2018.}
+
+\bibitem[Schwarz 1978]{schwarz1978}
+\abntrefinfo{Schwarz}{SCHWARZ}{1978}
+{SCHWARZ, G. Estimating the dimension of a model.
+\emph{The Annals of Statistics}, v.~6, n.~2, p. 461--464, 1978.}
+
+\bibitem[Tsay 2010]{tsay2010}
+\abntrefinfo{Tsay}{TSAY}{2010}
+{TSAY, R.~S. \emph{Analysis of Financial Time Series}. 3. ed. Hoboken, NJ: John
+  Wiley \& Sons, 2010.}
+
+\bibitem[Zhang, Mykland e A{\"\i}t-Sahalia 2005]{zhang2005}
+\abntrefinfo{Zhang, Mykland e A{\"\i}t-Sahalia}{ZHANG; MYKLAND;
+  A{\"I}T-SAHALIA}{2005}
+{ZHANG, L.; MYKLAND, P.~A.; A{\"I}T-SAHALIA, Y. A tale of two time scales:
+  Determining integrated volatility with noisy high-frequency data.
+\emph{Journal of the American Statistical Association}, v.~100, n.~472, p.
+  1394--1411, 2005.}
+
+\end{thebibliography}

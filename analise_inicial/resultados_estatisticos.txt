@@ -1,0 +1,49 @@
+Iniciando análises...
+
+==================================================
+ANÁLISE PARA: Dollar_Bars_5m
+==================================================
+
+--- Estatísticas Descritivas (1º ao 4º Momento) ---
+Média (1º momento):       0.00000346
+Variância (2º momento):   0.00000249
+Assimetria (3º momento):  0.0547
+Curtose (4º momento):     3.0879 (Excesso de curtose Fisher)
+
+--- Testes de Normalidade ---
+Jarque-Bera:             Estatística = 83384.6543, p-valor = 0
+Kolmogorov-Smirnov:      Estatística = 0.0123, p-valor = 8.214e-28
+
+--- Testes de Estacionariedade ---
+ADF:                     Estatística = -102.4552, p-valor = 0
+KPSS:                    Estatística = 0.2053, p-valor = 0.1
+
+--- Testes de Autocorrelação e Heteroscedasticidade ---
+Ljung-Box (Retornos, lag=10):  Estatística = 50.0616, p-valor = 2.6e-07
+Ljung-Box (Retornos^2, lag=10): Estatística = 79528.1953, p-valor = 0
+Engle's ARCH Test (lag=10):    Estatística = 30420.7140, p-valor = 0
+
+==================================================
+ANÁLISE PARA: Time_Bars_5m
+==================================================
+
+--- Estatísticas Descritivas (1º ao 4º Momento) ---
+Média (1º momento):       0.00000344
+Variância (2º momento):   0.00000240
+Assimetria (3º momento):  -1.0071
+Curtose (4º momento):     75.3687 (Excesso de curtose Fisher)
+
+--- Testes de Normalidade ---
+Jarque-Bera:             Estatística = 49860565.3677, p-valor = 0
+Kolmogorov-Smirnov:      Estatística = 0.0934, p-valor = 0
+
+--- Testes de Estacionariedade ---
+ADF:                     Estatística = -57.3219, p-valor = 0
+KPSS:                    Estatística = 0.2171, p-valor = 0.1
+
+--- Testes de Autocorrelação e Heteroscedasticidade ---
+Ljung-Box (Retornos, lag=10):  Estatística = 155.0302, p-valor = 3.433e-28
+Ljung-Box (Retornos^2, lag=10): Estatística = 28237.2171, p-valor = 0
+Engle's ARCH Test (lag=10):    Estatística = 24064.7762, p-valor = 0
+
+Concluído! Gráficos e resultados salvos na pasta: c:\Codigos\TCC\analise_inicial

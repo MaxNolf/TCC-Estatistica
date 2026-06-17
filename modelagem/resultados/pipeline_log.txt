@@ -1,0 +1,169 @@
+======================================================================
+PIPELINE ARIMA-GARCH: Dollar Bars vs Time Bars (5 min)
+Benchmark: Volatilidade Realizada (RV Consenso)
+Backend: Rust (arma_garch_cv)
+Início: 2026-06-09 15:43:19.873541
+======================================================================
+
+[0] Carregando RV Benchmark...
+  RV Benchmark carregado: 731 dias (2024-01-01 → 2025-12-31)
+
+======================================================================
+PIPELINE: Dollar_Bars_5m
+======================================================================
+
+[1/7] Carregando dados e calculando Yang-Zhang...
+  Dados carregados: 209343 barras (2024-01-02 08:20:31.802000 → 2025-12-31 23:45:25.570000)
+
+[2/7] Dividindo treino/teste...
+  Split temporal: 167474 treino (80%) | 41869 teste (20%)
+  Treino: 2024-01-02 08:20:31.802000 → 2025-07-14 10:05:09.024000
+  Teste:  2025-07-14 10:06:34.103000 → 2025-12-31 23:45:25.570000
+
+[3/7] Seleção de parâmetros via CPCV...
+
+  CPCV configuração: {'n_splits': 15, 'n_groups': 6, 'k_test': 2, 'embargo_bars': 288, 'avg_train_size': 110881, 'avg_test_size': 55824, 'avg_purged': 480, 'avg_embargoed': 480, 'total_samples': 167474}
+
+  Executando CPCV via Rust (15 folds × 144 combinações)...
+  CPCV Rust concluído em 48.4s
+
+  Resumo dos folds CPCV:
+ fold test_groups arima_order garch_order           aic           bic
+    1      (0, 1)   (0, 0, 0)      (1, 2) -1.135751e+06 -1.135703e+06
+    2      (0, 2)   (0, 0, 0)      (1, 2) -1.130482e+06 -1.130434e+06
+    3      (0, 3)   (0, 0, 0)      (1, 2) -1.123992e+06 -1.123944e+06
+    4      (0, 4)   (0, 0, 0)      (1, 2) -1.132375e+06 -1.132327e+06
+    5      (0, 5)   (0, 0, 0)      (1, 2) -1.116984e+06 -1.116936e+06
+    6      (1, 2)   (0, 0, 0)      (1, 2) -1.126499e+06 -1.126451e+06
+    7      (1, 3)   (0, 0, 0)      (1, 2) -1.114368e+06 -1.114320e+06
+    8      (1, 4)   (0, 0, 0)      (1, 2) -1.122575e+06 -1.122527e+06
+    9      (1, 5)   (0, 0, 0)      (1, 2) -1.107713e+06 -1.107665e+06
+   10      (2, 3)   (0, 0, 0)      (1, 2) -1.120927e+06 -1.120879e+06
+   11      (2, 4)   (0, 0, 0)      (1, 2) -1.123107e+06 -1.123058e+06
+   12      (2, 5)   (0, 0, 0)      (1, 2) -1.108237e+06 -1.108189e+06
+   13      (3, 4)   (0, 0, 0)      (1, 2) -1.122509e+06 -1.122461e+06
+   14      (3, 5)   (0, 0, 0)      (1, 2) -1.102344e+06 -1.102296e+06
+   15      (4, 5)   (0, 0, 0)      (1, 2) -1.115418e+06 -1.115370e+06
+
+  Ranking de parâmetros por frequência e AIC médio:
+arima_order garch_order  count      mean_aic     std_aic
+  (0, 0, 0)      (1, 2)     15 -1.120219e+06 9467.609626
+
+  >>> Parâmetros selecionados: ARMA(0, 0, 0)-GARCH(1, 2)
+      Frequência: 15/15 folds
+
+[4/7] Retreinando modelo final ARMA(0,0)-GARCH(1,2) em todo o treino...
+  AIC final: -1691559.43 | BIC final: -1691509.29
+
+[5/7] Gerando previsões da variância no teste (41869 obs)...
+  Previsão concluída em 0.1s
+
+  Agregando variância prevista para nível diário...
+  Dias com previsão: 171 (2025-07-14 → 2025-12-31)
+  Dias alinhados com RV benchmark: 171
+
+[6/7] Calculando métricas de avaliação (vs RV Benchmark)...
+  MSE:        1.08e-07
+  MAE:        2.73e-04
+  QLIKE:      -7.0256
+  R² (MZ):    0.6539
+  MZ α:       -1.06e-04 (p=0.0026)
+  MZ β:       0.8569 (p=0.0000)
+
+[7/7] Gerando gráficos...
+  Gráfico salvo: c:\Codigos\TCC\modelagem\resultados\Dollar_Bars_5m_forecast_vs_realized.png
+
+======================================================================
+PIPELINE: Time_Bars_5m
+======================================================================
+
+[1/7] Carregando dados e calculando Yang-Zhang...
+  Dados carregados: 210235 barras (2024-01-02 00:00:00.008000 → 2025-12-31 23:55:00.651000)
+
+[2/7] Dividindo treino/teste...
+  Split temporal: 168188 treino (80%) | 42047 teste (20%)
+  Treino: 2024-01-02 00:00:00.008000 → 2025-08-07 23:45:00.636000
+  Teste:  2025-08-07 23:50:00.244000 → 2025-12-31 23:55:00.651000
+
+[3/7] Seleção de parâmetros via CPCV...
+
+  CPCV configuração: {'n_splits': 15, 'n_groups': 6, 'k_test': 2, 'embargo_bars': 288, 'avg_train_size': 111357, 'avg_test_size': 56062, 'avg_purged': 480, 'avg_embargoed': 480, 'total_samples': 168188}
+
+  Executando CPCV via Rust (15 folds × 144 combinações)...
+  CPCV Rust concluído em 46.8s
+
+  Resumo dos folds CPCV:
+ fold test_groups arima_order garch_order           aic           bic
+    1      (0, 1)   (0, 0, 0)      (1, 1) -1.164805e+06 -1.164766e+06
+    2      (0, 2)   (0, 0, 0)      (1, 1) -1.160756e+06 -1.160718e+06
+    3      (0, 3)   (0, 0, 0)      (1, 1) -1.163867e+06 -1.163829e+06
+    4      (0, 4)   (0, 0, 0)      (1, 1) -1.161331e+06 -1.161293e+06
+    5      (0, 5)   (0, 0, 0)      (1, 1) -1.145830e+06 -1.145792e+06
+    6      (1, 2)   (0, 0, 0)      (1, 1) -1.154355e+06 -1.154317e+06
+    7      (1, 3)   (0, 0, 0)      (1, 1) -1.151372e+06 -1.151333e+06
+    8      (1, 4)   (0, 0, 0)      (1, 1) -1.149035e+06 -1.148997e+06
+    9      (1, 5)   (0, 0, 0)      (1, 1) -1.134313e+06 -1.134274e+06
+   10      (2, 3)   (0, 0, 0)      (1, 1) -1.159926e+06 -1.159888e+06
+   11      (2, 4)   (0, 0, 0)      (1, 1) -1.150921e+06 -1.150882e+06
+   12      (2, 5)   (0, 0, 0)      (1, 1) -1.136054e+06 -1.136016e+06
+   13      (3, 4)   (0, 0, 0)      (1, 1) -1.160236e+06 -1.160197e+06
+   14      (3, 5)   (0, 0, 0)      (1, 1) -1.138799e+06 -1.138760e+06
+   15      (4, 5)   (0, 0, 0)      (1, 1) -1.143082e+06 -1.143044e+06
+
+  Ranking de parâmetros por frequência e AIC médio:
+arima_order garch_order  count      mean_aic     std_aic
+  (0, 0, 0)      (1, 1)     15 -1.151646e+06 10254.55398
+
+  >>> Parâmetros selecionados: ARMA(0, 0, 0)-GARCH(1, 1)
+      Frequência: 15/15 folds
+
+[4/7] Retreinando modelo final ARMA(0,0)-GARCH(1,1) em todo o treino...
+  AIC final: -1739585.40 | BIC final: -1739545.26
+
+[5/7] Gerando previsões da variância no teste (42047 obs)...
+  Previsão concluída em 0.1s
+
+  Agregando variância prevista para nível diário...
+  Dias com previsão: 147 (2025-08-07 → 2025-12-31)
+  Dias alinhados com RV benchmark: 147
+
+[6/7] Calculando métricas de avaliação (vs RV Benchmark)...
+  MSE:        1.65e-07
+  MAE:        3.60e-04
+  QLIKE:      -6.3425
+  R² (MZ):    0.4897
+  MZ α:       -2.48e-04 (p=0.0002)
+  MZ β:       1.0235 (p=0.0000)
+
+[7/7] Gerando gráficos...
+  Gráfico salvo: c:\Codigos\TCC\modelagem\resultados\Time_Bars_5m_forecast_vs_realized.png
+
+======================================================================
+COMPARAÇÃO FINAL: Dollar Bars vs Time Bars
+Benchmark: Volatilidade Realizada (RV Consenso)
+======================================================================
+
+--- Tabela Comparativa de Métricas (vs RV Benchmark) ---
+                         mse       mae     qlike  r_squared  mz_alpha   mz_beta  mz_alpha_pvalue  mz_beta_pvalue
+model                                                                                                           
+Dollar_Bars_5m  1.076072e-07  0.000273 -7.025576   0.653881 -0.000106  0.856947         0.002562    8.766125e-41
+Time_Bars_5m    1.649891e-07  0.000360 -6.342457   0.489737 -0.000248  1.023491         0.000153    6.131605e-23
+
+--- Teste de Diebold-Mariano (Dollar vs Time) ---
+  DM Statistic: -1.9737
+  p-value:      0.0484
+  Conclusão:    Modelo 1 é significativamente melhor (p < 0.05)
+
+--- Modelos Selecionados ---
+  Dollar Bars: ARMA(0, 0, 0)-GARCH(1, 2)
+  Time Bars:   ARMA(0, 0, 0)-GARCH(1, 1)
+  Gráfico CPCV salvo: c:\Codigos\TCC\modelagem\resultados\cpcv_comparison.png
+
+  Tabela salva: c:\Codigos\TCC\modelagem\resultados\comparacao_metricas.csv
+  CPCV folds salvo: c:\Codigos\TCC\modelagem\resultados\cpcv_folds_dollar.csv
+  CPCV folds salvo: c:\Codigos\TCC\modelagem\resultados\cpcv_folds_time.csv
+
+======================================================================
+Pipeline concluído em 1.7 minutos
+Resultados salvos em: c:\Codigos\TCC\modelagem\resultados
+======================================================================

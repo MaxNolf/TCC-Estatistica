@@ -1,0 +1,12 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "arma_garch_cv"
+version = "0.1.0"
+description = "ARMA-GARCH model with purged cross-validation (Rust backend)"
+requires-python = ">=3.8"
+
+[tool.maturin]
+features = ["python"]

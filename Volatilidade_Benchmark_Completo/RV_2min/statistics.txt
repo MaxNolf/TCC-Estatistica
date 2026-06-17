@@ -1,0 +1,18 @@
+============================================================
+  ESTATÍSTICAS DE REALIZED VOLATILITY
+============================================================
+
+Período: 2024-01-01 até 2025-12-31
+Método: two_scale
+Frequência de amostragem: 2min
+
+count    731.000000
+mean       0.000564
+std        0.000776
+min        0.000009
+25%        0.000144
+50%        0.000319
+75%        0.000702
+max        0.010052
+
+Volatilidade Anualizada: 37.69%

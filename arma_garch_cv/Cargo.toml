@@ -1,0 +1,34 @@
+[package]
+name = "arma_garch_cv"
+version = "0.1.0"
+edition = "2021"
+description = "ARMA-GARCH model with purged temporal cross-validation"
+
+[lib]
+name = "arma_garch_cv"
+crate-type = ["lib", "cdylib"]
+
+[[bin]]
+name = "arma_garch_cv_cli"
+path = "src/main.rs"
+
+[features]
+default = []
+r-bridge = ["extendr-api"]
+python = ["pyo3"]
+
+[dependencies]
+ndarray = "0.16"
+argmin = "0.10"
+argmin-math = { version = "0.4", features = ["ndarray_latest-nolinalg"] }
+statrs = "0.17"
+rayon = "1.10"
+indicatif = "0.17"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+extendr-api = { version = "0.8", features = ["ndarray"], optional = true }
+pyo3 = { version = "0.23", features = ["extension-module"], optional = true }
+
+[profile.release]
+opt-level = 3
+lto = "thin"

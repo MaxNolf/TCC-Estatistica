@@ -1,0 +1,214 @@
+======================================================================
+PIPELINE GARCH(1,1) — CPCV de Avaliação Preditiva
+Modelo fixo: ARMA(0,0)-GARCH(1,1)
+Diretório de saída: c:\Codigos\TCC\modelagem\resultados_s2
+Benchmark: Volatilidade Realizada (RV Consenso)
+Backend: Rust (arma_garch_cv)
+CPCV Avaliação: N=10, K=5  →  C(10,5) = 252 folds
+Bootstrap: fold-level iid  (n_boot=2.000, α=0.05)
+Início: 2026-06-16 23:21:29.872293
+======================================================================
+
+[0] Carregando RV Benchmark...
+  RV Benchmark carregado: 731 dias (2024-01-01 → 2025-12-31)
+
+======================================================================
+PIPELINE: Dollar_Bars_5m
+======================================================================
+
+[1/8] Carregando dados e calculando retornos logarítmicos...
+  Dados carregados: 209630 barras (2024-01-01 00:04:10.801000 → 2025-12-31 23:45:25.570000)
+
+[2/8] Dividindo treino/teste...
+  Split temporal: 167704 treino (80%) | 41926 teste (20%)
+  Treino: 2024-01-01 00:04:10.801000 → 2025-07-14 06:47:08.719000
+  Teste:  2025-07-14 06:54:40.785000 → 2025-12-31 23:45:25.570000
+
+[3/8] Treinando GARCH(1,1) em todo o treino (167704 obs)...
+  AIC final: -1693742.84 | BIC final: -1693702.72
+  Parâmetros: ω=nan  α₁=nan  β₁=nan
+
+[4/8] CPCV de avaliação preditiva (C(10,5) = 252 folds)...
+  Configuração CPCV: {'n_splits': 252, 'n_groups': 10, 'k_test': 5, 'embargo_bars': 240, 'avg_train_size': 81454, 'avg_test_size': 83850, 'avg_purged': 1200, 'avg_embargoed': 1200, 'total_samples': 167704}
+
+  CPCV Avaliação: 252 folds × GARCH(1,1) fixo = 252 ajustes MLE
+  CPCV concluído em 29.1s (0.12s/fold  |  0 skipped)
+
+  Folds avaliados: 252
+  Pares diários no pool: 71316
+
+  Métricas CPCV (médias fold-level):
+    MSE   = 2.4651e-07  (±5.23e-08)
+    MAE   = 3.1719e-04  (±2.59e-05)
+    QLIKE = -6.6456  (±0.1123)
+    R²    = 0.7617  (±0.0419)
+
+[5/8] Calculando IC bootstrap fold-level (n_boot=2000)...
+  MSE  : 2.4651e-07  IC 95% [2.4029e-07, 2.5298e-07]  SE=3.3401e-09
+  MAE  : 3.1719e-04  IC 95% [3.1406e-04, 3.2027e-04]  SE=1.6127e-06
+  QLIKE: -6.6456e+00  IC 95% [-6.6593e+00, -6.6315e+00]  SE=7.1043e-03
+
+[6/8] Previsão final no teste (41926 obs)...
+  Previsão concluída em 0.1s
+  Dias com previsão: 171 (2025-07-14 → 2025-12-31)
+  Dias alinhados com RV benchmark: 171
+
+  Métricas no split 20% (suplementares):
+    MSE  = 1.08e-07
+    MAE  = 2.72e-04
+    QLIKE= -7.0259
+    R²   = 0.6552
+
+[7/8] Gerando gráficos de previsão...
+    [prev 1/2] Série temporal com IC salva: c:\Codigos\TCC\modelagem\resultados_s2\analise_previsao\Dollar_Bars_5m\Dollar_Bars_5m_01_serie_temporal_ic.png
+    [prev 2/2] Erro de previsão salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_previsao\Dollar_Bars_5m\Dollar_Bars_5m_02_erro_previsao.png
+    [boot 01/03] Bootstrap MSE salvo: c:\Codigos\TCC\modelagem\resultados_s2\bootstrap_ic\Dollar_Bars_5m\Dollar_Bars_5m_01_bootstrap_mse.png
+    [boot 02/03] Bootstrap MAE salvo: c:\Codigos\TCC\modelagem\resultados_s2\bootstrap_ic\Dollar_Bars_5m\Dollar_Bars_5m_02_bootstrap_mae.png
+    [boot 03/03] Bootstrap QLIKE salvo: c:\Codigos\TCC\modelagem\resultados_s2\bootstrap_ic\Dollar_Bars_5m\Dollar_Bars_5m_03_bootstrap_qlike.png
+  Bootstrap IC concluído (3 gráficos) → c:\Codigos\TCC\modelagem\resultados_s2\bootstrap_ic\Dollar_Bars_5m
+  Gráficos de previsão concluídos → c:\Codigos\TCC\modelagem\resultados_s2\analise_previsao\Dollar_Bars_5m
+
+[8/8] Análise de resíduos da previsão...
+    [resid 1/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m\forecast_errors_Dollar_Bars_5m_01_residuos_tempo.png
+    [resid 2/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m\forecast_errors_Dollar_Bars_5m_02_histograma.png
+    [resid 3/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m\forecast_errors_Dollar_Bars_5m_03_qqplot_normal.png
+    [resid 4/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m\forecast_errors_Dollar_Bars_5m_04_residuos_vs_ajustados.png
+    [resid 5/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m\forecast_errors_Dollar_Bars_5m_05_acf_residuos.png
+    [resid 6/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m\forecast_errors_Dollar_Bars_5m_06_pacf_residuos.png
+    [resid 7/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m\forecast_errors_Dollar_Bars_5m_07_acf_residuos_quadrado.png
+    [resid 8/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m\forecast_errors_Dollar_Bars_5m_08_previsao_vs_observado.png
+  Análise de resíduos concluída (8 gráficos) → c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Dollar_Bars_5m
+
+======================================================================
+PIPELINE: Time_Bars_5m
+======================================================================
+
+[1/8] Carregando dados e calculando retornos logarítmicos...
+  Dados carregados: 210522 barras (2024-01-01 00:05:00.046000 → 2025-12-31 23:55:00.651000)
+
+[2/8] Dividindo treino/teste...
+  Split temporal: 168417 treino (80%) | 42105 teste (20%)
+  Treino: 2024-01-01 00:05:00.046000 → 2025-08-07 18:55:00.092000
+  Teste:  2025-08-07 19:00:00.505000 → 2025-12-31 23:55:00.651000
+
+[3/8] Treinando GARCH(1,1) em todo o treino (168417 obs)...
+  AIC final: -1742053.06 | BIC final: -1742012.92
+  Parâmetros: ω=nan  α₁=nan  β₁=nan
+
+[4/8] CPCV de avaliação preditiva (C(10,5) = 252 folds)...
+  Configuração CPCV: {'n_splits': 252, 'n_groups': 10, 'k_test': 5, 'embargo_bars': 240, 'avg_train_size': 81812, 'avg_test_size': 84205, 'avg_purged': 1200, 'avg_embargoed': 1200, 'total_samples': 168417}
+
+  CPCV Avaliação: 252 folds × GARCH(1,1) fixo = 252 ajustes MLE
+  CPCV concluído em 19.6s (0.08s/fold  |  0 skipped)
+
+  Folds avaliados: 252
+  Pares diários no pool: 74340
+
+  Métricas CPCV (médias fold-level):
+    MSE   = 3.6935e-07  (±7.29e-08)
+    MAE   = 4.0832e-04  (±2.06e-05)
+    QLIKE = -6.5408  (±0.0619)
+    R²    = 0.7833  (±0.0794)
+
+[5/8] Calculando IC bootstrap fold-level (n_boot=2000)...
+  MSE  : 3.6935e-07  IC 95% [3.6064e-07, 3.7823e-07]  SE=4.6596e-09
+  MAE  : 4.0832e-04  IC 95% [4.0581e-04, 4.1093e-04]  SE=1.2873e-06
+  QLIKE: -6.5408e+00  IC 95% [-6.5486e+00, -6.5331e+00]  SE=3.9143e-03
+
+[6/8] Previsão final no teste (42105 obs)...
+  Previsão concluída em 0.1s
+  Dias com previsão: 147 (2025-08-07 → 2025-12-31)
+  Dias alinhados com RV benchmark: 147
+
+  Métricas no split 20% (suplementares):
+    MSE  = 1.65e-07
+    MAE  = 3.59e-04
+    QLIKE= -6.7757
+    R²   = 0.4929
+
+[7/8] Gerando gráficos de previsão...
+    [prev 1/2] Série temporal com IC salva: c:\Codigos\TCC\modelagem\resultados_s2\analise_previsao\Time_Bars_5m\Time_Bars_5m_01_serie_temporal_ic.png
+    [prev 2/2] Erro de previsão salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_previsao\Time_Bars_5m\Time_Bars_5m_02_erro_previsao.png
+    [boot 01/03] Bootstrap MSE salvo: c:\Codigos\TCC\modelagem\resultados_s2\bootstrap_ic\Time_Bars_5m\Time_Bars_5m_01_bootstrap_mse.png
+    [boot 02/03] Bootstrap MAE salvo: c:\Codigos\TCC\modelagem\resultados_s2\bootstrap_ic\Time_Bars_5m\Time_Bars_5m_02_bootstrap_mae.png
+    [boot 03/03] Bootstrap QLIKE salvo: c:\Codigos\TCC\modelagem\resultados_s2\bootstrap_ic\Time_Bars_5m\Time_Bars_5m_03_bootstrap_qlike.png
+  Bootstrap IC concluído (3 gráficos) → c:\Codigos\TCC\modelagem\resultados_s2\bootstrap_ic\Time_Bars_5m
+  Gráficos de previsão concluídos → c:\Codigos\TCC\modelagem\resultados_s2\analise_previsao\Time_Bars_5m
+
+[8/8] Análise de resíduos da previsão...
+    [resid 1/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m\forecast_errors_Time_Bars_5m_01_residuos_tempo.png
+    [resid 2/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m\forecast_errors_Time_Bars_5m_02_histograma.png
+    [resid 3/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m\forecast_errors_Time_Bars_5m_03_qqplot_normal.png
+    [resid 4/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m\forecast_errors_Time_Bars_5m_04_residuos_vs_ajustados.png
+    [resid 5/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m\forecast_errors_Time_Bars_5m_05_acf_residuos.png
+    [resid 6/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m\forecast_errors_Time_Bars_5m_06_pacf_residuos.png
+    [resid 7/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m\forecast_errors_Time_Bars_5m_07_acf_residuos_quadrado.png
+    [resid 8/8] Salvo: c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m\forecast_errors_Time_Bars_5m_08_previsao_vs_observado.png
+  Análise de resíduos concluída (8 gráficos) → c:\Codigos\TCC\modelagem\resultados_s2\analise_residuos\Time_Bars_5m
+
+======================================================================
+ALINHAMENTO DE DATAS: Dollar Bars vs Time Bars
+======================================================================
+  Dias no teste Dollar Bars : 171  (2025-07-14 → 2025-12-31)
+  Dias no teste Time Bars   : 147  (2025-08-07 → 2025-12-31)
+  Dias em COMUM (interseção): 147  (2025-08-07 → 2025-12-31)
+  [AVISO] Períodos diferiram — usando 147 dias comuns.
+
+======================================================================
+COMPARAÇÃO FINAL: CPCV fold-level — Dollar Bars vs Time Bars
+======================================================================
+
+--- Médias CPCV (fold-level, 252 folds) ---
+Métrica      Dollar Bars       Time Bars
+------------------------------------------
+MSE           2.4651e-07      3.6935e-07
+MAE           3.1719e-04      4.0832e-04
+QLIKE        -6.6456e+00     -6.5408e+00
+R_SQUARED      7.6173e-01      7.8327e-01
+
+--- IC Bootstrap 95% (fold-level, n_boot=2.000) ---
+  Dollar Bars:
+    MSE   = 2.4651e-07  [2.4029e-07, 2.5298e-07]  SE=3.3401e-09
+    MAE   = 3.1719e-04  [3.1406e-04, 3.2027e-04]  SE=1.6127e-06
+    QLIKE = -6.6456e+00  [-6.6593e+00, -6.6315e+00]  SE=7.1043e-03
+  Time Bars:
+    MSE   = 3.6935e-07  [3.6064e-07, 3.7823e-07]  SE=4.6596e-09
+    MAE   = 4.0832e-04  [4.0581e-04, 4.1093e-04]  SE=1.2873e-06
+    QLIKE = -6.5408e+00  [-6.5486e+00, -6.5331e+00]  SE=3.9143e-03
+
+--- Estatísticas Complementares ---
+  MSE    Win Rate(Dollar<Time): 100.0%  CV Dollar: 0.2124  CV Time: 0.1972
+  MAE    Win Rate(Dollar<Time): 100.0%  CV Dollar: 0.0815  CV Time: 0.0505
+  QLIKE  Win Rate(Dollar<Time): 79.8%  CV Dollar: 0.0169  CV Time: 0.0095
+
+--- Teste de Diebold-Mariano (pool CPCV) ---
+  DM Statistic: -14.2324
+  p-value:      0.0000
+  Conclusão:    Modelo 1 é significativamente melhor (p < 0.05)
+
+--- Métricas Suplementares (split 20%, período comum) ---
+  Métrica   Dollar (comum)    Time (comum)
+  ------------------------------------------
+  MSE           1.0503e-07      1.6454e-07
+  MAE           2.6380e-04      3.5875e-04
+  QLIKE        -6.9930e+00     -6.7757e+00
+  R_SQUARED      6.6667e-01      4.9292e-01
+
+--- Gerando gráficos comparativos CPCV ---
+    [cpcv 01/06] MSE por fold salvo: c:\Codigos\TCC\modelagem\resultados_s2\comparacao_modelos\cpcv_01_mse_por_fold.png
+    [cpcv 02/06] MAE por fold salvo: c:\Codigos\TCC\modelagem\resultados_s2\comparacao_modelos\cpcv_02_mae_por_fold.png
+    [cpcv 03/06] QLIKE por fold salvo: c:\Codigos\TCC\modelagem\resultados_s2\comparacao_modelos\cpcv_03_qlike_por_fold.png
+    [cpcv 04/06] Win Rate acumulado salvo: c:\Codigos\TCC\modelagem\resultados_s2\comparacao_modelos\cpcv_04_win_rate_acumulado.png
+    [cpcv 05/06] Cumulative loss salvo: c:\Codigos\TCC\modelagem\resultados_s2\comparacao_modelos\cpcv_05_cumulative_loss.png
+    [cpcv 06/06] Coeficiente de variação salvo: c:\Codigos\TCC\modelagem\resultados_s2\comparacao_modelos\cpcv_06_cv_metricas.png
+  Comparação CPCV concluída (6 gráficos) → c:\Codigos\TCC\modelagem\resultados_s2\comparacao_modelos
+
+  IC Bootstrap salvo: c:\Codigos\TCC\modelagem\resultados_s2\ic_bootstrap_metricas.csv
+  CPCV folds salvo: c:\Codigos\TCC\modelagem\resultados_s2\cpcv_folds_dollar.csv
+  CPCV folds salvo: c:\Codigos\TCC\modelagem\resultados_s2\cpcv_folds_time.csv
+  Estatísticas extras salvas: c:\Codigos\TCC\modelagem\resultados_s2\extra_stats.csv
+
+======================================================================
+Pipeline concluído em 1.1 minutos
+Resultados salvos em: c:\Codigos\TCC\modelagem\resultados_s2
+======================================================================

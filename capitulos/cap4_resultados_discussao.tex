@@ -1,0 +1,277 @@
+% =============================================================================
+%  CAPÍTULO 4 — RESULTADOS E DISCUSSÃO
+%  TCC: Dollar Bars vs. Time Bars — Modelos GARCH para BTC/USDT
+% =============================================================================
+
+\chapter{Resultados e Discussão}
+\label{cap:resultados}
+
+% -----------------------------------------------------------------------------
+\section{Propriedades Estatísticas Comparativas das Séries}
+\label{sec:prop_estatisticas}
+
+A análise exploratória das séries de retornos logarítmicos revela diferenças estruturais
+substanciais entre as duas formas de amostragem, conforme sintetizado na Tabela~\ref{tab:estat_descritiva}.
+Essas diferenças não são ruído amostral: elas decorrem diretamente do mecanismo pelo qual
+cada tipo de barra é construída.
+
+O indicador mais expressivo é a curtose. As time bars de 5 minutos apresentam curtose de Fisher
+de 75,37, ao passo que as dollar bars registram apenas 3,09 — uma razão de aproximadamente
+25 vezes. Para compreender essa disparidade, é preciso considerar o que ocorre durante
+choques de volatilidade no mercado de Bitcoin. Ao longo de um episódio de alta atividade
+financeira, dezenas de transações são comprimidas em uma única barra temporal, produzindo
+retornos extremamente grandes que inflariam artificialmente as caudas da distribuição.
+A dollar bar, ao encerrar uma barra sempre que o volume financeiro transacionado atinge o
+limiar $\bar{D}$, redistribui esse mesmo choque ao longo de múltiplas barras, diluindo o
+extremo. Esse mecanismo é precisamente a sub-amostragem em períodos de alta atividade
+descrita por \citet{Prado2018} na discussão sobre barras de informação (seção 2.1.1).
+
+A assimetria reforça o mesmo argumento. Enquanto as dollar bars exibem assimetria de apenas
+0,05 — praticamente simétrica —, as time bars apresentam assimetria de $-1{,}01$. O sinal
+negativo indica que quedas abruptas são capturadas de forma concentrada nessa amostragem:
+grandes retornos negativos, correspondentes a correções rápidas, tendem a ocorrer em janelas
+de poucos minutos e, por isso, se concentram em uma única barra temporal. Além da implicação
+distribucional, a simetria das dollar bars facilita a especificação do modelo GARCH, que,
+em sua formulação padrão com inovações gaussianas, assume distribuição condicional simétrica.
+
+Os testes formais de adequação distribucional, apresentados na Tabela~\ref{tab:testes_formais},
+amplificam esse quadro. A estatística de Jarque-Bera das time bars é superior a 49 milhões,
+contra aproximadamente 83 mil para as dollar bars — uma diferença de mais de 500 vezes.
+Esse resultado não representa apenas rejeição da normalidade, que ambas as séries exibem:
+indica que as caudas das time bars pertencem a uma ordem de magnitude distinta. O teste
+de Ljung-Box nos retornos em nível rejeita a hipótese de ausência de autocorrelação
+para as duas séries, mas com estatística consideravelmente maior para as time bars
+(155,03 versus 50,06). Contudo, conforme discutido na seção seguinte, essa autocorrelação
+é de magnitude modesta para o volume de observações disponível e não justifica componentes
+autorregressivos ou de médias móveis no modelo final. Ambas as séries são estacionárias:
+o teste Dickey-Fuller Aumentado rejeita a hipótese de raiz unitária, e o teste KPSS não
+rejeita estacionariedade em nenhuma das duas amostras, validando o uso de $d = 0$ na
+especificação ARMA.
+
+Em conjunto, os resultados exploratórios corroboram a hipótese de \citet{Prado2018}:
+dollar bars produzem séries com propriedades distribucionais superiores em termos de
+curtose, assimetria e dependência linear residual. Cabe ressalvar, contudo, que propriedades
+descritivas melhores não garantem, por si só, maior poder preditivo fora da amostra.
+Essa questão é investigada nas seções seguintes.
+
+% -----------------------------------------------------------------------------
+\section{Seleção de Modelos via CPCV}
+\label{sec:selecao_modelos}
+
+O procedimento de seleção de hiperparâmetros via \textit{Combinatorial Purged Cross-Validation}
+(CPCV) com $N = 10$ grupos, $K = 5$ grupos de teste e embargo de 240 barras gerou
+$\binom{10}{5} = 252$ folds de avaliação, totalizando 36.288 ajustes MLE por série
+(252 folds $\times$ 144 combinações de parâmetros no grid
+$\text{ARMA}(0..5,\,0..5) \times \text{GARCH}(1..2,\,1..2)$).
+
+Em ambas as séries, o componente ARMA selecionado foi ARMA$(0,0)$, ou seja, média constante
+sem termos autorregressivos nem de médias móveis. Esse resultado é consistente com a
+hipótese de eficiência de mercado na forma fraca: os retornos do par BTC/USDT, a despeito
+de sua curtose elevada, não apresentam estrutura linear preditível suficiente para justificar
+a inclusão de termos AR ou MA. É importante observar que esse resultado não contradiz a
+rejeição do Ljung-Box reportada na seção anterior. As autocorrelações detectadas são de
+magnitude prática pequena — estatísticas de 50 e 155 para séries com cerca de 200 mil
+observações representam efeitos de baixa amplitude — e concentram-se, sobretudo, nos
+retornos ao quadrado, não nos níveis; o componente GARCH é o mecanismo mais adequado
+para capturá-las.
+
+O resultado mais informativo da seleção refere-se ao componente GARCH. Para as dollar bars,
+o modelo GARCH$(1,2)$ — com um termo de inovação ao quadrado $(\alpha_1)$ e dois termos
+de variância defasada $(\beta_1, \beta_2)$ — foi escolhido em 233 dos 252 folds,
+correspondendo a 92,5\% de frequência de seleção. Para as time bars, o modelo GARCH$(1,1)$
+canônico foi selecionado na totalidade dos 252 folds (100,0\%). O AIC médio das time bars
+ao longo dos folds foi de $-859.083$, contra $-835.475$ para as dollar bars, indicando
+melhor ajuste \textit{in-sample} para a série temporal.
+
+A necessidade de um termo $\beta_2$ adicional nas dollar bars tem uma interpretação
+econômica plausível. Por construção, as dollar bars possuem espaçamento temporal irregular:
+são geradas em maior número durante períodos de alta atividade financeira, quando a
+volatilidade do mercado é tipicamente mais elevada. Esse mecanismo faz com que os choques
+de volatilidade sejam distribuídos ao longo de mais barras, tornando o decaimento da
+variância condicional mais gradual e demandando uma especificação ligeiramente mais rica
+para capturá-lo adequadamente. As time bars, ao ignorar esse padrão de irregularidade
+temporal, comprimem os choques em barras únicas e produzem uma dinâmica de volatilidade
+mais diretamente capturada pelo GARCH$(1,1)$ canônico.
+
+A estabilidade das seleções merece atenção. O fato de o GARCH$(1,1)$ ter sido eleito
+em 100\% dos folds para as time bars indica que a dinâmica de volatilidade dessa série
+é bem descrita pela especificação padrão da literatura, com pouca ambiguidade quanto à
+ordem. Para as dollar bars, a frequência de 92,5\% tampouco é marginal: denota robustez
+do GARCH$(1,2)$, não um artefato de um fold específico. Em síntese, o CPCV entregou
+seleções estáveis para ambas as séries, com a diferença de especificação entre elas
+refletindo uma propriedade genuína das dinâmicas de volatilidade subjacentes.
+
+Cabe destacar que ajuste \textit{in-sample} superior não implica, necessariamente,
+melhor desempenho preditivo fora da amostra — distinção fundamental em qualquer
+avaliação de modelos de previsão \citep{Diebold2015}. Essa questão é endereçada
+diretamente na seção seguinte.
+
+% -----------------------------------------------------------------------------
+\section{Desempenho Preditivo Fora da Amostra}
+\label{sec:desempenho_previsao}
+
+Esta seção constitui o núcleo analítico do trabalho, respondendo diretamente à pergunta
+de pesquisa com base nas métricas calculadas sobre os conjuntos de teste — 171 dias para
+as dollar bars (2025-07-14 a 2025-12-31) e 147 dias para as time bars
+(2025-08-07 a 2025-12-31) — e comparadas contra o estimador TSRV de volatilidade
+realizada como benchmark.
+
+\subsection{Métricas Pontuais}
+\label{subsec:metricas_pontuais}
+
+As métricas de avaliação pontual, apresentadas na Tabela~\ref{tab:metricas_comparacao},
+revelam dominância das dollar bars nas três funções de perda avaliadas. O Erro Quadrático
+Médio (MSE) das dollar bars é de $1{,}08 \times 10^{-7}$, contra $1{,}65 \times 10^{-7}$
+para as time bars — uma redução de aproximadamente 34\%. O Erro Absoluto Médio (MAE)
+exibe comportamento análogo: $2{,}72 \times 10^{-4}$ versus $3{,}59 \times 10^{-4}$,
+representando redução de aproximadamente 24\%. A métrica QLIKE, cujos valores menores
+(em módulo, mais negativos) indicam melhor desempenho, registra $-7{,}026$ para as dollar
+bars e $-6{,}776$ para as time bars, uma diferença de 0,25 em magnitude absoluta.
+
+As três métricas pertencem à classe de funções de perda robustas de \citet{Patton2011},
+cuja propriedade fundamental é preservar o ranking entre previsões de volatilidade mesmo
+quando o benchmark utilizado como variável dependente é um proxy ruidoso da volatilidade
+latente verdadeira. Essa propriedade é particularmente relevante no presente contexto,
+pois o estimador TSRV, ainda que consistente, incorpora ruído de microestrutura e
+incerteza de estimação que o afastam da variância quadrática integrada teórica. O fato
+de as três métricas robustas apontarem unanimemente na mesma direção reforça a
+confiabilidade do resultado.
+
+\subsection{Regressão de Mincer-Zarnowitz}
+\label{subsec:mz}
+
+A regressão de Mincer-Zarnowitz \citep{MincerZarnowitz1969}, que regride a volatilidade
+realizada diária $\hat{\sigma}^2_{\text{RV},t}$ sobre a previsão do modelo
+$\hat{h}_t$, fornece um diagnóstico adicional sobre a qualidade e o viés das previsões.
+Para as dollar bars, o coeficiente de determinação $R^2$ foi de 0,655 e o intercepto
+estimado de $\hat{\alpha} = -1{,}08 \times 10^{-4}$ (p-valor = 0,0022). Para as time bars,
+$R^2 = 0{,}493$ e $\hat{\alpha} = -2{,}54 \times 10^{-4}$ (p-valor = 0,0001).
+
+O modelo baseado em dollar bars explica, portanto, 65,5\% da variação da volatilidade
+realizada diária, contra 49,3\% para as time bars. Essa diferença de aproximadamente
+16 pontos percentuais no $R^2$ é economicamente relevante: para aplicações de gestão
+de risco, como o cálculo de VaR (\textit{Value at Risk}) ou a otimização de carteiras
+com restrições de variância, modelos que explicam maior parcela da variação da volatilidade
+realizada tendem a produzir limites de risco mais calibrados \citep{Andersen2003}.
+
+Ambos os interceptos são negativos e estatisticamente significativos, indicando leve
+subestimação sistemática da volatilidade realizada por parte de ambos os modelos.
+Esse resultado é típico de modelos GARCH paramétricos estimados com inovações gaussianas
+quando comparados a estimadores não-paramétricos de alta frequência: o estimador TSRV
+captura componentes de variação intrajornada que o GARCH, por ser estimado sobre retornos
+diários ou intradiários agregados, não incorpora diretamente. O coeficiente angular $\hat{\beta}$
+foi de 0,858 para as dollar bars (p-valor $\approx 0$) e de 1,032 para as time bars
+(p-valor $\approx 0$), sugerindo que o modelo de dollar bars tende a subestimar
+a resposta da volatilidade realizada à previsão, enquanto o de time bars apresenta
+resposta ligeiramente acima da unidade, indicando leve sobre-reação relativa.
+
+\subsection{Teste de Diebold-Mariano}
+\label{subsec:dm}
+
+A comparação formal de capacidade preditiva foi realizada por meio do teste de
+Diebold-Mariano \citep{DieboldMariano1995}. A estatística DM calculada sobre o subconjunto
+de 147 dias em que ambos os modelos produzem previsões sobrepostas foi de $-1{,}9578$,
+com p-valor bilateral de 0,0503.
+
+A interpretação desse resultado requer cuidado analítico. Em primeiro lugar, o sinal
+negativo da estatística DM confirma que o modelo de dollar bars apresenta perdas menores
+em média: a direção da diferença é inequívoca e coerente com todas as demais métricas.
+Em segundo lugar, o p-valor de 0,0503 situa-se imediatamente acima do limiar convencional
+de 5\%, o que, em sentido estrito, não permite rejeitar a hipótese nula de igualdade
+preditiva ao nível de 5\%. Contudo, uma avaliação intelectualmente honesta desse resultado
+exige considerar o poder do teste nas condições da amostra disponível.
+
+O teste de Diebold-Mariano é aplicado sobre os 147 dias de sobreposição entre os conjuntos
+de teste, não sobre toda a amostra de teste. Com essa quantidade de observações, o poder
+estatístico do teste é moderado: pequenas diferenças de desempenho, mesmo que economicamente
+relevantes, podem não atingir significância ao nível convencional. Uma amostra de dias de
+previsão mais extensa — possível com um horizonte de dados mais longo — provavelmente
+produziria rejeição, dada a consistência da vantagem das dollar bars em todas as métricas.
+Além disso, conforme argumenta \citet{Diebold2015}, o limiar de 5\% é uma convenção, não
+uma fronteira ontológica entre evidência e ausência de evidência: um p-valor de 0,0503
+constitui evidência fraca \textit{contra} a hipótese nula de igualdade, não evidência
+\textit{a favor} dela. Em termos práticos, uma redução de 34\% no MSE e de 24\% no MAE
+é economicamente relevante para um gestor de risco, independentemente do p-valor pontual.
+
+\subsection{Intervalos de Confiança Bootstrap}
+\label{subsec:bootstrap}
+
+Os intervalos de confiança de 95\% obtidos por bootstrap com $n_{\text{boot}} = 2000$
+reamostras, apresentados na Tabela~\ref{tab:ic_bootstrap}, complementam e, em parte,
+superam a conclusão do teste DM ao fornecer incerteza marginal para cada modelo
+separadamente.
+
+Para as métricas MSE e MAE, os intervalos se sobrepõem parcialmente entre os dois modelos.
+O IC 95\% do MSE das dollar bars é $[7{,}99 \times 10^{-8},\ 1{,}44 \times 10^{-7}]$,
+enquanto o das time bars é $[1{,}35 \times 10^{-7},\ 2{,}00 \times 10^{-7}]$. A sobreposição,
+embora modesta, é consistente com a não-rejeição pelo teste DM. Para o MAE, situação análoga:
+dollar bars em $[2{,}45 \times 10^{-4},\ 3{,}00 \times 10^{-4}]$ e time bars em
+$[3{,}29 \times 10^{-4},\ 3{,}90 \times 10^{-4}]$, com sobreposição pequena mas presente.
+
+O resultado mais robusto do presente trabalho emerge da análise dos intervalos de
+confiança para a métrica QLIKE. O IC 95\% das dollar bars é $[-7{,}156,\ -6{,}894]$,
+e o das time bars é $[-6{,}877,\ -6{,}668]$. Esses intervalos \textbf{não se sobrepõem},
+o que significa que, com 95\% de confiança, a métrica QLIKE das dollar bars é menor do
+que a das time bars. A relevância desse achado é amplificada pelo fato de o QLIKE ser,
+entre as três funções de perda avaliadas, a mais adequada do ponto de vista teórico para
+comparar previsões de volatilidade: conforme demonstrado por \citet{Patton2011}, é a
+única função de perda da família que é robusta ao uso de proxies ruidosos e que ao mesmo
+tempo possui propriedades de elicitabilidade para a variância condicional.
+
+Em síntese, o conjunto de evidências — estatística DM negativa na fronteira de 5\% de
+significância, ICs de QLIKE não sobrepostos a 95\%, e dominância simultânea em MSE, MAE,
+QLIKE e $R^2$ MZ — constitui evidência consistente e coerente em favor das dollar bars
+como insumo para modelos GARCH de previsão de volatilidade do BTC/USDT. A evidência não
+é conclusiva ao nível convencional de significância bilateral do DM, mas é robusta em
+direção e coerente entre múltiplas perspectivas de avaliação.
+
+% -----------------------------------------------------------------------------
+\section{Limitações e Ressalvas}
+\label{sec:limitacoes}
+
+A interpretação dos resultados deve ser contextualizada por um conjunto de limitações
+metodológicas e de escopo que delimitam o alcance das conclusões.
+
+\paragraph{Ativo único.}
+Todos os resultados são obtidos para o par BTC/USDT negociado na Binance.
+Criptomoedas operam 24 horas por dia, sete dias por semana, e possuem microestrutura
+distinta de mercados regulados: ausência de mecanismos de circuit breaker, inexistência
+de leilão de abertura e fechamento, e liquidez fragmentada entre múltiplas exchanges.
+Essas características tornam o BTC/USDT um caso de análise com dinâmicas próprias,
+e a generalização dos resultados para ações, câmbio ou commodities demanda estudos
+adicionais com esses ativos.
+
+\paragraph{Período amostral.}
+O horizonte de dois anos (2024–2025) é suficiente para estimação e validação dos modelos,
+mas pode não capturar toda a variação de regimes de volatilidade relevantes para o Bitcoin.
+O período abrange fases de bull e bear market, mas parâmetros estimados sobre esse intervalo
+podem não ser estáveis em regimes futuros com características distintas das observadas.
+
+\paragraph{Calibração do limiar $\bar{D}$.}
+O limiar das dollar bars foi calibrado para produzir o mesmo número médio de barras por dia
+que as time bars de 5 minutos, tornando as comparações controladas por volume de observação.
+Essa escolha é metodologicamente razoável, mas arbitrária: resultados poderiam diferir com
+limiares maiores ou menores, que gerariam séries com granularidade distinta e, possivelmente,
+propriedades distribucional diferentes.
+
+\paragraph{Distribuição dos erros.}
+Ambos os modelos foram estimados com inovações gaussianas. Diante do excesso de curtose
+documentado — especialmente expressivo nas time bars — distribuições de cauda pesada,
+como a t-Student ou a Distribuição de Erro Generalizado (GED), poderiam melhorar o ajuste
+e potencialmente alterar a magnitude e o sentido das diferenças entre os modelos.
+
+% -----------------------------------------------------------------------------
+\section{Síntese do Capítulo}
+\label{sec:sintese_cap4}
+
+Em conjunto, os resultados indicam que dollar bars produzem séries de retornos com
+propriedades estatísticas superiores e modelos GARCH com maior poder preditivo fora
+da amostra para o BTC/USDT no período 2024–2025. A evidência é consistente em direção
+— dominância em MSE, MAE, QLIKE e $R^2$ MZ — e materialmente relevante em magnitude,
+com reduções de 34\% no MSE e de 24\% no MAE, e uma diferença de 16 pontos percentuais
+no coeficiente de determinação da regressão de Mincer-Zarnowitz. A significância estatística
+formal, avaliada pelo teste de Diebold-Mariano, fica na fronteira do nível convencional
+de 5\% (p = 0,0503), possivelmente em razão do limitado número de dias sobrepostos
+disponíveis para comparação; a análise dos intervalos de confiança bootstrap para o QLIKE
+— a métrica teoricamente mais adequada — fornece evidência mais direta da superioridade
+das dollar bars, com intervalos não sobrepostos a 95\% de confiança.

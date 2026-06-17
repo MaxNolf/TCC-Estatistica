@@ -1,0 +1,60 @@
+% ---
+% Pacotes fundamentais 
+% ---
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{latexsym}
+\usepackage{amsmath,amsthm,amssymb,amsopn,amstext,amscd,amsfonts}
+\usepackage{bm}
+\usepackage{here}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{siunitx}
+
+% ---
+% Caminhos de figuras
+% ---
+\graphicspath{
+  {assets/figuras/}
+  {../analise_inicial/graficos/}
+  {../modelagem/resultados_s1/}
+  {../images}
+}
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+
+% ---
+% Configurações de Aparência e Cores
+% ---
+\definecolor{blue}{RGB}{41,5,195}
+
+\makeatletter
+\hypersetup{
+    pdftitle={\@title}, 
+    pdfauthor={\@author},
+    pdfsubject={\imprimirpreambulo},
+    pdfcreator={LaTeX with abnTeX2},
+    colorlinks=true,       		
+    linkcolor=blue,          	
+    citecolor=blue,        		
+    filecolor=magenta,      		
+    urlcolor=blue,
+    bookmarksdepth=4
+}
+\makeatother
+
+% Espaçamentos
+\setlength{\parindent}{1.3cm}
+\setlength{\parskip}{0.2cm}
+
+\makeindex

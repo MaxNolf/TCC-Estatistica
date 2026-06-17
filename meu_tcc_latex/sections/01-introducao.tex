@@ -1,0 +1,102 @@
+% ----------------------------------------------------------
+% Capítulo 1 — Introdução
+% ----------------------------------------------------------
+\chapter{Introdução}
+\label{cap:introducao}
+
+A modelagem da volatilidade de ativos financeiros constitui um dos pilares
+da econometria financeira moderna, com aplicações diretas na gestão de
+risco, na precificação de derivativos e na alocação de
+portfólios \cite{tsay2010}. Desde a introdução dos modelos ARCH por
+\citeonline{engle1982} e sua generalização GARCH por
+\citeonline{bollerslev1986}, a literatura tem avançado significativamente
+na compreensão da dinâmica temporal da variância condicional de retornos
+financeiros. Entretanto, a qualidade dos modelos estimados depende
+fundamentalmente da forma com que os dados brutos de mercado são
+pré-processados e agregados --- uma etapa frequentemente negligenciada na
+prática.
+
+A forma mais comum de agregação de dados financeiros de alta frequência é
+a construção de barras temporais (\emph{time bars}), nas quais as
+observações são agrupadas em intervalos fixos de tempo. Contudo,
+\citeonline{lopez2018advances} demonstrou que essa abordagem introduz
+distorções estatísticas relevantes: sobre-amostragem em períodos de baixa
+atividade, sub-amostragem em períodos de alta atividade, e retornos com
+propriedades que se afastam das premissas de modelos econométricos
+tradicionais. Como alternativa, o autor propôs as \emph{dollar bars},
+barras baseadas no volume financeiro transacionado, que produzem séries com
+propriedades estatísticas mais favoráveis à modelagem.
+
+A questão que surge naturalmente é: \emph{em que medida a escolha do método
+de amostragem --- \emph{time bars} versus \emph{dollar bars} --- afeta a
+qualidade das estimativas de volatilidade obtidas por modelos
+ARMA-GARCH?} Esta pergunta tem relevância prática direta, pois a
+estimativa da variância condicional é insumo para decisões de investimento,
+\emph{hedging} e controle de risco.
+
+Adicionalmente, a avaliação de modelos em séries temporais financeiras
+requer cuidados metodológicos específicos. A dependência temporal entre
+observações invalida métodos tradicionais de validação cruzada, e a prática
+de selecionar o ``melhor modelo'' com base em métricas \emph{in-sample}
+pode conduzir a sobreajuste (\emph{overfitting}). O arcabouço de Validação
+Cruzada Combinatória Purgada (CPCV), proposto por
+\citeonline{lopez2018advances}, endereça essas limitações ao gerar
+múltiplos caminhos de \emph{backtest} e permitir a estimação das estatísticas em séries
+temporais com maior rigor.
+
+% ----------------------------------------------------------
+\section{Objetivos}
+\label{sec:objetivos}
+% ----------------------------------------------------------
+
+\subsection{Objetivo Geral}
+\label{subsec:objetivo_geral}
+
+Analisar o impacto da escolha do método de amostragem de dados financeiros
+--- \emph{time bars} versus \emph{dollar bars} --- sobre as propriedades
+estatísticas das séries resultantes e sobre a qualidade preditiva de modelos
+ARMA-GARCH para a variância condicional de retornos, utilizando o
+estimador Two-Scale Realized Volatility (TSRV) para a variância realizada,
+como referência e o arcabouço CPCV para avaliação comparativa robusta.
+
+\subsection{Objetivos Específicos}
+\label{subsec:objetivos_especificos}
+
+\begin{enumerate}
+    \item Construir séries de retornos a partir de \emph{time bars} e
+          \emph{dollar bars} para um ativo financeiro selecionado, comparando
+          suas propriedades estatísticas descritivas;
+    \item Estimar a variância realizada por meio do estimador TSRV;
+    \item Ajustar modelos ARMA-GARCH conjuntos sobre ambos os tipos de
+          barra, selecionando as ordens ótimas por critérios de informação;
+    \item Avaliar e comparar o desempenho preditivo dos modelos utilizando métricas de erro de previsão de
+          volatilidade (MSE, MAE, QLIKE, MZ).
+    \item Comparar o desempenho preditivo dos modelos com o estimador TSRV.
+\end{enumerate}
+
+% ----------------------------------------------------------
+\section{Justificativa}
+\label{sec:justificativa}
+% ----------------------------------------------------------
+
+A escolha do método de amostragem de dados financeiros é uma decisão
+metodológica de primeira ordem que afeta toda a cadeia subsequente de
+modelagem e inferência. Apesar de amplamente discutida na literatura de
+aprendizado de máquina financeiro \cite{lopez2018advances}, a interação
+entre métodos de amostragem alternativos e modelos econométricos clássicos
+de volatilidade --- particularmente a família GARCH --- permanece pouco
+explorada na literatura acadêmica brasileira.
+
+Este trabalho justifica-se pela necessidade de:
+
+\begin{enumerate}
+    \item \textbf{Preencher uma lacuna metodológica}: a maioria dos estudos
+          que empregam modelos GARCH utiliza \emph{time bars} sem questionar
+          as implicações dessa escolha. Uma análise comparativa rigorosa
+          contribui para a compreensão de como o método de amostragem afeta
+          as estimativas de volatilidade;
+    \item \textbf{Adotar uma avaliação robusta}: o uso do CPCV representa uma abordagem metodologicamente
+          superior ao \emph{walk-forward} simples, comumente empregado em
+          trabalhos aplicados;
+    \item \textbf{Integrar estimadores eficientes}: o estimador TSRV é uma alternativa de estimação em cima de tick data para a estimação de variância realizada mais precisa do que o retorno quadrático simples, permitindo uma avaliação mais fidedigna dos modelos.
+\end{enumerate}

@@ -1,0 +1,73 @@
+    Checking arma-garch-cv v0.1.0 (C:\Codigos\R\TCC_Econo\arma_garch_cv)
+warning: unused import: `std::f64::consts::PI`
+  --> src\distributions\normal.rs:11:5
+   |
+11 | use std::f64::consts::PI;
+   |     ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0599]: no method named `clone` found for struct `GarchProblem` in the current scope
+   --> src\estimation\solver.rs:328:44
+    |
+275 | struct GarchProblem {
+    | ------------------- method `clone` not found for this struct
+...
+328 |     if let Ok(res) = Executor::new(problem.clone(), solver)
+    |                                            ^^^^^ method not found in `GarchProblem`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `clone`, perhaps you need to implement it:
+            candidate #1: `Clone`
+
+error[E0282]: type annotations needed
+   --> src\estimation\solver.rs:329:21
+    |
+329 |         .configure(|state| state.param(x0.clone()).max_iters(500))
+    |                     ^^^^^  ----- type must be known at this point
+    |
+help: consider giving this closure parameter an explicit type
+    |
+329 |         .configure(|state: /* Type */| state.param(x0.clone()).max_iters(500))
+    |                          ++++++++++++
+
+error[E0282]: type annotations needed
+   --> src\estimation\solver.rs:334:31
+    |
+334 |                 best_params = bp.clone();
+    |                               ^^ cannot infer type
+
+error[E0599]: no method named `clone` found for struct `GarchProblem` in the current scope
+   --> src\estimation\solver.rs:355:52
+    |
+275 | struct GarchProblem {
+    | ------------------- method `clone` not found for this struct
+...
+355 |             if let Ok(res) = Executor::new(problem.clone(), nm_solver)
+    |                                                    ^^^^^ method not found in `GarchProblem`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `clone`, perhaps you need to implement it:
+            candidate #1: `Clone`
+
+error[E0282]: type annotations needed
+   --> src\estimation\solver.rs:356:29
+    |
+356 |                 .configure(|state| state.max_iters(2000))
+    |                             ^^^^^  ----- type must be known at this point
+    |
+help: consider giving this closure parameter an explicit type
+    |
+356 |                 .configure(|state: /* Type */| state.max_iters(2000))
+    |                                  ++++++++++++
+
+error[E0282]: type annotations needed
+   --> src\estimation\solver.rs:362:39
+    |
+362 |                         best_params = bp.clone();
+    |                                       ^^ cannot infer type
+
+Some errors have detailed explanations: E0282, E0599.
+For more information about an error, try `rustc --explain E0282`.
+warning: `arma-garch-cv` (lib) generated 1 warning
+error: could not compile `arma-garch-cv` (lib) due to 6 previous errors; 1 warning emitted

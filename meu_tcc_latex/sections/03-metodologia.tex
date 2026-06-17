@@ -1,0 +1,709 @@
+% ----------------------------------------------------------
+% Capítulo 3 — Metodologia
+% ----------------------------------------------------------
+\chapter{Metodologia}
+\label{cap:metodologia}
+
+Este capítulo descreve os procedimentos empíricos adotados para investigar o
+impacto do método de amostragem --- \emph{dollar bars} versus \emph{time
+bars} --- sobre a qualidade preditiva de modelos ARMA-GARCH para a variância
+condicional de retornos do par BTC/USDT. A exposição segue a ordem
+cronológica da \emph{pipeline} de modelagem: coleta e preparação dos dados
+(\autoref{sec:met_dados}), análise exploratória das séries
+(\autoref{sec:met_exploratoria}), construção dos retornos
+(\autoref{sec:met_retornos}), divisão treino-teste
+(\autoref{sec:met_split}), seleção de parâmetros via CPCV
+(\autoref{sec:met_cpcv}), estimação do modelo final
+(\autoref{sec:met_estimacao}), agregação das previsões para nível diário
+(\autoref{sec:met_agregacao}), avaliação por métricas e testes estatísticos
+(\autoref{sec:met_metricas}) e implementação computacional
+(\autoref{sec:met_implementacao}).
+
+% ==========================================================
+\section{Dados e Período Amostral}
+\label{sec:met_dados}
+% ==========================================================
+
+O estudo utiliza dados de negociação do par BTC/USDT na \emph{exchange}
+Binance, abrangendo o período de 1\textordmasculine\ de janeiro de 2024 a
+31 de dezembro de 2025 (731 dias corridos). A partir dos dados brutos de
+alta frequência, foram construídas duas séries de barras com resolução
+efetiva equivalente a 5 minutos:
+
+\begin{itemize}
+    \item \textbf{Dollar Bars (5 min)}: 209.630 barras, amostradas sempre
+          que o volume financeiro acumulado atinge um limiar
+          $\bar{D}$ calibrado para produzir, em média, o mesmo número de
+          barras por dia que as \emph{time bars} de 5 minutos;
+    \item \textbf{Time Bars (5 min)}: 210.522 barras, amostradas em
+          intervalos fixos de 5 minutos.
+\end{itemize}
+
+Adicionalmente, a volatilidade realizada diária, estimada pelo método
+TSRV (\autoref{subsec:tsrv}), serve como \emph{benchmark} para avaliação
+das previsões. O \emph{benchmark} cobre os mesmos 731 dias do período
+amostral.
+
+% ----------------------------------------------------------
+\subsection{Coleta e Pré-processamento dos Dados de Alta Frequência}
+\label{subsec:met_coleta}
+% ----------------------------------------------------------
+
+Os dados brutos utilizados neste trabalho consistem nos registros de negociação agregada (\emph{aggTrades}) do par BTC/USDT disponibilizados pela Binance. Cada observação contém o preço de execução da negociação, o volume transacionado e a direção do \emph{taker} (campo \texttt{IsBuyerMaker}). O volume total do período amostral supera 1 bilhão de registros, distribuídos em arquivos no formato Apache Parquet com tamanho agregado de aproximadamente 28\,GB.
+
+Dado o volume de dados incompatível com o carregamento integral em memória principal (\emph{RAM}), adotou-se uma arquitetura de processamento por \emph{streaming}, descrita em detalhe a seguir.
+
+\subsubsection{Arquitetura de Processamento por \emph{Streaming} via \emph{Row Groups}}
+\label{subsubsec:streaming_rg}
+
+O formato Parquet organiza os dados em unidades lógicas denominadas \emph{row groups} --- blocos contíguos de linhas armazenados de forma colunar. A biblioteca \texttt{pyarrow} permite a leitura seletiva de um \emph{row group} por vez, sem que o restante do arquivo seja desserializado. Essa característica foi explorada para implementar um laço de processamento iterativo: a cada iteração, um único \emph{row group} é carregado em memória, as métricas de microestrutura são calculadas e acumuladas em estruturas de dados de tamanho fixo, e o bloco é então descartado antes que o próximo seja lido.
+
+O resultado prático é um consumo de memória aproximadamente constante ao longo de toda a execução --- empiricamente observado em torno de 500\,MB --- independentemente do tamanho total do arquivo. Tal abordagem é condição necessária para a replicabilidade do experimento em ambientes com recursos computacionais convencionais (ausência de infraestrutura de \emph{cluster}), garantindo ao mesmo tempo que a íntegra dos dados seja processada sem amostragem prévia.
+
+\subsubsection{Extração do Preço Eficiente por Filtro IIR}
+\label{subsubsec:filtro_iir}
+
+No arcabouço de microestrutura, o preço observado $P_t$ é decomposto em duas componentes:
+%
+\begin{equation}
+    \label{eq:price_decomp}
+    P_t = P_t^* + \varepsilon_t,
+\end{equation}
+%
+onde $P_t^*$ denota o \emph{preço eficiente} --- o valor fundamental latente do ativo, livre de ruído transacional --- e $\varepsilon_t$ representa o ruído de microestrutura, gerado pela discrição do \emph{tick}, pelo \emph{spread} \emph{bid-ask} e por outros custos de transação.
+
+Para extrair $P_t^*$, aplicou-se um filtro de Média Móvel Exponencial (EMA) de primeira ordem, equivalente a um filtro de Resposta ao Impulso Infinita (IIR) passa-baixas com função de transferência:
+%
+\begin{equation}
+    \label{eq:iir}
+    H(z) = \frac{\alpha}{1 - (1-\alpha)\,z^{-1}},
+\end{equation}
+%
+onde $\alpha \in (0,1)$ é o coeficiente de suavização. A equação de recorrência correspondente é $P_t^* = \alpha P_t + (1-\alpha)P_{t-1}^*$, que pode ser implementada de forma causal e eficiente via \texttt{scipy.signal.lfilter}. A denominação ``IIR'' sublinha que, ao contrário dos filtros de Resposta ao Impulso Finita (FIR), cada saída depende de toda a história passada da série, tornando a manutenção do \emph{estado} do filtro entre os \emph{row groups} processados indispensável para garantir a continuidade do sinal: ao final de cada bloco, o vetor de estado interno do filtro é preservado e injetado como condição inicial do bloco subsequente.
+
+O componente de ruído é então estimado como o resíduo $\hat{\varepsilon}_t = P_t - \hat{P}_t^*$, e suas propriedades estatísticas --- média, variância, percentis e perfil intradiário --- são acumuladas nas estruturas \emph{online} descritas nas subseções anteriores.
+
+\subsubsection{Aceleração por Compilação JIT via Numba}
+\label{subsubsec:numba}
+
+Os \emph{kernels} de cálculo que envolvem laços internos sobre janelas móveis --- em particular, o estimador de Hasbrouck e a covariância serial do modelo de Roll --- foram decorados com a diretiva \texttt{@numba.njit} (modo \emph{nopython}), que instrui o compilador Numba a traduzir o código Python para código de máquina LLVM sem intermediação do interpretador CPython. O resultado é desempenho equivalente ao de C para laços numéricos intensivos, com o benefício de manter a legibilidade e a verificabilidade do código em Python. O ganho de velocidade observado em relação ao NumPy puro para janelas de comprimento $\sim$$10^4$ foi superior a uma ordem de grandeza, tornando o processamento da série completa viável em tempo compatível com o ciclo de pesquisa.
+
+% ----------------------------------------------------------
+\subsection{Estimação da Volatilidade Realizada}
+\label{subsec:met_rv_estimacao}
+% ----------------------------------------------------------
+
+A Volatilidade Realizada (RV) é uma medida não paramétrica da variância integrada de um processo de preços, obtida pela soma dos quadrados dos log-retornos observados em alta frequência \cite{andersen2003}. Para um ativo com preços $P_0, P_1, \ldots, P_n$ amostrados a intervalos regulares, o estimador clássico é definido como:
+%
+\begin{equation}
+    \label{eq:rv_classica}
+    \widehat{RV}_n = \sum_{i=1}^{n} r_i^2,
+    \qquad r_i = \ln\!\left(\frac{P_i}{P_{i-1}}\right).
+\end{equation}
+%
+Sob o modelo de difusão sem ruído, $\widehat{RV}_n$ converge em probabilidade para a variância integrada $\int_0^1 \sigma_s^2\,\mathrm{d}s$ quando $n \to \infty$. No entanto, dados de altíssima frequência como \emph{aggTrades} da Binance são contaminados por ruído de microestrutura de mercado --- originado pelo \emph{bid-ask bounce}, pela discrição do \emph{tick} e por custos de transação ---, o que induz viés crescente em $\widehat{RV}_n$ à medida que a frequência de amostragem aumenta. Esse fenômeno é denominado o \emph{bias-variance trade-off} da volatilidade realizada.
+
+% ----------------------------------------------------------
+\subsubsection{Two-Scale Realized Volatility (TSRV)}
+\label{subsec:tsrv}
+% ----------------------------------------------------------
+
+Para contornar o viés imposto pelo ruído de microestrutura, adotou-se o estimador \emph{Two-Scale Realized Volatility} (TSRV), proposto por \citeonline{zhang2005}. A ideia central é combinar duas escalas de observação: uma escala ``grossa'' (sub-grids), menos suscetível ao ruído, e a escala completa, que serve de base para a correção do viés.
+
+Sejam $n$ log-retornos calculados sobre preços amostrados a uma frequência regular. O estimador TSRV é construído em três etapas:
+
+\begin{enumerate}
+    \item \textbf{RV na escala completa.} Calcula-se a RV clássica sobre todos os $n$ retornos:
+    %
+    \begin{equation}
+        \label{eq:rv_all}
+        \widehat{RV}^{(\text{all})} = \sum_{i=1}^{n} r_i^2.
+    \end{equation}
+
+    \item \textbf{Divisão em $K$ sub-grids e RV média.} Os índices $\{1, \ldots, n\}$ são particionados em $K$ sub-grids, onde o sub-grid $k$ contém os índices $\{k, k+K, k+2K, \ldots\}$. Para cada sub-grid $k$, calcula-se a RV parcial $\widehat{RV}^{(k)}$ a partir dos retornos entre observações consecutivas dentro do sub-grid. A média das $K$ RVs parciais fornece:
+    %
+    \begin{equation}
+        \label{eq:rv_subgrid}
+        \overline{RV}^{(K)} = \frac{1}{K}\sum_{k=1}^{K} \widehat{RV}^{(k)}.
+    \end{equation}
+
+    \item \textbf{Correção de viés.} O estimador TSRV corrige o viés de ruído subtraindo uma fração da RV na escala completa:
+    %
+    \begin{equation}
+        \label{eq:tsrv}
+        \widehat{TSRV} = \overline{RV}^{(K)} - \frac{\bar{n}}{n}\,\widehat{RV}^{(\text{all})},
+    \end{equation}
+    %
+    onde $\bar{n} = n/K$ é o tamanho médio de cada sub-grid. A intuição é que o termo $(\bar{n}/n)\,\widehat{RV}^{(\text{all})}$ estima a contribuição do ruído à RV na escala completa, que é proporcional ao número de observações.
+\end{enumerate}
+
+\textbf{Determinação do $K$ ótimo.} \citeonline{zhang2005} demonstram que o $K$ que minimiza o erro quadrático médio assintótico do estimador é:
+%
+\begin{equation}
+    \label{eq:k_otimo}
+    K^* = \left\lfloor n^{2/3} \right\rceil,
+\end{equation}
+%
+onde $\lfloor\cdot\rceil$ denota o arredondamento para o inteiro mais próximo. Na implementação, $K$ é limitado superiormente por $\lfloor n/2 \rfloor$ para garantir que cada sub-grid contenha ao menos duas observações. O estimador final é truncado em zero ($\max(\widehat{TSRV},\,0)$) para garantir não-negatividade em amostras finitas.
+
+% ----------------------------------------------------------
+\subsubsection{Amostragem em Tempo Calendário}
+\label{subsubsec:amostragem_calendario}
+% ----------------------------------------------------------
+
+Os \emph{ticks} brutos chegam em tempo de transação irregular, tornando necessária uma reestruturação temporal antes do cômputo da TSRV. Adotou-se a amostragem em tempo calendário (\emph{calendar-time sampling}): para cada frequência $\Delta$ configurável (ex.: 30s, 1 min, 2 min), o preço correspondente a cada intervalo $[t, t+\Delta)$ é definido como o preço da \emph{última} transação executada naquele intervalo (\texttt{resample($\Delta$).last()}). Intervalos sem negociação são descartados (\texttt{dropna()}). Esse procedimento produz uma grade temporal regular de preços $P_1, P_2, \ldots, P_n$ sobre a qual os log-retornos são calculados via diferenciação logarítmica: $r_i = \ln(P_i) - \ln(P_{i-1})$.
+
+% ----------------------------------------------------------
+\subsubsection{Processamento Diário Eficiente (\texttt{TickDataProcessor})}
+\label{subsubsec:tick_processor}
+% ----------------------------------------------------------
+
+Dado o volume de dados (superior a 1 bilhão de registros), o processamento é realizado dia a dia. A classe \texttt{TickDataProcessor} encapsula a leitura seletiva de dados do arquivo Parquet via filtros aplicados diretamente no disco (\texttt{pyarrow.parquet.read\_parquet} com predicado de intervalo de datas), carregando em memória apenas as colunas \texttt{DateTime}, \texttt{Price} e \texttt{Qty} referentes a um único dia de negociação. Para cada dia, a função \texttt{compute\_daily\_rv} realiza: (i) a reestruturação temporal por reamostragem; (ii) a instanciação da classe \texttt{TwoScaleRV} sobre o vetor de preços resultante; e (iii) o cômputo do estimador com coleta de estatísticas auxiliares --- número de \emph{ticks}, número de observações amostradas, volume financeiro e preço médio.
+
+% ----------------------------------------------------------
+\subsubsection{Benchmark de Consenso Multi-Frequência}
+\label{subsubsec:benchmark_consenso}
+% ----------------------------------------------------------
+
+A escolha da frequência de reamostragem $\Delta$ introduz um grau de arbitrariedade nas estimativas de TSRV. Para mitigar esse efeito, construiu-se um \emph{benchmark} de consenso: a \emph{pipeline} \texttt{compute\_rv\_series} é executada independentemente para três frequências --- 30 segundos, 1 minuto e 2 minutos --- gerando três séries diárias de RV, denotadas $\widehat{TSRV}_{30\text{s},d}$, $\widehat{TSRV}_{1\text{min},d}$ e $\widehat{TSRV}_{2\text{min},d}$. O benchmark de consenso para o dia $d$ é então definido como a média aritmética dessas três estimativas:
+%
+\begin{equation}
+    \label{eq:rv_consenso}
+    \widehat{RV}_{\text{consenso},d} = \frac{1}{3}\!\left(\widehat{TSRV}_{30\text{s},d} + \widehat{TSRV}_{1\text{min},d} + \widehat{TSRV}_{2\text{min},d}\right),
+\end{equation}
+%
+com dias em que qualquer das três frequências produziu valor ausente (\texttt{NaN}) tratados de forma robusta pela média sobre os valores disponíveis. Essa abordagem reduz a sensibilidade do benchmark a escolhas arbitrárias de $\Delta$ e fornece uma medida mais estável da variância integrada diária.
+
+A volatilidade anualizada correspondente é obtida por:
+%
+\begin{equation}
+    \label{eq:vol_anualizada}
+    \hat{\sigma}_{\text{anual},d} = \sqrt{\widehat{RV}_{\text{consenso},d} \times 252}.
+\end{equation}
+
+% ==========================================================
+\section{Análise Exploratória das Séries}
+\label{sec:met_exploratoria}
+% ==========================================================
+
+Antes de proceder à modelagem, realizou-se uma análise exploratória das
+séries completas de retornos logarítmicos, com o objetivo de verificar as
+premissas dos modelos ARMA-GARCH e identificar diferenças distribucional
+e de dependência entre os dois métodos de amostragem.
+
+% ----------------------------------------------------------
+\subsection{Estatísticas Descritivas}
+\label{subsec:met_descritivas}
+% ----------------------------------------------------------
+
+A \autoref{tab:descritivas} apresenta os quatro primeiros momentos
+amostrais da distribuição dos retornos para ambos os tipos de barra. As
+estatísticas foram calculadas sobre a série completa (209.630 observações
+para \emph{dollar bars} e 210.522 para \emph{time bars}).
+
+\begin{table}[H]
+\centering
+\caption{Estatísticas descritivas dos retornos logarítmicos.}
+\label{tab:descritivas}
+\begin{tabular}{lSS}
+\toprule
+{Estatística} & {\emph{Dollar Bars}} & {\emph{Time Bars}} \\
+\midrule
+Média ($1^{\circ}$ momento)        &  3.46e-6  &  3.44e-6  \\
+Variância ($2^{\circ}$ momento)    &  2.49e-6  &  2.40e-6  \\
+Assimetria ($3^{\circ}$ momento)   &  0.0547   & -1.0071   \\
+Curtose de Fisher ($4^{\circ}$ momento) &  3.0879   &  75.3687  \\
+\bottomrule
+\end{tabular}
+\fonte{Elaboração própria.}
+\end{table}
+
+Dois aspectos merecem destaque. Primeiro, ambas as séries apresentam
+excesso de curtose positivo, indicando caudas mais pesadas do que a
+distribuição normal --- um fato estilizado amplamente documentado em
+retornos financeiros \cite{tsay2010}. Entretanto, a magnitude do excesso
+de curtose é drasticamente diferente: enquanto os retornos de
+\emph{dollar bars} exibem curtose de Fisher igual a 3,09, os retornos de
+\emph{time bars} alcançam 75,37, evidenciando a presença de observações
+extremas significativamente mais severas.
+
+Segundo, a assimetria dos retornos de \emph{time bars} ($-1,01$) é
+substancialmente mais negativa do que a dos \emph{dollar bars} ($0,05$,
+praticamente simétrica). Isso sugere que a amostragem temporal fixa
+captura eventos de cauda esquerda (quedas abruptas) de forma mais
+concentrada, possivelmente por comprimir muitas transações em uma única
+barra durante episódios de alta volatilidade.
+
+Esses resultados corroboram a tese de
+\citeonline{lopez2018advances}: \emph{dollar bars} produzem retornos
+com propriedades distribucional mais favoráveis à modelagem estatística.
+
+% ----------------------------------------------------------
+\subsection{Testes de Normalidade, Estacionariedade e Heteroscedasticidade}
+\label{subsec:met_testes}
+% ----------------------------------------------------------
+
+A \autoref{tab:testes} sintetiza os resultados dos testes aplicados.
+
+\begin{table}[H]
+\centering
+\caption{Testes de normalidade, estacionariedade e
+heteroscedasticidade sobre os retornos logarítmicos.}
+\label{tab:testes}
+\begin{tabular}{lSSSS}
+\toprule
+{Teste} &
+\multicolumn{2}{c}{\emph{Dollar Bars}} &
+\multicolumn{2}{c}{\emph{Time Bars}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+& {Estat.} & {\emph{p}-valor} & {Estat.} & {\emph{p}-valor} \\
+\midrule
+Jarque-Bera          & 83384.65  & {$<0{,}001$} & 49860565.37 & {$<0{,}001$} \\
+Kolmogorov-Smirnov   & 0.0123    & {$<0{,}001$} & 0.0934      & {$<0{,}001$} \\
+\addlinespace
+ADF                  & -102.46   & {$<0{,}001$} & -57.32      & {$<0{,}001$} \\
+KPSS                 & 0.2053    & 0.10         & 0.2171      & 0.10         \\
+\addlinespace
+Ljung-Box ($r_t$, lag 10)   & 50.06    & {$<0{,}001$} & 155.03   & {$<0{,}001$} \\
+Ljung-Box ($r_t^2$, lag 10) & 79528.20 & {$<0{,}001$} & 28237.22 & {$<0{,}001$} \\
+ARCH de Engle (lag 10)      & 30420.71 & {$<0{,}001$} & 24064.78 & {$<0{,}001$} \\
+\bottomrule
+\end{tabular}
+\nota{H$_0$ por teste: Jarque-Bera e KS — normalidade;
+ADF — raiz unitária; KPSS — estacionariedade;
+Ljung-Box e ARCH de Engle — ausência de autocorrelação/efeito ARCH.}
+\fonte{Elaboração própria.}
+\end{table}
+
+Os resultados permitem extrair três conclusões:
+
+\begin{enumerate}
+    \item \textbf{Não-normalidade}: ambos os testes de normalidade
+          (Jarque-Bera e Kolmogorov-Smirnov) rejeitam a hipótese nula a
+          qualquer nível de significância convencional ($p < 0{,}001$), confirmando
+          que os retornos não seguem distribuição gaussiana. Nota-se que a
+          estatística de Jarque-Bera para \emph{time bars} é mais de 500
+          vezes maior do que para \emph{dollar bars}, refletindo a curtose
+          extrema da amostragem temporal;
+    \item \textbf{Estacionariedade}: o teste ADF rejeita a hipótese nula
+          de raiz unitária para ambas as séries ($p < 0{,}001$), enquanto o
+          teste KPSS \emph{não} rejeita a hipótese nula de estacionariedade
+          ($p = 0{,}10$). Os dois testes são consistentes e confirmam que as
+          séries de retornos são estacionárias, não sendo necessária
+          diferenciação ($d = 0$);
+    \item \textbf{Efeitos ARCH}: tanto o teste de Ljung-Box sobre os
+          retornos quadráticos quanto o teste ARCH de Engle rejeitam
+          fortemente a hipótese nula de ausência de heteroscedasticidade
+          condicional ($p < 0{,}001$), justificando a utilização de modelos
+          da família GARCH para capturar a dinâmica da variância
+          condicional.
+\end{enumerate}
+
+Adicionalmente, a \autoref{fig:normalidade_dollar} e a
+\autoref{fig:normalidade_time} apresentam os histogramas com curva normal
+ajustada e os QQ-plots dos retornos para cada tipo de barra, ilustrando
+visualmente o afastamento da normalidade.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Dollar_Bars_5m_normalidade.png}
+    \caption{Histograma com curva normal e QQ-Plot --- Dollar Bars (5 min).}
+    \label{fig:normalidade_dollar}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Time_Bars_5m_normalidade.png}
+    \caption{Histograma com curva normal e QQ-Plot --- Time Bars (5 min).}
+    \label{fig:normalidade_time}
+\end{figure}
+
+A \autoref{fig:acf_dollar_sq} e a \autoref{fig:acf_time_sq} apresentam as
+funções de autocorrelação (FAC) e autocorrelação parcial (FACP) dos
+retornos ao quadrado, evidenciando a persistência da volatilidade
+condicional em ambas as séries.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Dollar_Bars_5m_acf_pacf_retornos2.png}
+    \caption{ACF e PACF dos retornos ao quadrado --- Dollar Bars (5 min).}
+    \label{fig:acf_dollar_sq}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Time_Bars_5m_acf_pacf_retornos2.png}
+    \caption{ACF e PACF dos retornos ao quadrado --- Time Bars (5 min).}
+    \label{fig:acf_time_sq}
+\end{figure}
+
+% ==========================================================
+\section{Construção dos Retornos Logarítmicos}
+\label{sec:met_retornos}
+% ==========================================================
+
+Para cada série de barras, os retornos logarítmicos foram calculados como:
+%
+\begin{equation}
+    \label{eq:met_log_return}
+    r_t = \ln\left(\frac{C_t}{C_{t-1}}\right),
+\end{equation}
+%
+onde $C_t$ denota o preço de fechamento da $t$-ésima barra. A primeira
+observação de cada série é descartada ($r_1$ é indefinido), resultando em
+209.629 retornos para \emph{dollar bars} e 210.521 para \emph{time bars}.
+
+A opção por retornos logarítmicos em vez de retornos simples
+($R_t = C_t/C_{t-1} - 1$) justifica-se por duas razões: (i)~retornos
+logarítmicos são aditivos ao longo do tempo, facilitando a agregação
+temporal de variâncias; e (ii)~para retornos de pequena magnitude, como é
+o caso de barras de 5 minutos, $r_t \approx R_t$, de modo que a escolha é
+praticamente irrelevante numericamente.
+
+% ==========================================================
+\section{Divisão Treino-Teste}
+\label{sec:met_split}
+% ==========================================================
+
+A amostra total de cada série foi dividida em dois conjuntos por meio de um
+\emph{split} temporal na proporção 80\%/20\%, preservando a ordem
+cronológica dos dados. A \autoref{tab:split} resume as dimensões e períodos
+de cada partição.
+
+\begin{table}[H]
+\centering
+\caption{Divisão treino-teste por tipo de barra.}
+\label{tab:split}
+\begin{tabular}{llrr}
+\toprule
+{Série} & {Partição} & {Observações} & {Período} \\
+\midrule
+\multirow{2}{*}{\emph{Dollar Bars}}
+    & Treino (80\%) & 167.704 & 01/jan/2024 -- 14/jul/2025 \\
+    & Teste (20\%)  &  41.926 & 14/jul/2025 -- 31/dez/2025 \\
+\addlinespace
+\multirow{2}{*}{\emph{Time Bars}}
+    & Treino (80\%) & 168.417 & 01/jan/2024 -- 07/ago/2025 \\
+    & Teste (20\%)  &  42.105 & 07/ago/2025 -- 31/dez/2025 \\
+\bottomrule
+\end{tabular}
+\fonte{Elaboração própria.}
+\end{table}
+
+Observa-se que as datas de corte diferem ligeiramente entre os dois tipos
+de barra (14 de julho vs. 7 de agosto de 2025), uma vez que a proporção
+80\%/20\% é definida sobre o número de barras, e não sobre o calendário.
+Isso é esperado, pois as \emph{dollar bars} possuem espaçamento temporal
+irregular.
+
+É importante ressaltar que a divisão treino-teste é distinta do
+procedimento de validação cruzada CPCV descrito na
+\autoref{sec:met_cpcv}: o CPCV opera exclusivamente sobre o conjunto de
+\textbf{treino} para selecionar os hiperparâmetros, enquanto o conjunto de
+\textbf{teste} é reservado para a avaliação final do modelo selecionado.
+
+% ==========================================================
+\section{Seleção de Parâmetros via CPCV}
+\label{sec:met_cpcv}
+% ==========================================================
+
+A seleção das ordens ótimas $(p, q)$ para a equação da média
+(ARMA) e $(r, s)$ para a equação da variância (GARCH) foi realizada pelo
+arcabouço de Validação Cruzada Combinatória Purgada (CPCV), descrito na
+\autoref{sec:cpcv}. Este procedimento foi aplicado exclusivamente ao
+conjunto de treino de cada série.
+
+% ----------------------------------------------------------
+\subsection{Configuração do CPCV}
+\label{subsec:met_cpcv_config}
+% ----------------------------------------------------------
+
+O CPCV foi configurado com os seguintes parâmetros:
+
+\begin{itemize}
+    \item \textbf{Número de grupos}: $N = 10$ (o conjunto de treino é
+          dividido em 10 blocos sequenciais);
+    \item \textbf{Grupos de teste}: $k = 5$ (a cada partição, 5 grupos
+          compõem o teste);
+    \item \textbf{Número de folds}: $\binom{10}{5} = 252$ partições
+          treino-teste distintas;
+    \item \textbf{Embargo}: 240 barras ($\approx$ 20 horas em barras de
+          5 min) após cada bloco de teste, mitigando vazamento por
+          autocorrelação serial.
+\end{itemize}
+
+Em cada fold, as observações situadas na fronteira entre os blocos de
+treino e teste são removidas (purgação), e as 240 barras subsequentes ao
+final de cada bloco de teste são embargadas, conforme o procedimento
+descrito na \autoref{subsec:cpcv_formulacao}. Em média, cada fold utiliza
+aproximadamente 81.500 observações para treino e 84.000 para teste,
+com cerca de 1.200 observações purgadas e 1.200 embargadas.
+
+% ----------------------------------------------------------
+\subsection{Grid de Busca}
+\label{subsec:met_grid}
+% ----------------------------------------------------------
+
+O espaço de busca compreende o produto cartesiano:
+%
+\begin{equation}
+    \label{eq:met_grid}
+    \text{ARMA}(p, q) \times \text{GARCH}(r, s),
+    \quad p, q \in \{0, 1, \ldots, 5\},\;
+    r \in \{1, 2\},\;
+    s \in \{1, 2\},
+\end{equation}
+%
+totalizando $6 \times 6 \times 2 \times 2 = 144$ combinações de
+parâmetros. Para cada uma das 252 partições CPCV, todas as 144
+combinações foram estimadas por máxima verossimilhança (MV), resultando em
+$252 \times 144 = 36.288$ ajustes MLE por tipo de barra e 72.576 ajustes
+no total da \emph{pipeline}.
+
+O critério de seleção em cada fold é o AIC
+(\autoref{eq:aic}): a combinação com o menor AIC no
+conjunto de validação do fold é registrada como ``vencedora''. Ao final dos
+252 folds, o modelo selecionado é aquele cuja combinação de parâmetros
+obteve a maior \emph{frequência} de vitórias --- ou seja, a moda da
+distribuição de modelos selecionados ao longo dos folds.
+
+% ----------------------------------------------------------
+\subsection{Resultados da Seleção}
+\label{subsec:met_cpcv_resultados}
+% ----------------------------------------------------------
+
+A \autoref{tab:cpcv_resultados} apresenta os modelos selecionados para
+cada tipo de barra.
+
+\begin{table}[H]
+\centering
+\caption{Resultados da seleção de parâmetros via CPCV.}
+\label{tab:cpcv_resultados}
+\begin{tabular}{llrl}
+\toprule
+{Série} & {Modelo selecionado} & {Frequência} & {AIC médio} \\
+\midrule
+\emph{Dollar Bars} & ARMA(0,0)-GARCH(1,2) & 233/252 (92,5\%) &
+    $-835.475$ \\
+\emph{Time Bars}   & ARMA(0,0)-GARCH(1,1) & 252/252 (100\%) &
+    $-859.083$ \\
+\bottomrule
+\end{tabular}
+\fonte{Elaboração própria.}
+\end{table}
+
+Dois resultados merecem destaque:
+
+\begin{enumerate}
+    \item \textbf{Ausência de componente ARMA}: para ambos os tipos de
+          barra, a equação da média selecionada foi ARMA(0,0) --- ou seja,
+          média constante sem termos autorregressivos ou de médias móveis.
+          Isso é consistente com a hipótese de mercados eficientes na forma
+          fraca e com a evidência da \autoref{tab:testes}, na qual o teste
+          de Ljung-Box detecta autocorrelação nos retornos, mas de
+          magnitude insuficiente para justificar termos ARMA (as
+          informações preditivas concentram-se nos retornos ao quadrado,
+          captados pelo GARCH);
+    \item \textbf{Ordem GARCH distinta}: a amostragem por \emph{dollar
+          bars} requer um modelo GARCH(1,2) --- com dois termos
+          de variâncias defasadas --- enquanto as \emph{time bars} são
+          adequadamente descritas pelo GARCH(1,1) padrão. A ordem
+          superior para \emph{dollar bars} sugere uma dinâmica de
+          persistência de volatilidade ligeiramente mais complexa nessa
+          amostragem, possivelmente refletindo a irregularidade temporal
+          das barras.
+\end{enumerate}
+
+A \autoref{fig:cpcv_aic} apresenta a evolução do AIC médio por fold para
+ambos os modelos selecionados, evidenciando a estabilidade da seleção ao
+longo das 252 partições.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{comparacao_modelos/cpcv_01_aic_por_fold.png}
+    \caption{AIC médio por fold CPCV --- Dollar Bars vs.\ Time Bars.}
+    \label{fig:cpcv_aic}
+\end{figure}
+
+% ==========================================================
+\section{Estimação do Modelo Final}
+\label{sec:met_estimacao}
+% ==========================================================
+
+Após a seleção de parâmetros, o modelo final de cada série foi
+reestimado utilizando \textbf{todo} o conjunto de treino (sem
+particionamento CPCV), a fim de maximizar a precisão dos coeficientes
+estimados. A \autoref{tab:modelo_final} apresenta os critérios de
+informação do ajuste final.
+
+\begin{table}[H]
+\centering
+\caption{Critérios de informação do modelo final estimado sobre o
+conjunto de treino completo.}
+\label{tab:modelo_final}
+\begin{tabular}{llSS}
+\toprule
+{Série} & {Modelo} & {AIC} & {BIC} \\
+\midrule
+\emph{Dollar Bars} & GARCH(1,2) & -1693794.21 & -1693744.06 \\
+\emph{Time Bars}   & GARCH(1,1) & -1742053.06 & -1742012.92 \\
+\bottomrule
+\end{tabular}
+\fonte{Elaboração própria.}
+\end{table}
+
+A partir do modelo estimado, realizou-se a previsão \emph{one-step-ahead}
+da variância condicional $\hat{\sigma}_t^2$ para cada observação do
+conjunto de teste: 41.926 previsões para \emph{dollar bars} e 42.105 para
+\emph{time bars}.
+
+% ==========================================================
+\section{Agregação para Nível Diário}
+\label{sec:met_agregacao}
+% ==========================================================
+
+Como a volatilidade realizada (RV) de referência é calculada em base
+diária, as previsões intradiárias de variância condicional precisam ser
+agregadas ao nível diário para permitir comparação direta. A agregação
+segue o princípio de aditividade da variância de retornos logarítmicos
+independentes: a variância diária prevista é obtida pela soma das
+variâncias condicionais intradiárias dentro de cada dia:
+%
+\begin{equation}
+    \label{eq:met_agregacao}
+    \hat{\sigma}^2_{\text{dia},d} =
+    \sum_{t \in \mathcal{B}_d} \hat{\sigma}_t^2,
+\end{equation}
+%
+onde $\mathcal{B}_d$ denota o conjunto de barras pertencentes ao dia $d$.
+
+Após a agregação e o alinhamento com o \emph{benchmark} de volatilidade
+realizada, obtiveram-se:
+
+\begin{itemize}
+    \item \textbf{Dollar Bars}: 171 dias com previsão (14/jul/2025 a
+          31/dez/2025), todos alinhados com o RV \emph{benchmark};
+    \item \textbf{Time Bars}: 147 dias com previsão (07/ago/2025 a
+          31/dez/2025), todos alinhados com o RV \emph{benchmark}.
+\end{itemize}
+
+A diferença na quantidade de dias (171 vs.\ 147) decorre das datas
+distintas de início do conjunto de teste para cada tipo de barra,
+conforme discutido na \autoref{sec:met_split}. Para garantir comparabilidade
+estrita entre os modelos, a avaliação final das métricas, os intervalos
+de confiança e o teste de Diebold-Mariano foram calculados exclusivamente
+sobre a \textbf{interseção} dos dois períodos: os \textbf{147 dias comuns}
+compreendidos entre 07/ago/2025 e 31/dez/2025.
+
+% ==========================================================
+\section{Métricas de Avaliação e Testes Estatísticos}
+\label{sec:met_metricas}
+% ==========================================================
+
+As previsões diárias de variância foram avaliadas contra o \emph{benchmark}
+de volatilidade realizada (RV consenso, \autoref{subsec:tsrv}) utilizando
+as métricas e testes descritos na \autoref{sec:metricas}. Esta seção
+detalha a parametrização específica empregada.
+
+% ----------------------------------------------------------
+\subsection{Funções de Perda e Regressão Mincer-Zarnowitz}
+\label{subsec:met_funcoes_perda}
+% ----------------------------------------------------------
+
+Foram calculadas três funções de perda --- MSE (\autoref{eq:mse}), MAE
+(\autoref{eq:mae}) e QLIKE (\autoref{eq:qlike}) --- sobre os pares
+$(\hat{\sigma}^2_{\text{dia},d},\, \xi_d)$ para cada tipo de barra, onde
+$\xi_d$ denota a volatilidade realizada diária do \emph{benchmark}.
+
+A regressão de Mincer-Zarnowitz (\autoref{eq:mz}) foi estimada por MQO,
+fornecendo o coeficiente de determinação $R^2$, o intercepto $\alpha$ e a
+inclinação $\beta$, com seus respectivos $p$-valores.
+
+A \autoref{tab:metricas} apresenta os resultados comparativos.
+
+\begin{table}[H]
+\centering
+\caption{Métricas de avaliação das previsões de variância vs.\ RV
+\emph{benchmark}.}
+\label{tab:metricas}
+\begin{tabular}{lSS}
+\toprule
+{Métrica} & {\emph{Dollar Bars}} & {\emph{Time Bars}} \\
+\midrule
+MSE               & 1.05e-7  & 1.65e-7  \\
+MAE               & 2.64e-4  & 3.59e-4  \\
+QLIKE             & -6.993   & -6.776   \\
+$R^2_{\text{MZ}}$ & 0.667    & 0.493    \\
+$\hat{\alpha}$    & -9.20e-5 & -2.54e-4 \\
+$\hat{\beta}$     & 0.868    & 1.032    \\
+\bottomrule
+\end{tabular}
+\fonte{Elaboração própria.}
+\end{table}
+
+% ----------------------------------------------------------
+\subsection{Teste de Diebold-Mariano}
+\label{subsec:met_dm}
+% ----------------------------------------------------------
+
+Para comparar formalmente o poder preditivo dos dois modelos, aplicou-se o
+teste de Diebold-Mariano (\autoref{subsec:diebold_mariano}) com a função
+de perda MSE. A hipótese nula é de igual poder preditivo entre o modelo
+ajustado sobre \emph{dollar bars} e o ajustado sobre \emph{time bars}.
+
+O teste foi calculado sobre o subconjunto de dias em que ambos os modelos
+possuem previsões, com correção HAC de Newey-West. Os resultados foram:
+
+\begin{itemize}
+    \item Estatística DM: $-4{,}806$;
+    \item $p$-valor: $< 0{,}001$.
+\end{itemize}
+
+Ao nível de significância de 5\%, \textbf{rejeita-se} a hipótese nula de
+igual poder preditivo ($p < 0{,}001$). A estatística negativa indica que
+o modelo ajustado sobre \emph{dollar bars} produz perdas MSE
+significativamente menores do que o ajustado sobre \emph{time bars},
+evidenciando superioridade preditiva estatisticamente distinguível.
+
+% ----------------------------------------------------------
+\subsection{Intervalos de Confiança Bootstrap}
+\label{subsec:met_bootstrap}
+% ----------------------------------------------------------
+
+Intervalos de confiança de 95\% para as métricas pontuais foram
+construídos pelo método de \emph{bootstrap} percentil não-paramétrico
+(\autoref{subsec:bootstrap_ic}) com $B = 2.000$ reamostras. A
+\autoref{tab:bootstrap} apresenta os resultados.
+
+\begin{table}[H]
+\centering
+\caption{Intervalos de confiança bootstrap (95\%) para as métricas de
+avaliação.}
+\label{tab:bootstrap}
+\begin{tabular}{llScc}
+\toprule
+{Série} & {Métrica} & {Pontual} & {IC 95\%} & {SE} \\
+\midrule
+\multirow{3}{*}{\emph{Dollar Bars}}
+    & MSE   & 1.050e-7 & {$[7{,}34\text{e-}8;\; 1{,}49\text{e-}7]$} & 1.93e-8 \\
+    & MAE   & 2.637e-4 & {$[2{,}35\text{e-}4;\; 2{,}97\text{e-}4]$} & 1.59e-5 \\
+    & QLIKE & -6.993   & {$[-7{,}137;\; -6{,}845]$}                  & 7.48e-2 \\
+\addlinespace
+\multirow{3}{*}{\emph{Time Bars}}
+    & MSE   & 1.645e-7 & {$[1{,}35\text{e-}7;\; 2{,}00\text{e-}7]$} & 1.66e-8 \\
+    & MAE   & 3.588e-4 & {$[3{,}29\text{e-}4;\; 3{,}90\text{e-}4]$} & 1.56e-5 \\
+    & QLIKE & -6.776   & {$[-6{,}877;\; -6{,}668]$}                  & 5.38e-2 \\
+\bottomrule
+\end{tabular}
+\nota{Valores calculados sobre os 147 dias comuns (07/ago/2025--31/dez/2025).
+$B = 2.000$ reamostras; IC pelo método percentil.}
+\fonte{Elaboração própria.}
+\end{table}
+
+Os intervalos de confiança para o MSE \textbf{não se sobrepõem}
+($[7{,}34\text{e-}8;\; 1{,}49\text{e-}7]$ vs.\
+$[1{,}35\text{e-}7;\; 2{,}00\text{e-}7]$), corroborando a rejeição da
+hipótese nula pelo teste de Diebold-Mariano. Para a QLIKE, a ausência de
+sobreposição também é verificada, reforçando a superioridade das
+\emph{dollar bars} sob essa função de perda robusta \cite{patton2011}.
+

@@ -1,0 +1,167 @@
+% =============================================================================
+%  CAPÍTULO 5 — CONCLUSÃO
+%  TCC: Dollar Bars vs. Time Bars — Modelos GARCH para BTC/USDT
+% =============================================================================
+
+\chapter{Conclusão}
+\label{cap:conclusao}
+
+% -----------------------------------------------------------------------------
+\section{Retomada dos Objetivos Específicos}
+\label{sec:retomada_objetivos}
+
+Esta seção retoma os cinco objetivos específicos enunciados na seção 1.1.2 e avalia
+sua consecução à luz dos resultados obtidos.
+
+O primeiro objetivo — construir séries de retornos a partir de time bars e dollar bars
+e comparar suas propriedades estatísticas — foi plenamente atingido. As dollar bars
+produziram retornos com curtose de Fisher de 3,09, contra 75,37 das time bars, uma
+redução de cerca de 25 vezes. A assimetria das dollar bars foi de 0,05, próxima de zero,
+enquanto as time bars registraram $-1{,}01$. Esses resultados confirmam quantitativamente
+as previsões de \citet{Prado2018} sobre o efeito do mecanismo de amostragem nas
+propriedades distribucionais dos retornos.
+
+O segundo objetivo — estimar a variância realizada por meio do estimador TSRV — também
+foi atingido. O estimador \textit{Two-Scale Realized Variance} foi calculado sobre dados
+\textit{tick-by-tick} com três frequências de subamostragem (30 segundos, 1 minuto e
+2 minutos), e a média dos três estimadores foi utilizada como benchmark de volatilidade
+diária. O procedimento de múltiplas escalas reduz o viés introduzido pelo ruído de
+microestrutura, produzindo um estimador consistente da variância quadrática integrada
+\citep{ZhangMyklandAit2005}.
+
+O terceiro objetivo — ajustar modelos ARMA-GARCH e selecionar ordens ótimas via critérios
+de informação — foi atingido. O CPCV com 252 folds selecionou o modelo ARMA$(0,0)$-GARCH$(1,2)$
+para as dollar bars, com frequência de 92,5\% dos folds (233/252), e o modelo
+ARMA$(0,0)$-GARCH$(1,1)$ para as time bars, com frequência de 100\% dos folds (252/252).
+Em ambos os casos, a seleção foi estável e robusta ao longo dos folds.
+
+O quarto objetivo — avaliar e comparar o desempenho preditivo com MSE, MAE, QLIKE e
+a regressão de Mincer-Zarnowitz — foi atingido. As dollar bars dominaram em todas as
+quatro dimensões de avaliação. O coeficiente de determinação MZ foi de $R^2 = 0{,}655$
+para as dollar bars, contra $R^2 = 0{,}493$ para as time bars, diferença de 16,2 pontos
+percentuais.
+
+O quinto objetivo — comparar o desempenho preditivo tendo o estimador TSRV como
+referência — foi igualmente atingido. O TSRV serviu como benchmark de volatilidade diária;
+ambos os modelos GARCH apresentaram subestimação sistemática leve, evidenciada pelos
+interceptos negativos da regressão MZ ($\hat{\alpha}_{\text{DB}} = -1{,}08 \times 10^{-4}$
+e $\hat{\alpha}_{\text{TB}} = -2{,}54 \times 10^{-4}$). Esse padrão é característico de
+modelos GARCH paramétricos estimados com inovações gaussianas quando confrontados com
+estimadores não-paramétricos de alta frequência, que capturam componentes de variação
+intrajornada não presentes no modelo.
+
+% -----------------------------------------------------------------------------
+\section{Resposta à Pergunta Central}
+\label{sec:resposta_central}
+
+A pergunta de pesquisa que motivou este trabalho indaga: \textit{em que medida a escolha
+do método de amostragem afeta a qualidade das estimativas de volatilidade obtidas por
+modelos ARMA-GARCH?}
+
+Os resultados indicam que a escolha afeta de forma relevante tanto as propriedades
+estatísticas das séries de retornos quanto o desempenho preditivo fora da amostra dos
+modelos. No plano distribucional, a diferença é dramática: curtose 25 vezes menor e
+assimetria quase nula nas dollar bars, frente a caudas extremamente pesadas e assimetria
+negativa pronunciada nas time bars. No plano preditivo, a diferença é economicamente
+significativa: redução de 34\% no MSE, de 24\% no MAE e de 16 pontos percentuais no
+$R^2$ da regressão de Mincer-Zarnowitz, além de ICs bootstrap para o QLIKE que não
+se sobrepõem a 95\% de confiança.
+
+A significância estatística formal, avaliada pelo teste de Diebold-Mariano, não atinge
+o limiar convencional de 5\% (estatística DM = $-1{,}9578$, p-valor = 0,0503), mas
+o argumento baseado exclusivamente nessa fronteira seria epistemicamente incompleto.
+O poder do teste é limitado pelo número de dias de sobreposição entre os conjuntos de
+previsão (147 dias), e o p-valor de 0,0503 constitui evidência fraca contra a hipótese
+nula, não evidência a seu favor. A combinação de sinal inequívoco na estatística DM,
+dominância em todas as métricas pontuais e não sobreposição dos ICs bootstrap para o QLIKE
+configura evidência consistente — ainda que não conclusiva ao nível convencional — em
+favor das dollar bars.
+
+É importante destacar que este resultado não é apenas confirmatório de \citet{Prado2018}.
+O autor argumenta, no plano teórico e com ilustrações empíricas, que barras de informação
+produzem séries com propriedades distribucional superiores, mas não testa diretamente
+modelos de previsão de volatilidade nem utiliza métricas específicas para comparação de
+previsões. O presente trabalho estende essa análise para o contexto de modelos GARCH —
+a classe de modelos mais amplamente empregada para volatilidade condicional — e quantifica
+a diferença de desempenho com funções de perda robustas da classe de \citet{Patton2011},
+fornecendo evidência empírica nova sobre a utilidade prática das dollar bars em um contexto
+de previsão.
+
+% -----------------------------------------------------------------------------
+\section{Contribuições do Trabalho}
+\label{sec:contribuicoes}
+
+Este trabalho apresenta três contribuições concretas à literatura.
+
+A primeira é de natureza metodológica. A utilização do \textit{Combinatorial Purged
+Cross-Validation} para seleção de hiperparâmetros em modelos GARCH — procedimento que
+elimina vazamento de informação temporal por meio de purga e embargo, e que explora
+todas as $\binom{N}{K}$ combinações de folds em vez de um único caminho de validação —
+representa um avanço em relação ao walk-forward simples usualmente empregado na literatura
+brasileira de modelos de volatilidade. A implementação computacional, que realizou 72.576
+ajustes MLE em aproximadamente 17 minutos por meio de um backend em Rust, é documentada
+de forma reproduzível e pode ser reutilizada para outros ativos e especificações.
+
+A segunda contribuição é empírica. O presente trabalho oferece a primeira comparação
+sistemática, ao menos no contexto da literatura acadêmica brasileira, entre dollar bars
+e time bars como insumo para modelos GARCH aplicados a criptomoedas, com avaliação
+out-of-sample via estimador TSRV e métricas robustas de Patton (2011). A extensão da
+análise de \citet{Prado2018} para o problema específico de previsão de volatilidade
+condicional preenche uma lacuna identificada na revisão de literatura.
+
+A terceira contribuição é técnica. O \textit{pipeline} computacional desenvolvido em
+Python com backend em Rust demonstra que é possível realizar seleção de hiperparâmetros
+por CPCV para modelos GARCH em escala prática — 36.288 ajustes MLE por série em menos
+de nove minutos por pipeline —, tornando o procedimento viável sem infraestrutura
+computacional especializada.
+
+% -----------------------------------------------------------------------------
+\section{Limitações}
+\label{sec:limitacoes_conclusao}
+
+As principais limitações do trabalho foram discutidas em detalhe na seção 4.4.
+Resumidamente: os resultados referem-se a um único ativo de criptomoeda (BTC/USDT na
+Binance), sobre um período de dois anos (2024–2025), com limiar $\bar{D}$ fixo calibrado
+para equiparar o número médio de barras por dia entre as duas séries, e com inovações
+gaussianas em ambos os modelos GARCH. A generalização das conclusões para outros ativos,
+períodos ou especificações requer estudos adicionais.
+
+% -----------------------------------------------------------------------------
+\section{Agenda de Pesquisa Futura}
+\label{sec:agenda_futura}
+
+Os resultados obtidos abrem um conjunto de direções para investigação futura.
+
+A mais imediata é a replicação do estudo em outras classes de ativos. Ações brasileiras
+listadas na B3, o câmbio BRL/USD e commodities negociadas em mercados regulados apresentam
+microestruturas distintas das criptomoedas — com leilões de abertura e fechamento,
+circuit breakers e menor fragmentação de liquidez — o que permitiria investigar se a
+superioridade das dollar bars é específica ao mercado de criptomoedas ou se é uma
+propriedade mais geral do método de amostragem.
+
+Uma segunda extensão natural é a re-estimação dos modelos com distribuições de cauda pesada
+para as inovações, particularmente a t-Student e a Distribuição de Erro Generalizado (GED).
+Dado o excesso de curtose documentado, especialmente nas time bars, a adoção de inovações
+não-gaussianas poderia melhorar o ajuste e, potencialmente, alterar a magnitude das
+diferenças de desempenho entre os tipos de barra.
+
+\citet{Prado2018} propõe outros tipos de barras de informação além das dollar bars,
+entre elas as volume bars e as tick bars, bem como as imbalance bars, que condicionam o
+tamanho da barra ao desequilíbrio entre ordens de compra e venda. Uma comparação mais
+abrangente entre esses tipos de barra forneceria um panorama mais completo sobre qual
+estrutura de amostragem é mais informativa para modelos de volatilidade.
+
+No plano dos modelos de volatilidade, caberia investigar se a superioridade das dollar bars
+se mantém com especificações que capturam assimetria e efeitos de alavancagem, como o
+EGARCH \citep{Nelson1991} e o GJR-GARCH \citep{GlostenJagannathanRunkle1993}, ou com
+modelos de volatilidade estocástica, que tratam a variância latente como uma variável
+de estado não-observada. Esses modelos podem ser particularmente relevantes para as
+dollar bars, cuja dinâmica de volatilidade demandou um componente GARCH$(1,2)$ em vez
+do canônico GARCH$(1,1)$.
+
+Por fim, o presente trabalho avaliou previsões \textit{one-step-ahead} da variância
+diária. Previsões multi-step — de 5, 10 e 22 dias úteis, horizontes relevantes para
+gestão de risco e cálculo de capital regulatório — podem exibir padrões distintos de
+desempenho relativo entre os tipos de barra, em função da estrutura de persistência da
+volatilidade capturada por cada modelo. Essa extensão representaria uma contribuição
+diretamente aplicável a contextos práticos de gestão de risco quantitativo.

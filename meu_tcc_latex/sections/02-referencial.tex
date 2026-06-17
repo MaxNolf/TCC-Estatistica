@@ -1,0 +1,673 @@
+% ----------------------------------------------------------
+% Capítulo 2 — Referencial Teórico
+% ----------------------------------------------------------
+\chapter{Referencial Teórico}
+\label{cap:referencial}
+
+Este capítulo apresenta os fundamentos teóricos que sustentam a metodologia
+adotada neste trabalho. Na \autoref{sec:bars}, discute-se a construção de
+barras de amostragem alternativas --- \emph{time bars} e \emph{dollar bars}
+--- e suas implicações estatísticas. A \autoref{sec:arima_garch} introduz os
+modelos econométricos ARIMA-GARCH para a modelagem conjunta da média e da
+variância condicional de séries financeiras. Na \autoref{sec:rv}, apresenta-se
+o conceito de volatilidade realizada e o estimador \emph{Two-Scale Realized
+Volatility} (TSRV), utilizado como referência (\emph{benchmark}) para a
+avaliação das previsões de variância. A \autoref{sec:cpcv} descreve o
+arcabouço de Validação Cruzada Combinatória Purgada (CPCV) utilizado para
+avaliar e comparar o desempenho preditivo dos modelos sob diferentes regimes
+de amostragem. Por fim, a \autoref{sec:metricas} apresenta as métricas de
+avaliação empregadas --- funções de perda, regressão de Mincer--Zarnowitz,
+teste de Diebold--Mariano e intervalos de confiança \emph{bootstrap}.
+
+% ==========================================================
+\section{Construção de Time Bars e Dollar Bars}
+\label{sec:bars}
+% ==========================================================
+
+A forma com que dados financeiros de alta frequência são agregados em barras
+de preço exerce influência direta sobre as propriedades estatísticas da série
+resultante e, consequentemente, sobre a qualidade dos modelos nela
+estimados \cite{lopez2018advances}. Esta seção apresenta os dois métodos de
+amostragem empregados neste trabalho.
+
+% ----------------------------------------------------------
+\subsection{Time Bars}
+\label{subsec:time_bars}
+% ----------------------------------------------------------
+
+\emph{Time bars} constituem o método mais tradicional de amostragem de dados
+financeiros, no qual as observações são agrupadas em intervalos fixos de
+tempo --- por exemplo, barras de 1 minuto, 5 minutos, 1 hora ou 1 dia.
+Para cada intervalo $[t, t+\Delta t)$, registram-se os preços de abertura
+($O$), máximo ($H$), mínimo ($L$) e fechamento ($C$), bem como o volume
+total negociado ($V$) \cite{lopez2018advances}.
+
+A construção é direta: dada uma sequência de \emph{ticks}
+$\{(p_i, v_i, \tau_i)\}_{i=1}^{M}$, em que $p_i$ é o preço, $v_i$ é o
+volume e $\tau_i$ é o instante da $i$-ésima transação, define-se a $j$-ésima
+\emph{time bar} como o conjunto de \emph{ticks} cujos instantes satisfazem
+$\tau_i \in [t_j,\; t_j + \Delta t)$, de modo que:
+%
+\begin{equation}
+    \label{eq:time_bar}
+    \text{Bar}_j^{\text{time}} =
+    \bigl(O_j,\; H_j,\; L_j,\; C_j,\; V_j\bigr),
+\end{equation}
+%
+onde $O_j = p_{\min\{i:\tau_i \ge t_j\}}$,
+$H_j = \max\{p_i : \tau_i \in [t_j, t_j+\Delta t)\}$,
+$L_j = \min\{p_i : \tau_i \in [t_j, t_j+\Delta t)\}$,
+$C_j = p_{\max\{i:\tau_i < t_j+\Delta t\}}$ e
+$V_j = \sum_{\tau_i \in [t_j, t_j+\Delta t)} v_i$.
+
+Apesar de amplamente utilizadas, as \emph{time bars} apresentam limitações
+bem documentadas \cite{lopez2018advances}:
+
+\begin{enumerate}[label=\roman*)]
+    \item \textbf{Sobre-amostragem em períodos de baixa atividade}: durante
+          períodos de baixo volume de negociação, como horários noturnos ou
+          feriados parciais, as barras contêm poucas transações, resultando
+          em medidas de preço ruidosas e pouco representativas;
+    \item \textbf{Sub-amostragem em períodos de alta atividade}: durante
+          eventos de mercado com elevada atividade --- anúncios de resultados
+          corporativos, decisões de política monetária, choques exógenos
+          --- a informação é comprimida em poucas barras, ocasionando perda
+          de resolução;
+    \item \textbf{Propriedades estatísticas indesejáveis}: os retornos
+          derivados de \emph{time bars} frequentemente exibem autocorrelação
+          serial, heterocedasticidade e afastamento pronunciado da
+          normalidade (caudas pesadas), violando premissas comuns de modelos
+          estatísticos e de aprendizado de máquina.
+\end{enumerate}
+
+% ----------------------------------------------------------
+\subsection{Dollar Bars}
+\label{subsec:dollar_bars}
+% ----------------------------------------------------------
+
+\emph{Dollar bars} são um tipo de barra baseada em atividade de mercado,
+proposta por \citeonline{lopez2018advances}, na qual uma nova barra é formada
+sempre que o volume financeiro acumulado --- produto entre preço e
+quantidade --- atinge um limiar pré-definido $\bar{D}$. Formalmente, dado o
+fluxo de \emph{ticks} $\{(p_i, v_i, \tau_i)\}_{i=1}^{M}$, o índice de
+encerramento da $j$-ésima \emph{dollar bar} é definido como:
+%
+\begin{equation}
+    \label{eq:dollar_bar_idx}
+    T_j = \inf\left\{t > T_{j-1} :
+    \sum_{i=T_{j-1}+1}^{t} p_i \, v_i \;\ge\; \bar{D}\right\},
+    \quad T_0 = 0,
+\end{equation}
+%
+e a barra resultante é:
+%
+\begin{equation}
+    \label{eq:dollar_bar}
+    \text{Bar}_j^{\text{dollar}} =
+    \bigl(O_j,\; H_j,\; L_j,\; C_j,\; V_j\bigr),
+\end{equation}
+%
+cujos campos OHLCV são computados de maneira análoga à \autoref{eq:time_bar},
+porém sobre o intervalo de \emph{ticks}
+$\{T_{j-1}+1, \ldots, T_j\}$.
+
+A escolha do limiar $\bar{D}$ é usualmente feita de modo que o número médio
+de barras por dia seja comparável ao que seria obtido com \emph{time bars} em
+uma frequência desejada, garantindo consistência na quantidade de
+observações \cite{lopez2018advances}.
+
+As \emph{dollar bars} possuem propriedades estatísticas superiores em relação
+às \emph{time bars} \cite{lopez2018advances}:
+
+\begin{enumerate}[label=\roman*)]
+    \item \textbf{Robustez a variações de preço e volume}: ao amostrar com
+          base no valor financeiro transacionado, as \emph{dollar bars}
+          normalizam a atividade de mercado, tornando-se menos sensíveis a
+          mudanças no nível de preço do ativo ao longo do tempo;
+    \item \textbf{Homogeneidade informacional}: cada barra captura,
+          aproximadamente, a mesma quantidade de ``informação de mercado'',
+          no sentido de que o volume financeiro é um \emph{proxy} da
+          intensidade de atividade dos participantes;
+    \item \textbf{Retornos mais próximos de IID}: evidências empíricas
+          demonstram que os retornos derivados de \emph{dollar bars} são mais
+          próximos de uma distribuição gaussiana e independente do que os
+          obtidos por \emph{time bars}, facilitando a aplicação de modelos
+          estatísticos tradicionais e de aprendizado de máquina.
+\end{enumerate}
+
+% ==========================================================
+\section{Modelos Econométricos ARIMA-GARCH}
+\label{sec:arima_garch}
+% ==========================================================
+
+A modelagem conjunta da média e da variância condicional de séries temporais
+financeiras constitui uma abordagem central em econometria financeira. A
+combinação de modelos ARIMA para a equação da média com modelos GARCH para a
+equação da variância permite capturar simultaneamente a estrutura de
+dependência linear nos retornos e o fenômeno de agrupamento de volatilidade
+(\emph{volatility clustering}) \cite{bollerslev1986,tsay2010}.
+
+% ----------------------------------------------------------
+\subsection{Modelo ARIMA}
+\label{subsec:arima}
+% ----------------------------------------------------------
+
+O modelo Autorregressivo Integrado de Médias Móveis --- ARIMA$(p,d,q)$ ---
+foi proposto por \citeonline{box1970} e constitui uma classe geral de modelos
+lineares para séries temporais estacionárias ou tornadas estacionárias por
+meio de diferenciação.
+
+Seja $\{Y_t\}$ uma série temporal. A operação de diferenciação de ordem $d$
+é definida por $W_t = (1-B)^d Y_t$, em que $B$ é o operador de
+retardo ($BY_t = Y_{t-1}$). O modelo ARIMA$(p,d,q)$ assume que a série
+diferenciada $\{W_t\}$ segue um processo ARMA$(p,q)$:
+%
+\begin{equation}
+    \label{eq:arima}
+    \phi(B)\,(1-B)^d\,Y_t = \mu + \theta(B)\,\varepsilon_t,
+\end{equation}
+%
+em que:
+\begin{itemize}
+    \item $\phi(B) = 1 - \phi_1 B - \phi_2 B^2 - \cdots - \phi_p B^p$ é o
+          polinômio autorregressivo de ordem $p$;
+    \item $\theta(B) = 1 + \theta_1 B + \theta_2 B^2 + \cdots + \theta_q B^q$
+          é o polinômio de médias móveis de ordem $q$;
+    \item $\mu$ é uma constante (intercepto);
+    \item $\{\varepsilon_t\}$ é um processo ruído branco com
+          $\mathrm{E}[\varepsilon_t] = 0$ e
+          $\mathrm{Var}[\varepsilon_t] = \sigma^2$.
+\end{itemize}
+
+A estacionariedade da componente autorregressiva requer que todas as raízes
+de $\phi(z) = 0$ estejam fora do círculo unitário, e a invertibilidade da
+componente de médias móveis exige que todas as raízes de $\theta(z) = 0$
+também estejam fora do círculo unitário \cite{box1970}.
+
+A identificação das ordens $(p, d, q)$ pode ser realizada pela análise das
+funções de autocorrelação (FAC) e autocorrelação parcial (FACP) da série
+diferenciada, conforme a metodologia de Box--Jenkins, ou por critérios de
+informação como o AIC (\emph{Akaike Information Criterion}) e BIC
+(\emph{Bayesian Information Criterion}), definidos respectivamente
+por \cite{akaike1974,schwarz1978}:
+%
+\begin{align}
+    \text{AIC} &= -2\ln\hat{\mathcal{L}} + 2k, \label{eq:aic}\\
+    \text{BIC} &= -2\ln\hat{\mathcal{L}} + k\ln n, \label{eq:bic}
+\end{align}
+%
+onde $\hat{\mathcal{L}}$ é o valor maximizado da função de verossimilhança,
+$k$ é o número de parâmetros estimados e $n$ é o tamanho amostral.
+
+% ----------------------------------------------------------
+\subsection{Modelo GARCH}
+\label{subsec:garch}
+% ----------------------------------------------------------
+
+O modelo de Heterocedasticidade Condicional Autorregressiva Generalizada ---
+GARCH$(r,s)$ --- foi proposto por \citeonline{bollerslev1986} como
+generalização do modelo ARCH de \citeonline{engle1982}. O modelo captura o
+fenômeno empírico de que a volatilidade de retornos financeiros tende a se
+agrupar em períodos: grandes variações são seguidas por grandes variações, e
+pequenas variações por pequenas variações.
+
+Considere que os resíduos da equação da média podem ser escritos como
+$\varepsilon_t = \sigma_t z_t$, em que $z_t \sim \text{i.i.d.}(0,1)$. O
+modelo GARCH$(r,s)$ especifica a variância condicional como:
+%
+\begin{equation}
+    \label{eq:garch}
+    \sigma_t^2 = \omega +
+    \sum_{i=1}^{r} \alpha_i \varepsilon_{t-i}^2 +
+    \sum_{j=1}^{s} \beta_j \sigma_{t-j}^2,
+\end{equation}
+%
+sujeito às restrições de não-negatividade e estacionariedade:
+$\omega > 0$, $\alpha_i \ge 0$, $\beta_j \ge 0$ e
+$\sum_{i=1}^{r}\alpha_i + \sum_{j=1}^{s}\beta_j < 1$.
+
+Na especificação GARCH$(1,1)$ --- amplamente empregada na
+prática \cite{bollerslev1986,tsay2010} --- a equação simplifica-se para:
+%
+\begin{equation}
+    \label{eq:garch11}
+    \sigma_t^2 = \omega + \alpha_1 \varepsilon_{t-1}^2
+    + \beta_1 \sigma_{t-1}^2,
+\end{equation}
+%
+e a variância incondicional (de longo prazo) é dada por:
+%
+\begin{equation}
+    \label{eq:var_incond}
+    \bar{\sigma}^2 = \frac{\omega}{1 - \alpha_1 - \beta_1}.
+\end{equation}
+
+% ----------------------------------------------------------
+\subsection{Estimação Conjunta ARIMA-GARCH}
+\label{subsec:arima_garch_conjunto}
+% ----------------------------------------------------------
+
+Na prática, a equação da média e a equação da variância são estimadas
+conjuntamente via Máxima Verossimilhança (MV) ou Quase-Máxima Verossimilhança
+(QMV), o que garante a eficiência assintótica dos estimadores mesmo quando a
+distribuição dos erros padronizados $z_t$ não é exatamente
+gaussiana \cite{bollerslev1992}.
+
+O modelo ARIMA$(p,d,q)$-GARCH$(r,s)$ completo é dado pelo sistema:
+%
+\begin{equation}
+    \label{eq:arima_garch}
+    \begin{cases}
+        \phi(B)(1-B)^d Y_t = \mu + \theta(B)\,\varepsilon_t
+        & \text{(equação da média)},\\[6pt]
+        \varepsilon_t = \sigma_t\,z_t,\quad z_t \sim D(0,1)
+        & \text{(inovações padronizadas)},\\[6pt]
+        \sigma_t^2 = \omega + \displaystyle\sum_{i=1}^{r}\alpha_i\varepsilon_{t-i}^2
+        + \sum_{j=1}^{s}\beta_j\sigma_{t-j}^2
+        & \text{(equação da variância)},
+    \end{cases}
+\end{equation}
+%
+em que $D(0,1)$ denota uma distribuição com média zero e variância
+unitária.
+
+Assumindo normalidade condicional, a função de log-verossimilhança é:
+%
+\begin{equation}
+    \label{eq:loglik}
+    \ell(\bm{\vartheta}) =
+    -\frac{T}{2}\ln(2\pi)
+    - \frac{1}{2}\sum_{t=1}^{T}
+    \left[\ln\sigma_t^2 +
+    \frac{\varepsilon_t^2}{\sigma_t^2}\right],
+\end{equation}
+%
+onde $\bm{\vartheta} = (\mu, \phi_1,\ldots,\phi_p,
+\theta_1,\ldots,\theta_q, \omega, \alpha_1,\ldots,\alpha_r,
+\beta_1,\ldots,\beta_s)^\top$ é o vetor de parâmetros e $T$ é o número de
+observações.
+
+O procedimento de estimação segue, em geral, as seguintes
+etapas \cite{tsay2010}:
+
+\begin{enumerate}
+    \item \textbf{Verificação de estacionariedade}: aplica-se o teste
+          Aumentado de Dickey--Fuller (ADF) à série original. Se a
+          hipótese nula de raiz unitária não for rejeitada, diferencia-se
+          a série ($d \ge 1$);
+    \item \textbf{Identificação da equação da média}: analisam-se a FAC e
+          FACP da série estacionária e/ou utilizam-se critérios de
+          informação para selecionar as ordens $(p,q)$;
+    \item \textbf{Teste de efeitos ARCH}: aplica-se o teste de
+          \citeonline{engle1982} ou o teste de Ljung--Box sobre os
+          resíduos quadráticos para verificar a presença de
+          heterocedasticidade condicional;
+    \item \textbf{Estimação conjunta}: ajusta-se o modelo completo
+          ARIMA$(p,d,q)$-GARCH$(r,s)$ via MV, permitindo que os
+          parâmetros de ambas as equações sejam otimizados
+          simultaneamente;
+    \item \textbf{Diagnóstico}: verificam-se os resíduos padronizados
+          $\hat{z}_t = \hat{\varepsilon}_t / \hat{\sigma}_t$ quanto à
+          ausência de autocorrelação, ausência de efeitos ARCH
+          remanescentes e adequação distribucional.
+\end{enumerate}
+
+% ==========================================================
+\section{Volatilidade Realizada e o Estimador Two-Scale}
+\label{sec:rv}
+% ==========================================================
+
+A avaliação do desempenho preditivo de modelos de variância condicional
+requer uma medida de referência (\emph{benchmark}) que se aproxime da
+verdadeira volatilidade latente do ativo. A \textbf{Volatilidade Realizada}
+(\emph{Realized Volatility} --- RV), construída a partir de retornos
+intradiários de alta frequência, constitui o estimador mais amplamente
+utilizado para esse propósito na literatura de microestrutura de
+mercado \cite{andersen2003}.
+
+% ----------------------------------------------------------
+\subsection{Volatilidade Realizada}
+\label{subsec:rv_definicao}
+% ----------------------------------------------------------
+
+Seja $p(t)$ o logaritmo do preço de um ativo no instante $t$. Dividindo o
+dia de negociação em $M$ subintervalos igualmente espaçados, define-se o
+$i$-ésimo retorno intradiário como $r_{i} = p(t_i) - p(t_{i-1})$,
+$i = 1, \ldots, M$. A volatilidade realizada é definida como a soma dos
+retornos quadráticos:
+%
+\begin{equation}
+    \label{eq:rv}
+    \text{RV}_M = \sum_{i=1}^{M} r_{i}^{2}.
+\end{equation}
+
+Sob condições de regularidade (ausência de ruído de microestrutura e
+processo de preço contínuo), tem-se que $\text{RV}_M$ converge em
+probabilidade para a variação quadrática integrada
+(\emph{integrated variance}) à medida que a frequência de amostragem
+aumenta, ou seja, $\text{RV}_M \xrightarrow{p} \int_0^1 \sigma^2(t)\,dt$
+quando $M \to \infty$ \cite{andersen2003}.
+
+Entretanto, na prática, os preços de ativos negociados em mercados
+eletrônicos são contaminados por \textbf{ruído de microestrutura} --- efeito
+decorrente de \emph{bid-ask spreads}, discretização de preços e fricções de
+mercado. Esse ruído torna a estimativa da RV inconsistente em frequências
+muito altas: à medida que se aumenta $M$, o viés introduzido pelo ruído
+domina o sinal de volatilidade, e a RV diverge em vez de
+convergir \cite{zhang2005}.
+
+% ----------------------------------------------------------
+\subsection{Estimador Two-Scale Realized Volatility (TSRV)}
+\label{subsec:tsrv}
+% ----------------------------------------------------------
+
+Para contornar o problema de viés induzido pelo ruído de microestrutura,
+\citeonline{zhang2005} propuseram o estimador \textbf{Two-Scale Realized
+Volatility} (TSRV), que combina estimativas da volatilidade realizada
+em duas escalas de frequência distintas --- uma rápida (alta frequência) e
+uma lenta (baixa frequência) --- de modo a eliminar assintoticamente o
+viés do ruído.
+
+\subsubsection{Formulação}
+
+Considere uma partição do dia de negociação em $M$ subintervalos à
+frequência mais alta disponível (escala rápida). Para a escala lenta,
+define-se uma subamostragem de tamanho $K$, com $K \ll M$, formando $K$
+grades (\emph{grids}) deslocadas. Para cada grade $g = 1, \ldots, K$,
+calcula-se a volatilidade realizada correspondente
+$\text{RV}^{(g)}$ sobre a subamostra $g$. A volatilidade realizada
+na escala lenta (\emph{slow scale}) é então a média:
+%
+\begin{equation}
+    \label{eq:rv_slow}
+    \overline{\text{RV}}_K = \frac{1}{K} \sum_{g=1}^{K} \text{RV}^{(g)}.
+\end{equation}
+
+O estimador TSRV é definido como:
+%
+\begin{equation}
+    \label{eq:tsrv}
+    \text{TSRV} = \overline{\text{RV}}_K -
+    \frac{\bar{n}}{M}\,\text{RV}_M,
+\end{equation}
+%
+onde $\bar{n} = (M - K + 1)/K$ é o número médio de observações por grade
+na escala lenta. O termo $\frac{\bar{n}}{M}\,\text{RV}_M$ corrige o viés
+assintótico, subtraindo a contribuição estimada do ruído de microestrutura.
+
+Para efeito de ilustração, é feito por meio do seguinte esquema:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{TSRV_Ilustration.jpg}
+	\caption{Ilustração para a estimação do TSRV.}
+	\label{fig:ilustracao_tsrv}
+\end{figure}
+
+\subsubsection{Propriedades}
+
+O estimador TSRV possui as seguintes propriedades \cite{zhang2005}:
+
+\begin{enumerate}[label=\roman*)]
+    \item \textbf{Consistência}: $\text{TSRV} \xrightarrow{p}
+          \int_0^1 \sigma^2(t)\,dt$ quando $M \to \infty$, desde que
+          $K = O(M^{2/3})$;
+    \item \textbf{Taxa de convergência ótima}: sob a escolha
+          $K = c \cdot M^{2/3}$ para uma constante $c > 0$ apropriada,
+          o TSRV atinge a taxa de convergência
+          $O_p(M^{-1/6})$, que é a minimax-ótima para estimação de
+          volatilidade na presença de ruído;
+    \item \textbf{Robustez ao ruído}: ao contrário da RV simples, o
+          TSRV não diverge em frequências muito altas, podendo utilizar
+          toda a informação intradiária disponível.
+\end{enumerate}
+
+Neste trabalho, a volatilidade realizada diária empregada como
+\emph{benchmark} para avaliação dos modelos ARIMA-GARCH é calculada pelo
+estimador TSRV a partir de dados \emph{tick-by-tick} do ativo, agregados em
+diferentes frequências de amostragem (30 segundos, 1 minuto e 2 minutos).
+A estimativa final (denominada \emph{RV consenso}) é obtida pela média das
+três frequências, conferindo maior robustez ao \emph{benchmark}.
+
+% ==========================================================
+\section{Validação Cruzada Combinatória Purgada (CPCV)}
+\label{sec:cpcv}
+% ==========================================================
+
+A avaliação de desempenho de modelos em séries temporais financeiras enfrenta
+desafios específicos que invalidam a aplicação direta de técnicas padrão de
+validação cruzada. A dependência temporal entre observações implica que a
+separação aleatória entre conjuntos de treino e teste pode introduzir
+vazamento de informação (\emph{information leakage}), conduzindo a
+estimativas otimistas e não confiáveis do erro de
+generalização \cite{lopez2018advances}.
+
+A Validação Cruzada Combinatória Purgada (\emph{Combinatorial Purged
+Cross-Validation} --- CPCV), proposta por
+\citeonline{lopez2018advances}, endereça essas limitações por meio de três
+mecanismos: (i) geração combinatória de múltiplas partições treino-teste,
+(ii) purgação de observações sobrepostas e (iii) embargo temporal.
+
+% ----------------------------------------------------------
+\subsection{Formulação}
+\label{subsec:cpcv_formulacao}
+% ----------------------------------------------------------
+
+Considere um conjunto de dados com $T$ observações ordenadas
+cronologicamente. O procedimento CPCV opera da seguinte forma:
+
+\begin{enumerate}
+    \item \textbf{Particionamento}: o conjunto de dados é dividido em $N$
+          grupos sequenciais e não-sobrepostos
+          $G_1, G_2, \ldots, G_N$, cada um contendo aproximadamente
+          $T/N$ observações;
+    \item \textbf{Geração combinatória}: selecionam-se todas as
+          combinações possíveis de $k$ grupos para compor o conjunto de
+          teste, resultando em $\binom{N}{k}$ partições distintas de
+          treino-teste. Os demais $N-k$ grupos formam o respectivo
+          conjunto de treino;
+    \item \textbf{Purgação (\emph{purging})}: para cada partição,
+          removem-se do conjunto de treino as observações cujos rótulos
+          (variáveis-resposta) apresentem sobreposição temporal com os
+          rótulos do conjunto de teste, eliminando vazamento direto de
+          informação;
+    \item \textbf{Embargo}: adicionalmente, remove-se do conjunto de
+          treino um número de observações imediatamente subsequentes ao
+          final de cada bloco de teste, denominado período de embargo
+          ($h$). Essa exclusão mitiga o vazamento indireto decorrente da
+          correlação serial entre observações próximas.
+\end{enumerate}
+
+% ----------------------------------------------------------
+\subsection{Número de Caminhos de Backtest}
+\label{subsec:cpcv_caminhos}
+% ----------------------------------------------------------
+
+Uma propriedade fundamental do CPCV é a geração de múltiplos caminhos de
+\emph{backtest} que cobrem toda a extensão temporal do conjunto de dados.
+O número de caminhos distintos é dado
+por \cite{lopez2018advances}:
+%
+\begin{equation}
+    \label{eq:cpcv_paths}
+    \varphi(N,k) = \binom{N}{k}\cdot\frac{k}{N}
+    = \binom{N-1}{k-1}.
+\end{equation}
+
+Cada caminho corresponde a uma sequência cronológica completa de previsões
+fora-da-amostra, permitindo a construção de uma distribuição empírica de
+métricas de desempenho em vez de uma única estimativa pontual. 
+
+% ==========================================================
+\section{Métricas de Avaliação de Previsões de Volatilidade}
+\label{sec:metricas}
+% ==========================================================
+
+A avaliação da qualidade de previsões de variância condicional requer
+métricas que sejam robustas ao uso de \emph{proxies} ruidosos da
+volatilidade verdadeira (latente). \citeonline{patton2011} demonstrou que
+apenas determinadas funções de perda preservam o ordenamento correto de
+modelos quando a variância realizada é utilizada como \emph{proxy}
+imperfeito da volatilidade verdadeira. As métricas empregadas neste trabalho
+pertencem a essa classe robusta e são complementadas pela regressão de
+Mincer--Zarnowitz, pelo teste de Diebold--Mariano e por intervalos de
+confiança \emph{bootstrap}.
+
+Em todas as expressões a seguir, sejam $\hat{\sigma}_t^2$ a variância
+condicional prevista pelo modelo e $\xi_t$ a volatilidade realizada (TSRV)
+no dia $t$, para $t = 1, \ldots, T$.
+
+% ----------------------------------------------------------
+\subsection{Funções de Perda}
+\label{subsec:funcoes_perda}
+% ----------------------------------------------------------
+
+\subsubsection{Erro Quadrático Médio (MSE)}
+
+O Erro Quadrático Médio penaliza proporcionalmente ao quadrado do desvio
+entre previsão e \emph{benchmark}:
+%
+\begin{equation}
+    \label{eq:mse}
+    \text{MSE} = \frac{1}{T}
+    \sum_{t=1}^{T}
+    \left(\hat{\sigma}_t^2 - \xi_t\right)^2.
+\end{equation}
+%
+Por ser quadrática, a MSE atribui peso maior a erros de grande magnitude,
+tornando-se sensível a episódios de volatilidade extrema. Pertence à classe
+de funções de perda robustas de \citeonline{patton2011}, garantindo que o
+\emph{ranking} de modelos é consistente mesmo quando $\xi_t$ é um
+\emph{proxy} ruidoso.
+
+\subsubsection{Erro Absoluto Médio (MAE)}
+
+O Erro Absoluto Médio oferece uma medida mais robusta a \emph{outliers} do
+que a MSE, pois penaliza linearmente os desvios:
+%
+\begin{equation}
+    \label{eq:mae}
+    \text{MAE} = \frac{1}{T}
+    \sum_{t=1}^{T}
+    \left|\hat{\sigma}_t^2 - \xi_t\right|.
+\end{equation}
+
+\subsubsection{Função de Perda QLIKE}
+
+A função de perda \emph{quasi-likelihood} (QLIKE), proposta por
+\citeonline{patton2011}, pertence à classe de funções de perda robustas e
+penaliza assimetricamente sub e sobre-estimação:
+%
+\begin{equation}
+    \label{eq:qlike}
+    \text{QLIKE} = \frac{1}{T}
+    \sum_{t=1}^{T}
+    \left(\ln\hat{\sigma}_t^2 +
+    \frac{\xi_t}{\hat{\sigma}_t^2}\right).
+\end{equation}
+%
+A QLIKE é especialmente relevante porque seu \emph{ranking} de modelos é
+preservado independentemente da \emph{proxy} utilizada, bastando que esta
+seja proporcional à verdadeira variância. Valores mais negativos indicam
+melhor aderência.
+
+% ----------------------------------------------------------
+\subsection{Regressão de Mincer--Zarnowitz}
+\label{subsec:mincer_zarnowitz}
+% ----------------------------------------------------------
+
+A regressão de Mincer--Zarnowitz \cite{mincer1969} constitui um teste
+clássico de avaliação de previsões. Estima-se por Mínimos Quadrados
+Ordinários (MQO) a regressão:
+%
+\begin{equation}
+    \label{eq:mz}
+    \xi_t = \alpha + \beta\,\hat{\sigma}_t^2 + \varepsilon_t,
+\end{equation}
+%
+onde $\varepsilon_t$ é o termo de erro. Sob a hipótese nula de que a
+previsão é \textbf{ótima e não-viesada}, espera-se:
+%
+\begin{equation}
+    \label{eq:mz_h0}
+    H_0:\; \alpha = 0 \;\text{e}\; \beta = 1.
+\end{equation}
+
+O coeficiente $\alpha$ captura o viés sistemático da previsão:
+$\alpha \neq 0$ indica que, em média, a previsão sobre ou subestima a
+volatilidade realizada. O coeficiente $\beta$ mede a sensibilidade da
+realização às previsões: $\beta < 1$ sugere atenuação (a previsão
+sobreestima a amplitude das variações de volatilidade), enquanto $\beta > 1$
+indica amplificação.
+
+O \textbf{coeficiente de determinação} $R^2$ da regressão quantifica a
+proporção da variação da volatilidade realizada explicada pelas previsões do
+modelo, sendo interpretado como medida de poder preditivo. Um $R^2$ elevado
+indica que o modelo captura satisfatoriamente a dinâmica temporal da
+volatilidade.
+
+% ----------------------------------------------------------
+\subsection{Teste de Diebold--Mariano}
+\label{subsec:diebold_mariano}
+% ----------------------------------------------------------
+
+O teste de \citeonline{diebold1995} permite comparar formalmente o poder
+preditivo de dois modelos concorrentes. Sejam
+$L_t^{(1)} = (\hat{\sigma}_{1,t}^2 - \xi_t)^2$ e
+$L_t^{(2)} = (\hat{\sigma}_{2,t}^2 - \xi_t)^2$ as perdas (MSE) dos modelos
+1 e 2, respectivamente. Define-se a diferença de perdas
+$d_t = L_t^{(1)} - L_t^{(2)}$ e testa-se:
+%
+\begin{equation}
+    \label{eq:dm_h0}
+    H_0:\; \mathrm{E}[d_t] = 0
+    \qquad\text{(igual poder preditivo).}
+\end{equation}
+
+A estatística de Diebold--Mariano é:
+%
+\begin{equation}
+    \label{eq:dm_stat}
+    \text{DM} = \frac{\bar{d}}{\sqrt{\widehat{\text{Var}}(\bar{d})}}
+    \;\xrightarrow{d}\; \mathcal{N}(0, 1),
+\end{equation}
+%
+onde $\bar{d} = T^{-1}\sum_{t=1}^T d_t$ e
+$\widehat{\text{Var}}(\bar{d})$ é estimada com correção HAC
+(\emph{Heteroskedasticity and Autocorrelation Consistent}) de
+Newey--West para horizonte de previsão $h$. Um valor DM negativo e
+estatisticamente significativo indica que o modelo 1 é superior; um valor
+positivo e significativo indica superioridade do modelo 2.
+
+% ----------------------------------------------------------
+\subsection{Intervalos de Confiança Bootstrap}
+\label{subsec:bootstrap_ic}
+% ----------------------------------------------------------
+
+Para construir intervalos de confiança para as métricas pontuais (MSE, MAE
+e QLIKE), emprega-se o método de \textbf{bootstrap percentil
+não-paramétrico} \cite{efron1993}. O procedimento consiste em:
+
+\begin{enumerate}
+    \item Formar $B$ reamostras de tamanho $T$ por sorteio com reposição dos
+          pares $(\hat{\sigma}_t^2, \xi_t)$;
+    \item Para cada reamostra $b = 1, \ldots, B$, calcular a métrica
+          $\theta^{*}_b$;
+    \item Obter o intervalo de confiança $(1-\alpha)$ pelos quantis da
+          distribuição \emph{bootstrap}:
+          %
+          \begin{equation}
+              \label{eq:bootstrap_ci}
+              \text{IC}_{1-\alpha} = \left[
+              \hat{\theta}^{*}_{\alpha/2},\;
+              \hat{\theta}^{*}_{1-\alpha/2}\right],
+          \end{equation}
+          %
+          onde $\hat{\theta}^{*}_{q}$ denota o quantil de ordem $q$ da
+          distribuição de $\{\theta^{*}_b\}_{b=1}^{B}$.
+\end{enumerate}
+
+O \emph{bootstrap} percentil é preferível à inferência assintótica baseada
+na distribuição normal neste contexto, pois as perdas de previsão de
+volatilidade são tipicamente assimétricas e de cauda pesada, violando as
+hipóteses de normalidade.

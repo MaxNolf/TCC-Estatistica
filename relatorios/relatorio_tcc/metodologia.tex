@@ -1,0 +1,154 @@
+% ============================================================
+%  Capítulo 3 — Metodologia
+% ============================================================
+\chapter{Metodologia}
+\label{ch:metodologia}
+
+% ------------------------------------------------------------
+\section{Dados}
+\label{sec:dados}
+
+% --- 3.1.1 Fonte e Período ---
+\subsection{Fonte e Período}
+\label{subsec:fonte_periodo}
+
+Os dados utilizados neste trabalho consistem em \textit{tick data} de alta frequência
+do par de negociação \textbf{BTCUSDT} no mercado de futuros perpétuos da Binance,
+obtidos por meio da interface pública de dados históricos da plataforma
+(\textit{aggTrades} — \textit{aggregated trades}).
+O período analisado compreende de \textbf{1.º de janeiro de 2024} a
+\textbf{31 de dezembro de 2025}, totalizando dois anos calendário completos.
+
+Os \textit{aggTrades} da Binance consolidam em um único registro todas as negociações
+executadas ao mesmo preço, na mesma direção e no mesmo instante de tempo
+(resolução de milissegundos), reduzindo o volume de dados sem comprometer a
+granularidade informacional relevante para a microestrutura de mercado.
+
+% --- 3.1.2 Estrutura do Arquivo ---
+\subsection{Estrutura do Arquivo}
+\label{subsec:estrutura_arquivo}
+
+Os dados foram armazenados em um único arquivo no formato \textit{Apache Parquet},
+escolhido por sua eficiência de compressão colunar e suporte nativo a leitura
+em \textit{streaming} por grupos de linhas (\textit{row groups}), o que viabiliza
+o processamento do conjunto sem necessidade de carregá-lo integralmente na memória.
+
+\begin{table}[ht]
+    \centering
+    \caption{Características do arquivo de dados (\textit{aggTrades} BTCUSDT Futuros).}
+    \label{tab:arquivo_parquet}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Atributo}        & \textbf{Valor}                              \\
+        \midrule
+        Formato                  & Apache Parquet                              \\
+        Tamanho em disco         & 28{,}23 GB                                  \\
+        Total de registros       & 1.072.278.408                               \\
+        Número de \textit{row groups} & 10.737                                 \\
+        Período                  & 2024-01-01 a 2025-12-31 (UTC)               \\
+        Resolução temporal       & milissegundos                               \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+O esquema do arquivo contém as seguintes colunas:
+
+\begin{table}[ht]
+    \centering
+    \caption{Esquema de colunas do dataset \textit{aggTrades} BTCUSDT.}
+    \label{tab:schema}
+    \begin{tabular}{lll}
+        \toprule
+        \textbf{Coluna}    & \textbf{Tipo}               & \textbf{Descrição}                                     \\
+        \midrule
+        \texttt{DateTime}      & \texttt{timestamp[ns, UTC]} & Instante da negociação (índice temporal)               \\
+        \texttt{AggTradeId}    & \texttt{int64}              & Identificador único do \textit{aggTrade}               \\
+        \texttt{Price}         & \texttt{float32}            & Preço de execução (USDT)                               \\
+        \texttt{Qty}           & \texttt{float32}            & Quantidade negociada (BTC)                             \\
+        \texttt{FirstTradeId}  & \texttt{int64}              & Id da primeira negociação individual agregada          \\
+        \texttt{LastTradeId}   & \texttt{int64}              & Id da última negociação individual agregada            \\
+        \texttt{IsBuyerMaker}  & \texttt{bool}               & \texttt{True} se o comprador é o \textit{maker}        \\
+        \texttt{IsBestMatch}   & \texttt{bool}               & \texttt{True} se a negociação foi ao melhor preço      \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Para o processamento e a construção das variáveis de microestrutura, foram
+selecionadas as colunas \texttt{Price}, \texttt{Qty} e \texttt{IsBuyerMaker}.
+A coluna \texttt{IsBuyerMaker} identifica a direção da negociação: quando
+\texttt{True}, o comprador é o \textit{maker} — isto é, a ordem de compra já
+estava no livro de ofertas e a ordem agressora é de venda; quando
+\texttt{False}, o vendedor é o \textit{maker} e a negociação foi iniciada por
+uma ordem de compra agressora (\textit{taker}).
+Essa classificação é equivalente ao método de \citet{LeeReady1991} aplicado
+diretamente à direção da ordem de mercado.
+
+% --- 3.1.3 Processamento Streaming ---
+\subsection{Processamento em \textit{Streaming}}
+\label{subsec:streaming}
+
+Dado o volume do arquivo — superior a 1 bilhão de registros e 28 GB em disco —,
+o processamento foi realizado em modo \textit{streaming} por grupos de linhas
+(\textit{row groups}) do Parquet, com lotes de 100.000 ticks por iteração e
+consumo de memória RAM mantido em aproximadamente 489 MB ao longo de toda a
+pipeline. Essa abordagem evita gargalos de memória e permite escalar o
+processamento para conjuntos de dados ainda maiores sem alterações
+arquiteturais significativas.
+
+% --- 3.1.4 Estatísticas Descritivas ---
+\subsection{Estatísticas Descritivas}
+\label{subsec:estatisticas_descritivas}
+
+A \autoref{tab:stats_descritivas} apresenta as principais estatísticas
+descritivas das variáveis de interesse.
+
+\begin{table}[ht]
+    \centering
+    \caption{Estatísticas descritivas — \textit{aggTrades} BTCUSDT Futuros Perpétuos
+             (Binance, 2024--2025).}
+    \label{tab:stats_descritivas}
+    \begin{tabular}{lrrrrr}
+        \toprule
+        \textbf{Variável} &
+        \textbf{Mín.} &
+        \textbf{Média} &
+        \textbf{Mediana} &
+        \textbf{Máx.} &
+        \textbf{Desvio-Padrão} \\
+        \midrule
+        Preço (USDT)         & -- & -- & -- & -- & -- \\
+        Quantidade (BTC)     & -- & -- & -- & -- & -- \\
+        IsBuyerMaker (\%)    & -- & -- & -- & -- & -- \\
+        \bottomrule
+    \end{tabular}
+    \begin{minipage}{\linewidth}
+        \vspace{4pt}
+        \footnotesize
+        \textit{Nota:} Estatísticas calculadas sobre o conjunto completo de
+        1.072.278.408 \textit{aggTrades}. Os valores serão preenchidos após a
+        execução da pipeline de processamento completa.
+    \end{minipage}
+\end{table}
+
+O primeiro registro disponível data de \textbf{2024-01-01 00:00:00.038 UTC},
+com preço de abertura de \$42.313,90 (USDT). A \autoref{fig:primeiros_ticks}
+ilustra as cinco primeiras observações do dataset, evidenciando a resolução
+temporal de milissegundos e a alternância entre ordens \textit{maker} e
+\textit{taker}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Primeiras observações do dataset (2024-01-01 UTC).}
+    \label{fig:primeiros_ticks}
+    \begin{tabular}{lrrrc}
+        \toprule
+        \textbf{DateTime (UTC)}              & \textbf{AggTradeId} & \textbf{Price (USDT)} & \textbf{Qty (BTC)} & \textbf{IsBuyerMaker} \\
+        \midrule
+        2024-01-01 00:00:00.038 & 1.965.151.407 & 42.313,90 & 0,0460 & \texttt{True}  \\
+        2024-01-01 00:00:03.139 & 1.965.151.408 & 42.313,90 & 0,0180 & \texttt{True}  \\
+        2024-01-01 00:00:03.142 & 1.965.151.409 & 42.314,00 & 0,0050 & \texttt{False} \\
+        2024-01-01 00:00:03.155 & 1.965.151.410 & 42.313,90 & 2,3530 & \texttt{True}  \\
+        2024-01-01 00:00:03.174 & 1.965.151.411 & 42.314,00 & 0,0120 & \texttt{False} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
