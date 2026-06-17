@@ -196,146 +196,54 @@ e de dependência entre os dois métodos de amostragem.
 \label{subsec:met_descritivas}
 % ----------------------------------------------------------
 
-A \autoref{tab:descritivas} apresenta os quatro primeiros momentos
-amostrais da distribuição dos retornos para ambos os tipos de barra. As
-estatísticas foram calculadas sobre a série completa (209.630 observações
-para \emph{dollar bars} e 210.522 para \emph{time bars}).
-
-\begin{table}[H]
-\centering
-\caption{Estatísticas descritivas dos retornos logarítmicos.}
-\label{tab:descritivas}
-\begin{tabular}{lSS}
-\toprule
-{Estatística} & {\emph{Dollar Bars}} & {\emph{Time Bars}} \\
-\midrule
-Média ($1^{\circ}$ momento)        &  3.46e-6  &  3.44e-6  \\
-Variância ($2^{\circ}$ momento)    &  2.49e-6  &  2.40e-6  \\
-Assimetria ($3^{\circ}$ momento)   &  0.0547   & -1.0071   \\
-Curtose de Fisher ($4^{\circ}$ momento) &  3.0879   &  75.3687  \\
-\bottomrule
-\end{tabular}
-\fonte{Elaboração própria.}
-\end{table}
-
-Dois aspectos merecem destaque. Primeiro, ambas as séries apresentam
-excesso de curtose positivo, indicando caudas mais pesadas do que a
-distribuição normal --- um fato estilizado amplamente documentado em
-retornos financeiros \cite{tsay2010}. Entretanto, a magnitude do excesso
-de curtose é drasticamente diferente: enquanto os retornos de
-\emph{dollar bars} exibem curtose de Fisher igual a 3,09, os retornos de
-\emph{time bars} alcançam 75,37, evidenciando a presença de observações
-extremas significativamente mais severas.
-
-Segundo, a assimetria dos retornos de \emph{time bars} ($-1,01$) é
-substancialmente mais negativa do que a dos \emph{dollar bars} ($0,05$,
-praticamente simétrica). Isso sugere que a amostragem temporal fixa
-captura eventos de cauda esquerda (quedas abruptas) de forma mais
-concentrada, possivelmente por comprimir muitas transações em uma única
-barra durante episódios de alta volatilidade.
-
-Esses resultados corroboram a tese de
-\citeonline{lopez2018advances}: \emph{dollar bars} produzem retornos
-com propriedades distribucional mais favoráveis à modelagem estatística.
+Calcularam-se os quatro primeiros momentos amostrais da distribuição dos
+retornos --- média, variância, assimetria e curtose de Fisher --- para
+ambos os tipos de barra, sobre a série completa (209.630 observações para
+\emph{dollar bars} e 210.522 para \emph{time bars}). A curtose é o
+indicador diagnóstico central deste trabalho: a literatura de
+microestrutura prevê que \emph{dollar bars} produzem retornos com caudas
+menos pesadas do que \emph{time bars} de igual resolução efetiva, dado
+que a amostragem por volume financeiro redistribui choques de alta
+atividade ao longo de múltiplas barras, em vez de comprimi-los em uma
+única observação temporal \cite{lopez2018advances}. Os resultados das
+estatísticas descritivas são apresentados e discutidos no
+\autoref{cap:resultados}.
 
 % ----------------------------------------------------------
 \subsection{Testes de Normalidade, Estacionariedade e Heteroscedasticidade}
 \label{subsec:met_testes}
 % ----------------------------------------------------------
 
-A \autoref{tab:testes} sintetiza os resultados dos testes aplicados.
-
-\begin{table}[H]
-\centering
-\caption{Testes de normalidade, estacionariedade e
-heteroscedasticidade sobre os retornos logarítmicos.}
-\label{tab:testes}
-\begin{tabular}{lSSSS}
-\toprule
-{Teste} &
-\multicolumn{2}{c}{\emph{Dollar Bars}} &
-\multicolumn{2}{c}{\emph{Time Bars}} \\
-\cmidrule(lr){2-3} \cmidrule(lr){4-5}
-& {Estat.} & {\emph{p}-valor} & {Estat.} & {\emph{p}-valor} \\
-\midrule
-Jarque-Bera          & 83384.65  & {$<0{,}001$} & 49860565.37 & {$<0{,}001$} \\
-Kolmogorov-Smirnov   & 0.0123    & {$<0{,}001$} & 0.0934      & {$<0{,}001$} \\
-\addlinespace
-ADF                  & -102.46   & {$<0{,}001$} & -57.32      & {$<0{,}001$} \\
-KPSS                 & 0.2053    & 0.10         & 0.2171      & 0.10         \\
-\addlinespace
-Ljung-Box ($r_t$, lag 10)   & 50.06    & {$<0{,}001$} & 155.03   & {$<0{,}001$} \\
-Ljung-Box ($r_t^2$, lag 10) & 79528.20 & {$<0{,}001$} & 28237.22 & {$<0{,}001$} \\
-ARCH de Engle (lag 10)      & 30420.71 & {$<0{,}001$} & 24064.78 & {$<0{,}001$} \\
-\bottomrule
-\end{tabular}
-\nota{H$_0$ por teste: Jarque-Bera e KS — normalidade;
-ADF — raiz unitária; KPSS — estacionariedade;
-Ljung-Box e ARCH de Engle — ausência de autocorrelação/efeito ARCH.}
-\fonte{Elaboração própria.}
-\end{table}
-
-Os resultados permitem extrair três conclusões:
+Para verificar formalmente as premissas dos modelos ARMA-GARCH,
+aplicaram-se os seguintes testes estatísticos às séries de retornos
+logarítmicos:
 
 \begin{enumerate}
-    \item \textbf{Não-normalidade}: ambos os testes de normalidade
-          (Jarque-Bera e Kolmogorov-Smirnov) rejeitam a hipótese nula a
-          qualquer nível de significância convencional ($p < 0{,}001$), confirmando
-          que os retornos não seguem distribuição gaussiana. Nota-se que a
-          estatística de Jarque-Bera para \emph{time bars} é mais de 500
-          vezes maior do que para \emph{dollar bars}, refletindo a curtose
-          extrema da amostragem temporal;
-    \item \textbf{Estacionariedade}: o teste ADF rejeita a hipótese nula
-          de raiz unitária para ambas as séries ($p < 0{,}001$), enquanto o
-          teste KPSS \emph{não} rejeita a hipótese nula de estacionariedade
-          ($p = 0{,}10$). Os dois testes são consistentes e confirmam que as
-          séries de retornos são estacionárias, não sendo necessária
-          diferenciação ($d = 0$);
-    \item \textbf{Efeitos ARCH}: tanto o teste de Ljung-Box sobre os
-          retornos quadráticos quanto o teste ARCH de Engle rejeitam
-          fortemente a hipótese nula de ausência de heteroscedasticidade
-          condicional ($p < 0{,}001$), justificando a utilização de modelos
-          da família GARCH para capturar a dinâmica da variância
-          condicional.
+    \item \textbf{Normalidade}: testes de Jarque-Bera e
+          Kolmogorov-Smirnov, ambos com hipótese nula de distribuição
+          gaussiana. A não-normalidade é um fato estilizado amplamente
+          documentado em retornos financeiros de alta frequência
+          \cite{tsay2010}, com implicações diretas sobre a especificação
+          da distribuição condicional nos modelos GARCH;
+    \item \textbf{Estacionariedade}: Teste Dickey-Fuller Aumentado
+          (ADF), com hipótese nula de raiz unitária, e Teste KPSS, com
+          hipótese nula de estacionariedade. A confirmação de
+          estacionariedade das séries de retornos é condição necessária
+          para a validade dos modelos ARMA-GARCH sem diferenciação
+          ($d = 0$), pois a presença de raiz unitária invalidaria a
+          inferência assintótica padrão;
+    \item \textbf{Autocorrelação e efeitos ARCH}: Teste de Ljung-Box
+          aplicado aos retornos em nível ($r_t$) e aos retornos ao
+          quadrado ($r_t^2$), ambos com 10 defasagens, e Teste ARCH de
+          Engle com 10 defasagens, com hipótese nula de ausência de
+          heteroscedasticidade condicional. A presença de efeitos ARCH
+          nos retornos ao quadrado constitui a principal justificativa
+          empírica para o uso de modelos da família GARCH.
 \end{enumerate}
 
-Adicionalmente, a \autoref{fig:normalidade_dollar} e a
-\autoref{fig:normalidade_time} apresentam os histogramas com curva normal
-ajustada e os QQ-plots dos retornos para cada tipo de barra, ilustrando
-visualmente o afastamento da normalidade.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Dollar_Bars_5m_normalidade.png}
-    \caption{Histograma com curva normal e QQ-Plot --- Dollar Bars (5 min).}
-    \label{fig:normalidade_dollar}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Time_Bars_5m_normalidade.png}
-    \caption{Histograma com curva normal e QQ-Plot --- Time Bars (5 min).}
-    \label{fig:normalidade_time}
-\end{figure}
-
-A \autoref{fig:acf_dollar_sq} e a \autoref{fig:acf_time_sq} apresentam as
-funções de autocorrelação (FAC) e autocorrelação parcial (FACP) dos
-retornos ao quadrado, evidenciando a persistência da volatilidade
-condicional em ambas as séries.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Dollar_Bars_5m_acf_pacf_retornos2.png}
-    \caption{ACF e PACF dos retornos ao quadrado --- Dollar Bars (5 min).}
-    \label{fig:acf_dollar_sq}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{Time_Bars_5m_acf_pacf_retornos2.png}
-    \caption{ACF e PACF dos retornos ao quadrado --- Time Bars (5 min).}
-    \label{fig:acf_time_sq}
-\end{figure}
+Os resultados dos testes, os histogramas com curva normal ajustada, os
+QQ-plots e as funções de autocorrelação (FAC e FACP) dos retornos ao
+quadrado são apresentados no \autoref{cap:resultados}.
 
 % ==========================================================
 \section{Construção dos Retornos Logarítmicos}
@@ -467,63 +375,9 @@ conjunto de validação do fold é registrada como ``vencedora''. Ao final dos
 obteve a maior \emph{frequência} de vitórias --- ou seja, a moda da
 distribuição de modelos selecionados ao longo dos folds.
 
-% ----------------------------------------------------------
-\subsection{Resultados da Seleção}
-\label{subsec:met_cpcv_resultados}
-% ----------------------------------------------------------
-
-A \autoref{tab:cpcv_resultados} apresenta os modelos selecionados para
-cada tipo de barra.
-
-\begin{table}[H]
-\centering
-\caption{Resultados da seleção de parâmetros via CPCV.}
-\label{tab:cpcv_resultados}
-\begin{tabular}{llrl}
-\toprule
-{Série} & {Modelo selecionado} & {Frequência} & {AIC médio} \\
-\midrule
-\emph{Dollar Bars} & ARMA(0,0)-GARCH(1,2) & 233/252 (92,5\%) &
-    $-835.475$ \\
-\emph{Time Bars}   & ARMA(0,0)-GARCH(1,1) & 252/252 (100\%) &
-    $-859.083$ \\
-\bottomrule
-\end{tabular}
-\fonte{Elaboração própria.}
-\end{table}
-
-Dois resultados merecem destaque:
-
-\begin{enumerate}
-    \item \textbf{Ausência de componente ARMA}: para ambos os tipos de
-          barra, a equação da média selecionada foi ARMA(0,0) --- ou seja,
-          média constante sem termos autorregressivos ou de médias móveis.
-          Isso é consistente com a hipótese de mercados eficientes na forma
-          fraca e com a evidência da \autoref{tab:testes}, na qual o teste
-          de Ljung-Box detecta autocorrelação nos retornos, mas de
-          magnitude insuficiente para justificar termos ARMA (as
-          informações preditivas concentram-se nos retornos ao quadrado,
-          captados pelo GARCH);
-    \item \textbf{Ordem GARCH distinta}: a amostragem por \emph{dollar
-          bars} requer um modelo GARCH(1,2) --- com dois termos
-          de variâncias defasadas --- enquanto as \emph{time bars} são
-          adequadamente descritas pelo GARCH(1,1) padrão. A ordem
-          superior para \emph{dollar bars} sugere uma dinâmica de
-          persistência de volatilidade ligeiramente mais complexa nessa
-          amostragem, possivelmente refletindo a irregularidade temporal
-          das barras.
-\end{enumerate}
-
-A \autoref{fig:cpcv_aic} apresenta a evolução do AIC médio por fold para
-ambos os modelos selecionados, evidenciando a estabilidade da seleção ao
-longo das 252 partições.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{comparacao_modelos/cpcv_01_aic_por_fold.png}
-    \caption{AIC médio por fold CPCV --- Dollar Bars vs.\ Time Bars.}
-    \label{fig:cpcv_aic}
-\end{figure}
+Os modelos selecionados pelo CPCV --- identificados pela moda da
+distribuição de frequências de vitórias ao longo dos 252 \emph{folds}
+--- são apresentados e discutidos no \autoref{cap:resultados}.
 
 % ==========================================================
 \section{Estimação do Modelo Final}
@@ -533,29 +387,12 @@ longo das 252 partições.
 Após a seleção de parâmetros, o modelo final de cada série foi
 reestimado utilizando \textbf{todo} o conjunto de treino (sem
 particionamento CPCV), a fim de maximizar a precisão dos coeficientes
-estimados. A \autoref{tab:modelo_final} apresenta os critérios de
-informação do ajuste final.
-
-\begin{table}[H]
-\centering
-\caption{Critérios de informação do modelo final estimado sobre o
-conjunto de treino completo.}
-\label{tab:modelo_final}
-\begin{tabular}{llSS}
-\toprule
-{Série} & {Modelo} & {AIC} & {BIC} \\
-\midrule
-\emph{Dollar Bars} & GARCH(1,2) & -1693794.21 & -1693744.06 \\
-\emph{Time Bars}   & GARCH(1,1) & -1742053.06 & -1742012.92 \\
-\bottomrule
-\end{tabular}
-\fonte{Elaboração própria.}
-\end{table}
+estimados. Os critérios de informação do ajuste final (AIC e BIC) são
+reportados no \autoref{cap:resultados}.
 
 A partir do modelo estimado, realizou-se a previsão \emph{one-step-ahead}
 da variância condicional $\hat{\sigma}_t^2$ para cada observação do
-conjunto de teste: 41.926 previsões para \emph{dollar bars} e 42.105 para
-\emph{time bars}.
+conjunto de teste.
 
 % ==========================================================
 \section{Agregação para Nível Diário}
@@ -619,27 +456,8 @@ A regressão de Mincer-Zarnowitz (\autoref{eq:mz}) foi estimada por MQO,
 fornecendo o coeficiente de determinação $R^2$, o intercepto $\alpha$ e a
 inclinação $\beta$, com seus respectivos $p$-valores.
 
-A \autoref{tab:metricas} apresenta os resultados comparativos.
-
-\begin{table}[H]
-\centering
-\caption{Métricas de avaliação das previsões de variância vs.\ RV
-\emph{benchmark}.}
-\label{tab:metricas}
-\begin{tabular}{lSS}
-\toprule
-{Métrica} & {\emph{Dollar Bars}} & {\emph{Time Bars}} \\
-\midrule
-MSE               & 1.05e-7  & 1.65e-7  \\
-MAE               & 2.64e-4  & 3.59e-4  \\
-QLIKE             & -6.993   & -6.776   \\
-$R^2_{\text{MZ}}$ & 0.667    & 0.493    \\
-$\hat{\alpha}$    & -9.20e-5 & -2.54e-4 \\
-$\hat{\beta}$     & 0.868    & 1.032    \\
-\bottomrule
-\end{tabular}
-\fonte{Elaboração própria.}
-\end{table}
+Os resultados comparativos das três funções de perda são apresentados no
+\autoref{cap:resultados}.
 
 % ----------------------------------------------------------
 \subsection{Teste de Diebold-Mariano}
@@ -650,20 +468,9 @@ Para comparar formalmente o poder preditivo dos dois modelos, aplicou-se o
 teste de Diebold-Mariano (\autoref{subsec:diebold_mariano}) com a função
 de perda MSE. A hipótese nula é de igual poder preditivo entre o modelo
 ajustado sobre \emph{dollar bars} e o ajustado sobre \emph{time bars}.
-
 O teste foi calculado sobre o subconjunto de dias em que ambos os modelos
-possuem previsões, com correção HAC de Newey-West. Os resultados foram:
-
-\begin{itemize}
-    \item Estatística DM: $-4{,}806$;
-    \item $p$-valor: $< 0{,}001$.
-\end{itemize}
-
-Ao nível de significância de 5\%, \textbf{rejeita-se} a hipótese nula de
-igual poder preditivo ($p < 0{,}001$). A estatística negativa indica que
-o modelo ajustado sobre \emph{dollar bars} produz perdas MSE
-significativamente menores do que o ajustado sobre \emph{time bars},
-evidenciando superioridade preditiva estatisticamente distinguível.
+possuem previsões, com correção HAC de Newey-West. Os resultados são
+reportados no \autoref{cap:resultados}.
 
 % ----------------------------------------------------------
 \subsection{Intervalos de Confiança Bootstrap}
@@ -672,38 +479,7 @@ evidenciando superioridade preditiva estatisticamente distinguível.
 
 Intervalos de confiança de 95\% para as métricas pontuais foram
 construídos pelo método de \emph{bootstrap} percentil não-paramétrico
-(\autoref{subsec:bootstrap_ic}) com $B = 2.000$ reamostras. A
-\autoref{tab:bootstrap} apresenta os resultados.
-
-\begin{table}[H]
-\centering
-\caption{Intervalos de confiança bootstrap (95\%) para as métricas de
-avaliação.}
-\label{tab:bootstrap}
-\begin{tabular}{llScc}
-\toprule
-{Série} & {Métrica} & {Pontual} & {IC 95\%} & {SE} \\
-\midrule
-\multirow{3}{*}{\emph{Dollar Bars}}
-    & MSE   & 1.050e-7 & {$[7{,}34\text{e-}8;\; 1{,}49\text{e-}7]$} & 1.93e-8 \\
-    & MAE   & 2.637e-4 & {$[2{,}35\text{e-}4;\; 2{,}97\text{e-}4]$} & 1.59e-5 \\
-    & QLIKE & -6.993   & {$[-7{,}137;\; -6{,}845]$}                  & 7.48e-2 \\
-\addlinespace
-\multirow{3}{*}{\emph{Time Bars}}
-    & MSE   & 1.645e-7 & {$[1{,}35\text{e-}7;\; 2{,}00\text{e-}7]$} & 1.66e-8 \\
-    & MAE   & 3.588e-4 & {$[3{,}29\text{e-}4;\; 3{,}90\text{e-}4]$} & 1.56e-5 \\
-    & QLIKE & -6.776   & {$[-6{,}877;\; -6{,}668]$}                  & 5.38e-2 \\
-\bottomrule
-\end{tabular}
-\nota{Valores calculados sobre os 147 dias comuns (07/ago/2025--31/dez/2025).
-$B = 2.000$ reamostras; IC pelo método percentil.}
-\fonte{Elaboração própria.}
-\end{table}
-
-Os intervalos de confiança para o MSE \textbf{não se sobrepõem}
-($[7{,}34\text{e-}8;\; 1{,}49\text{e-}7]$ vs.\
-$[1{,}35\text{e-}7;\; 2{,}00\text{e-}7]$), corroborando a rejeição da
-hipótese nula pelo teste de Diebold-Mariano. Para a QLIKE, a ausência de
-sobreposição também é verificada, reforçando a superioridade das
-\emph{dollar bars} sob essa função de perda robusta \cite{patton2011}.
+(\autoref{subsec:bootstrap_ic}) com $B = 2.000$ reamostras. Os
+intervalos resultantes são apresentados e discutidos no
+\autoref{cap:resultados}.
 

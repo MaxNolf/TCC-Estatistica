@@ -1,9 +1,9 @@
 \babel@toc {brazil}{}\relax 
 \babel@toc {brazilian}{}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces Estatísticas descritivas dos retornos logarítmicos.}}{27}{table.3.1}%
-\contentsline {table}{\numberline {2}{\ignorespaces Testes de normalidade, estacionariedade e heteroscedasticidade sobre os retornos logarítmicos.}}{28}{table.3.2}%
-\contentsline {table}{\numberline {3}{\ignorespaces Divisão treino-teste por tipo de barra.}}{30}{table.3.3}%
-\contentsline {table}{\numberline {4}{\ignorespaces Resultados da seleção de parâmetros via CPCV.}}{32}{table.3.4}%
-\contentsline {table}{\numberline {5}{\ignorespaces Critérios de informação do modelo final estimado sobre o conjunto de treino completo.}}{33}{table.3.5}%
-\contentsline {table}{\numberline {6}{\ignorespaces Métricas de avaliação das previsões de variância vs.\ RV \emph {benchmark}.}}{35}{table.3.6}%
-\contentsline {table}{\numberline {7}{\ignorespaces Intervalos de confiança bootstrap (95\%) para as métricas de avaliação.}}{36}{table.3.7}%
+\contentsline {table}{\numberline {1}{\ignorespaces Divisão treino-teste por tipo de barra.}}{28}{table.3.1}%
+\contentsline {table}{\numberline {2}{\ignorespaces Estatísticas descritivas dos retornos logarítmicos.}}{32}{table.4.2}%
+\contentsline {table}{\numberline {3}{\ignorespaces Testes de normalidade, estacionariedade e heteroscedasticidade sobre os retornos logarítmicos.}}{33}{table.4.3}%
+\contentsline {table}{\numberline {4}{\ignorespaces Resultados da seleção de parâmetros via CPCV.}}{35}{table.4.4}%
+\contentsline {table}{\numberline {5}{\ignorespaces Critérios de informação do modelo final estimado sobre o conjunto de treino completo.}}{36}{table.4.5}%
+\contentsline {table}{\numberline {6}{\ignorespaces Métricas de avaliação das previsões de variância vs.\ RV \emph {benchmark}.}}{37}{table.4.6}%
+\contentsline {table}{\numberline {7}{\ignorespaces Intervalos de confiança bootstrap (95\%) para as métricas de avaliação.}}{39}{table.4.7}%
