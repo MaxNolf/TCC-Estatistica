@@ -234,6 +234,214 @@ as dollar bars (2025-07-14 a 2025-12-31) e 147 dias para as time bars
 (2025-08-07 a 2025-12-31) — e comparadas contra o estimador TSRV de volatilidade
 realizada como benchmark.
 
+% -----------------------------------------------------------------------------
+\subsection{Análise de Resíduos}
+\label{subsec:analise_residuos}
+
+A análise de resíduos do modelo ajustado constitui um diagnóstico
+essencial para verificar se os modelos GARCH estimados capturam
+adequadamente a estrutura de dependência das séries de retornos.
+Avalia-se, em particular, se os resíduos padronizados apresentam
+ausência de autocorrelação serial, distribuição aproximadamente
+normal e ausência de efeitos ARCH remanescentes.
+
+% --------------------------------------------------
+\subsubsection{Dollar Bars --- GARCH(1,2)}
+\label{subsubsec:residuos_dollar}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_01_residuos_tempo.png}
+        \subcaption{Resíduos padronizados ao longo do tempo.}
+        \label{fig:res_dollar_tempo}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_08_previsao_vs_observado.png}
+        \subcaption{Previsão versus variância realizada (TSRV).}
+        \label{fig:res_dollar_previsao_obs}
+    \end{minipage}
+    
+    \vspace{0.5cm}
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_04_residuos_vs_ajustados.png}
+        \subcaption{Resíduos versus valores ajustados.}
+        \label{fig:res_dollar_vs_ajust}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_02_histograma.png}
+        \subcaption{Histograma com curva normal sobreposta.}
+        \label{fig:res_dollar_hist}
+    \end{minipage}
+    \caption{Diagnósticos de ajuste e distribuição dos resíduos --- \emph{Dollar Bars} GARCH(1,2).}
+    \label{fig:res_dollar_grid1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_03_qqplot_normal.png}
+        \subcaption{QQ-Plot versus distribuição normal.}
+        \label{fig:res_dollar_qq}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_05_acf_residuos.png}
+        \subcaption{Função de Autocorrelação (FAC).}
+        \label{fig:res_dollar_acf}
+    \end{minipage}
+    
+    \vspace{0.5cm}
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_06_pacf_residuos.png}
+        \subcaption{Função de Autocorrelação Parcial (FACP).}
+        \label{fig:res_dollar_pacf}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_07_acf_residuos_quadrado.png}
+        \subcaption{FAC dos resíduos ao quadrado.}
+        \label{fig:res_dollar_acf_sq}
+    \end{minipage}
+    \caption{Diagnósticos de normalidade e dependência --- \emph{Dollar Bars} GARCH(1,2). A ausência de autocorrelações significativas em (d) indica que o modelo capturou adequadamente os efeitos de \textit{volatility clustering}.}
+    \label{fig:res_dollar_grid2}
+\end{figure}
+
+% --------------------------------------------------
+\subsubsection{Time Bars --- GARCH(1,1)}
+\label{subsubsec:residuos_time}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_01_residuos_tempo.png}
+        \subcaption{Resíduos padronizados ao longo do tempo.}
+        \label{fig:res_time_tempo}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_08_previsao_vs_observado.png}
+        \subcaption{Previsão versus variância realizada (TSRV).}
+        \label{fig:res_time_previsao_obs}
+    \end{minipage}
+    
+    \vspace{0.5cm}
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_04_residuos_vs_ajustados.png}
+        \subcaption{Resíduos versus valores ajustados.}
+        \label{fig:res_time_vs_ajust}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_02_histograma.png}
+        \subcaption{Histograma com curva normal sobreposta.}
+        \label{fig:res_time_hist}
+    \end{minipage}
+    \caption{Diagnósticos de ajuste e distribuição dos resíduos --- \emph{Time Bars} GARCH(1,1).}
+    \label{fig:res_time_grid1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_03_qqplot_normal.png}
+        \subcaption{QQ-Plot versus distribuição normal.}
+        \label{fig:res_time_qq}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_05_acf_residuos.png}
+        \subcaption{Função de Autocorrelação (FAC).}
+        \label{fig:res_time_acf}
+    \end{minipage}
+    
+    \vspace{0.5cm}
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_06_pacf_residuos.png}
+        \subcaption{Função de Autocorrelação Parcial (FACP).}
+        \label{fig:res_time_pacf}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_07_acf_residuos_quadrado.png}
+        \subcaption{FAC dos resíduos ao quadrado.}
+        \label{fig:res_time_acf_sq}
+    \end{minipage}
+    \caption{Diagnósticos de normalidade e dependência --- \emph{Time Bars} GARCH(1,1). A ausência de autocorrelações significativas em (d) indica que o modelo capturou adequadamente os efeitos de \textit{volatility clustering}.}
+    \label{fig:res_time_grid2}
+\end{figure}
+
+% -----------------------------------------------------------------------------
+\subsection{Visualização das Previsões}
+\label{subsec:visualizacao_previsao}
+
+Os gráficos a seguir apresentam a série temporal das previsões de variância
+condicional agregada ao nível diário em comparação à volatilidade realizada
+(TSRV), bem como os erros de previsão ao longo do período de teste.
+
+\subsubsection{Dollar Bars --- GARCH(1,2)}
+\label{subsubsec:prev_dollar}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_01_serie_temporal_ic.png}
+        \subcaption{Série temporal com IC \textit{bootstrap} (95\%).}
+        \label{fig:prev_dollar_serie}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_02_erro_previsao.png}
+        \subcaption{Erros de previsão.}
+        \label{fig:prev_dollar_erro}
+    \end{minipage}
+    \caption{Previsão da variância condicional versus variância realizada (TSRV) --- \emph{Dollar Bars} GARCH(1,2), período de teste (14/jul/2025--31/dez/2025).}
+    \label{fig:prev_dollar_grid}
+\end{figure}
+
+\subsubsection{Time Bars --- GARCH(1,1)}
+\label{subsubsec:prev_time}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_previsao/Time_Bars_5m/Time_Bars_5m_01_serie_temporal_ic.png}
+        \subcaption{Série temporal com IC \textit{bootstrap} (95\%).}
+        \label{fig:prev_time_serie}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_previsao/Time_Bars_5m/Time_Bars_5m_02_erro_previsao.png}
+        \subcaption{Erros de previsão.}
+        \label{fig:prev_time_erro}
+    \end{minipage}
+    \caption{Previsão da variância condicional versus variância realizada (TSRV) --- \emph{Time Bars} GARCH(1,1), período de teste (07/ago/2025--31/dez/2025).}
+    \label{fig:prev_time_grid}
+\end{figure}
+
+% -----------------------------------------------------------------------------
 \subsection{Métricas Pontuais}
 \label{subsec:metricas_pontuais}
 
@@ -274,6 +482,7 @@ pois o estimador TSRV, ainda que consistente, incorpora ruído de microestrutura
 incerteza de estimação que o afastam da variância quadrática integrada teórica. O fato
 de as três métricas robustas apontarem unanimemente na mesma direção reforça a
 confiabilidade do resultado.
+
 
 \subsection{Regressão de Mincer-Zarnowitz}
 \label{subsec:mz}
@@ -384,6 +593,60 @@ QLIKE e $R^2$ MZ — constitui evidência consistente, formal e coerente em favo
 como insumo para modelos GARCH de previsão de volatilidade do BTC/USDT. A superioridade
 preditiva documentada é substancial em magnitude e perfeitamente amparada pela estatística.
 
+As \autoref{fig:boot_mse}, \autoref{fig:boot_mae} e \autoref{fig:boot_qlike} apresentam as distribuições
+bootstrap das métricas MSE, MAE e QLIKE para cada tipo de barra.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_01_bootstrap_mse.png}
+        \subcaption{\emph{Dollar Bars} --- GARCH(1,2).}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{bootstrap_ic/Time_Bars_5m/Time_Bars_5m_01_bootstrap_mse.png}
+        \subcaption{\emph{Time Bars} --- GARCH(1,1).}
+    \end{minipage}
+    \caption{Distribuição bootstrap do MSE (2.000 reamostras, IC 95\% pelo método percentil).}
+    \label{fig:boot_mse}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_02_bootstrap_mae.png}
+        \subcaption{\emph{Dollar Bars} --- GARCH(1,2).}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{bootstrap_ic/Time_Bars_5m/Time_Bars_5m_02_bootstrap_mae.png}
+        \subcaption{\emph{Time Bars} --- GARCH(1,1).}
+    \end{minipage}
+    \caption{Distribuição bootstrap do MAE (2.000 reamostras, IC 95\% pelo método percentil).}
+    \label{fig:boot_mae}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_03_bootstrap_qlike.png}
+        \subcaption{\emph{Dollar Bars} --- GARCH(1,2).}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{bootstrap_ic/Time_Bars_5m/Time_Bars_5m_03_bootstrap_qlike.png}
+        \subcaption{\emph{Time Bars} --- GARCH(1,1).}
+    \end{minipage}
+    \caption{Distribuição bootstrap do QLIKE (2.000 reamostras, IC 95\% pelo método percentil).}
+    \label{fig:boot_qlike}
+\end{figure}
+
 % -----------------------------------------------------------------------------
 \section{Limitações e Ressalvas}
 \label{sec:limitacoes}
@@ -391,31 +654,40 @@ preditiva documentada é substancial em magnitude e perfeitamente amparada pela 
 A interpretação dos resultados deve ser contextualizada por um conjunto de limitações
 metodológicas e de escopo que delimitam o alcance das conclusões.
 
-\paragraph{Ativo único.}
+\subsection{Ativo Único}
+\label{subsec:lim_ativo}
+
 Todos os resultados são obtidos para o par BTC/USDT negociado na Binance.
 Criptomoedas operam 24 horas por dia, sete dias por semana, e possuem microestrutura
-distinta de mercados regulados: ausência de mecanismos de circuit breaker, inexistência
-de leilão de abertura e fechamento, e liquidez fragmentada entre múltiplas exchanges.
+distinta de mercados regulados: ausência de mecanismos de \textit{circuit breaker}, inexistência
+de leilão de abertura e fechamento, e liquidez fragmentada entre múltiplas \textit{exchanges}.
 Essas características tornam o BTC/USDT um caso de análise com dinâmicas próprias,
 e a generalização dos resultados para ações, câmbio ou commodities demanda estudos
 adicionais com esses ativos.
 
-\paragraph{Período amostral.}
-O horizonte de dois anos (2024–2025) é suficiente para estimação e validação dos modelos,
-mas pode não capturar toda a variação de regimes de volatilidade relevantes para o Bitcoin.
-O período abrange fases de bull e bear market, mas parâmetros estimados sobre esse intervalo
-podem não ser estáveis em regimes futuros com características distintas das observadas.
+\subsection{Período Amostral}
+\label{subsec:lim_periodo}
 
-\paragraph{Calibração do limiar $\bar{D}$.}
+O horizonte de dois anos (2024--2025) é suficiente para estimação e validação dos modelos,
+mas pode não capturar toda a variação de regimes de volatilidade relevantes para o Bitcoin.
+O período abrange fases de \textit{bull} e \textit{bear market}, mas parâmetros estimados
+sobre esse intervalo podem não ser estáveis em regimes futuros com características distintas
+das observadas.
+
+\subsection{Calibração do Limiar \texorpdfstring{$\bar{D}$}{D-barra}}
+\label{subsec:lim_limiar}
+
 O limiar das dollar bars foi calibrado para produzir o mesmo número médio de barras por dia
 que as time bars de 5 minutos, tornando as comparações controladas por volume de observação.
 Essa escolha é metodologicamente razoável, mas arbitrária: resultados poderiam diferir com
 limiares maiores ou menores, que gerariam séries com granularidade distinta e, possivelmente,
-propriedades distribucional diferentes.
+propriedades distribucionais diferentes.
 
-\paragraph{Distribuição dos erros.}
+\subsection{Distribuição dos Erros}
+\label{subsec:lim_distribuicao}
+
 Ambos os modelos foram estimados com inovações gaussianas. Diante do excesso de curtose
-documentado — especialmente expressivo nas time bars — distribuições de cauda pesada,
+documentado --- especialmente expressivo nas time bars --- distribuições de cauda pesada,
 como a t-Student ou a Distribuição de Erro Generalizado (GED), poderiam melhorar o ajuste
 e potencialmente alterar a magnitude e o sentido das diferenças entre os modelos.
 

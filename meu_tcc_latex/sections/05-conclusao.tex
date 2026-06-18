@@ -18,7 +18,7 @@ e comparar suas propriedades estatísticas — foi plenamente atingido. As dolla
 produziram retornos com curtose de Fisher de 3,09, contra 75,37 das time bars, uma
 redução de cerca de 25 vezes. A assimetria das dollar bars foi de 0,05, próxima de zero,
 enquanto as time bars registraram $-1{,}01$. Esses resultados confirmam quantitativamente
-as previsões de \citeonline{Prado2018} sobre o efeito do mecanismo de amostragem nas
+as previsões de \citeonline{lopez2018advances} sobre o efeito do mecanismo de amostragem nas
 propriedades distribucionais dos retornos.
 
 O segundo objetivo — estimar a variância realizada por meio do estimador TSRV — também
@@ -27,7 +27,7 @@ foi atingido. O estimador \textit{Two-Scale Realized Variance} foi calculado sob
 2 minutos), e a média dos três estimadores foi utilizada como benchmark de volatilidade
 diária. O procedimento de múltiplas escalas reduz o viés introduzido pelo ruído de
 microestrutura, produzindo um estimador consistente da variância quadrática integrada
-\cite{ZhangMyklandAit2005}.
+\cite{zhang2005}.
 
 O terceiro objetivo — ajustar modelos ARMA-GARCH e selecionar ordens ótimas via critérios
 de informação — foi atingido. O CPCV com 252 folds selecionou o modelo ARMA$(0,0)$-GARCH$(1,2)$
@@ -77,7 +77,7 @@ dominância em todas as métricas pontuais e não sobreposição dos ICs bootstr
 configura evidência consistente — ainda que não conclusiva ao nível convencional — em
 favor das dollar bars.
 
-É importante destacar que este resultado não é apenas confirmatório de \citeonline{Prado2018}.
+É importante destacar que este resultado não é apenas confirmatório de \citeonline{lopez2018advances}.
 O autor argumenta, no plano teórico e com ilustrações empíricas, que barras de informação
 produzem séries com propriedades distribucional superiores, mas não testa diretamente
 modelos de previsão de volatilidade nem utiliza métricas específicas para comparação de
@@ -106,7 +106,7 @@ A segunda contribuição é empírica. O presente trabalho oferece a primeira co
 sistemática, ao menos no contexto da literatura acadêmica brasileira, entre dollar bars
 e time bars como insumo para modelos GARCH aplicados a criptomoedas, com avaliação
 out-of-sample via estimador TSRV e métricas robustas de Patton (2011). A extensão da
-análise de \citeonline{Prado2018} para o problema específico de previsão de volatilidade
+análise de \citeonline{lopez2018advances} para o problema específico de previsão de volatilidade
 condicional preenche uma lacuna identificada na revisão de literatura.
 
 A terceira contribuição é técnica. O \textit{pipeline} computacional desenvolvido em
@@ -145,7 +145,7 @@ Dado o excesso de curtose documentado, especialmente nas time bars, a adoção d
 não-gaussianas poderia melhorar o ajuste e, potencialmente, alterar a magnitude das
 diferenças de desempenho entre os tipos de barra.
 
-\citeonline{Prado2018} propõe outros tipos de barras de informação além das dollar bars,
+\citeonline{lopez2018advances} propõe outros tipos de barras de informação além das dollar bars,
 entre elas as volume bars e as tick bars, bem como as imbalance bars, que condicionam o
 tamanho da barra ao desequilíbrio entre ordens de compra e venda. Uma comparação mais
 abrangente entre esses tipos de barra forneceria um panorama mais completo sobre qual

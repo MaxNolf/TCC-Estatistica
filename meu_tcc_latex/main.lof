@@ -1,8 +1,17 @@
 \babel@toc {brazil}{}\relax 
 \babel@toc {brazilian}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Ilustração para a estimação do TSRV.}}{17}{figure.2.1}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Histograma com curva normal e QQ-Plot --- Dollar Bars (5 min).}}{33}{figure.4.2}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Histograma com curva normal e QQ-Plot --- Time Bars (5 min).}}{33}{figure.4.3}%
-\contentsline {figure}{\numberline {4}{\ignorespaces ACF e PACF dos retornos ao quadrado --- Dollar Bars (5 min).}}{34}{figure.4.4}%
-\contentsline {figure}{\numberline {5}{\ignorespaces ACF e PACF dos retornos ao quadrado --- Time Bars (5 min).}}{34}{figure.4.5}%
-\contentsline {figure}{\numberline {6}{\ignorespaces AIC médio por fold CPCV --- Dollar Bars vs.\ Time Bars.}}{35}{figure.4.6}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Ilustração para a estimação do TSRV.}}{17}{figure.caption.8}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Histograma com curva normal e QQ-Plot --- Dollar Bars (5 min).}}{33}{figure.caption.12}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Histograma com curva normal e QQ-Plot --- Time Bars (5 min).}}{33}{figure.caption.13}%
+\contentsline {figure}{\numberline {4}{\ignorespaces ACF e PACF dos retornos ao quadrado --- Dollar Bars (5 min).}}{34}{figure.caption.14}%
+\contentsline {figure}{\numberline {5}{\ignorespaces ACF e PACF dos retornos ao quadrado --- Time Bars (5 min).}}{34}{figure.caption.15}%
+\contentsline {figure}{\numberline {6}{\ignorespaces AIC médio por fold CPCV --- Dollar Bars vs.\ Time Bars.}}{35}{figure.caption.17}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Diagnósticos de ajuste e distribuição dos resíduos --- \emph {Dollar Bars} GARCH(1,2).}}{38}{figure.caption.19}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Diagnósticos de normalidade e dependência --- \emph {Dollar Bars} GARCH(1,2). A ausência de autocorrelações significativas em (d) indica que o modelo capturou adequadamente os efeitos de \textit {volatility clustering}.}}{39}{figure.caption.20}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Diagnósticos de ajuste e distribuição dos resíduos --- \emph {Time Bars} GARCH(1,1).}}{40}{figure.caption.21}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Diagnósticos de normalidade e dependência --- \emph {Time Bars} GARCH(1,1). A ausência de autocorrelações significativas em (d) indica que o modelo capturou adequadamente os efeitos de \textit {volatility clustering}.}}{41}{figure.caption.22}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Previsão da variância condicional versus variância realizada (TSRV) --- \emph {Dollar Bars} GARCH(1,2), período de teste (14/jul/2025--31/dez/2025).}}{42}{figure.caption.23}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Previsão da variância condicional versus variância realizada (TSRV) --- \emph {Time Bars} GARCH(1,1), período de teste (07/ago/2025--31/dez/2025).}}{42}{figure.caption.24}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Distribuição bootstrap do MSE (2.000 reamostras, IC 95\% pelo método percentil).}}{45}{figure.caption.27}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Distribuição bootstrap do MAE (2.000 reamostras, IC 95\% pelo método percentil).}}{46}{figure.caption.28}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Distribuição bootstrap do QLIKE (2.000 reamostras, IC 95\% pelo método percentil).}}{46}{figure.caption.29}%

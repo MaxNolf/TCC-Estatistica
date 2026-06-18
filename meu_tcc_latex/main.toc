@@ -21,21 +21,21 @@
 \contentsline {subsection}{\numberline {2.2.2}Modelo GARCH}{14}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Estimação Conjunta ARIMA-GARCH}{14}{subsection.2.2.3}%
 \contentsline {section}{\numberline {2.3}Volatilidade Realizada e o Estimador Two-Scale}{15}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Volatilidade Realizada}{15}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.1}Volatilidade Realizada}{16}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}Estimador Two-Scale Realized Volatility (TSRV)}{16}{subsection.2.3.2}%
 \contentsline {subsubsection}{\numberline {2.3.2.1}Formulação}{16}{subsubsection.2.3.2.1}%
 \contentsline {subsubsection}{\numberline {2.3.2.2}Propriedades}{17}{subsubsection.2.3.2.2}%
-\contentsline {section}{\numberline {2.4}Validação Cruzada Combinatória Purgada (CPCV)}{17}{section.2.4}%
+\contentsline {section}{\numberline {2.4}Validação Cruzada Combinatória Purgada (CPCV)}{18}{section.2.4}%
 \contentsline {subsection}{\numberline {2.4.1}Formulação}{18}{subsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.4.2}Número de Caminhos de Backtest}{18}{subsection.2.4.2}%
 \contentsline {section}{\numberline {2.5}Métricas de Avaliação de Previsões de Volatilidade}{19}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Funções de Perda}{19}{subsection.2.5.1}%
 \contentsline {subsubsection}{\numberline {2.5.1.1}Erro Quadrático Médio (MSE)}{19}{subsubsection.2.5.1.1}%
 \contentsline {subsubsection}{\numberline {2.5.1.2}Erro Absoluto Médio (MAE)}{19}{subsubsection.2.5.1.2}%
-\contentsline {subsubsection}{\numberline {2.5.1.3}Função de Perda QLIKE}{19}{subsubsection.2.5.1.3}%
+\contentsline {subsubsection}{\numberline {2.5.1.3}Função de Perda QLIKE}{20}{subsubsection.2.5.1.3}%
 \contentsline {subsection}{\numberline {2.5.2}Regressão de Mincer--Zarnowitz}{20}{subsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.5.3}Teste de Diebold--Mariano}{20}{subsection.2.5.3}%
-\contentsline {subsection}{\numberline {2.5.4}Intervalos de Confiança Bootstrap}{20}{subsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.5.4}Intervalos de Confiança Bootstrap}{21}{subsection.2.5.4}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase []{Metodologia}}{22}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Dados e Período Amostral}{22}{section.3.1}%
@@ -67,27 +67,33 @@
 \contentsline {section}{\numberline {4.1}Propriedades Estatísticas Comparativas das Séries}{32}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Seleção de Modelos via CPCV}{35}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Desempenho Preditivo Fora da Amostra}{37}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Métricas Pontuais}{37}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Regressão de Mincer-Zarnowitz}{38}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Teste de Diebold-Mariano}{38}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Intervalos de Confiança Bootstrap}{39}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Limitações e Ressalvas}{40}{section.4.4}%
-\contentsline {paragraph}{\numberline {4.4.0.0.1}Ativo único.}{40}{paragraph.4.4.0.0.1}%
-\contentsline {paragraph}{\numberline {4.4.0.0.2}Período amostral.}{40}{paragraph.4.4.0.0.2}%
-\contentsline {paragraph}{\numberline {4.4.0.0.3}Calibração do limiar $\bar {D}$.}{40}{paragraph.4.4.0.0.3}%
-\contentsline {paragraph}{\numberline {4.4.0.0.4}Distribuição dos erros.}{41}{paragraph.4.4.0.0.4}%
-\contentsline {section}{\numberline {4.5}Síntese do Capítulo}{41}{section.4.5}%
+\contentsline {subsection}{\numberline {4.3.1}Análise de Resíduos}{37}{subsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.1.1}Dollar Bars --- GARCH(1,2)}{38}{subsubsection.4.3.1.1}%
+\contentsline {subsubsection}{\numberline {4.3.1.2}Time Bars --- GARCH(1,1)}{40}{subsubsection.4.3.1.2}%
+\contentsline {subsection}{\numberline {4.3.2}Visualização das Previsões}{41}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}Dollar Bars --- GARCH(1,2)}{42}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}Time Bars --- GARCH(1,1)}{42}{subsubsection.4.3.2.2}%
+\contentsline {subsection}{\numberline {4.3.3}Métricas Pontuais}{42}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Regressão de Mincer-Zarnowitz}{43}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Teste de Diebold-Mariano}{44}{subsection.4.3.5}%
+\contentsline {subsection}{\numberline {4.3.6}Intervalos de Confiança Bootstrap}{44}{subsection.4.3.6}%
+\contentsline {section}{\numberline {4.4}Limitações e Ressalvas}{46}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Ativo Único}{46}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Período Amostral}{47}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Calibração do Limiar $\bar {D}$}{47}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Distribuição dos Erros}{47}{subsection.4.4.4}%
+\contentsline {section}{\numberline {4.5}Síntese do Capítulo}{47}{section.4.5}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Conclusão}}{42}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Retomada dos Objetivos Específicos}{42}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Resposta à Pergunta Central}{43}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Contribuições do Trabalho}{43}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Limitações}{44}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Agenda de Pesquisa Futura}{44}{section.5.5}%
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Conclusão}}{49}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Retomada dos Objetivos Específicos}{49}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Resposta à Pergunta Central}{50}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Contribuições do Trabalho}{50}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Limitações}{51}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Agenda de Pesquisa Futura}{51}{section.5.5}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias Bibliogr\'aficas}}{46}{section*.11}%
+\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias Bibliogr\'aficas}}{53}{section*.33}%
 \renewcommand *{\cftappendixname }{AP\^ENDICE \space }
 \setlength {\cftpartindent }{\cftlastnumwidth } \setlength {\cftpartnumwidth }{2em}
 \cftinsert {A}
-\contentsline {part}{\uppercase {Ap\^endices}}{47}{section*.12}%
+\contentsline {part}{\uppercase {Ap\^endices}}{55}{section*.34}%

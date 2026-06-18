@@ -1,48 +1,49 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.6.17)  17 JUN 2026 16:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.11.10)  18 JUN 2026 00:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./main.tex
-(main.tex
-LaTeX2e <2026-06-01>
-L3 programming layer <2026-05-26>
-(/home/pet/.miktex/texmfs/install/tex/latex/abntex2/abntex2.cls
+**main.tex
+(./main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-10-24>
+(c:/texlive/2025/texmf-dist/tex/latex/abntex2/abntex2.cls
 Document Class: abntex2 2018/11/24 v-1.9.7 abnTeX2
-(/home/pet/.miktex/texmfs/install/tex/latex/base/ifthen.sty
+(c:/texlive/2025/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/memoir/memoir.cls
+(c:/texlive/2025/texmf-dist/tex/latex/memoir/memoir.cls
 Document Class: memoir 2025/11/04 v3.8.4b configurable book, report, article do
 cument class
-(/home/pet/.miktex/texmfs/install/tex/latex/xpatch/xpatch.sty
-(/home/pet/.miktex/texmfs/install/tex/latex/l3kernel/expl3.sty
-Package: expl3 2026-05-26 L3 programming layer (loader) 
+(c:/texlive/2025/texmf-dist/tex/latex/xpatch/xpatch.sty
+(c:/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2025-10-24 L3 programming layer (loader) 
 
-(/home/pet/.miktex/texmfs/install/tex/latex/l3backend-dev/l3backend-pdftex.def
-File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count276
+(c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count275
 ))
 Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
- (/home/pet/.miktex/texmfs/install/tex/latex/l3packages/xparse/xparse.sty
+
+(c:/texlive/2025/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2025-10-09 L3 Experimental document command parser
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty
+(c:/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count277
+\etb@tempcnta=\count276
 ))
 \onelineskip=\skip49
 \lxvchars=\skip50
 \xlvchars=\skip51
-\@memcnta=\count278
-\c@@memmarkcntra=\count279
+\@memcnta=\count277
+\c@@memmarkcntra=\count278
 
-(/home/pet/.miktex/texmfs/install/tex/generic/iftex/iftex.sty
+(c:/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
 \trimtop=\skip52
 \trimedge=\skip53
 
-(/home/pet/.miktex/texmfs/install/tex/latex/memoir/mem12.clo
+(c:/texlive/2025/texmf-dist/tex/latex/memoir/mem12.clo
 File: mem12.clo 2022/07/29 v0.5 memoir class 12pt size option
 )
 \binding=\skip54
@@ -55,20 +56,20 @@ File: mem12.clo 2022/07/29 v0.5 memoir class 12pt size option
 \mem@maxheadheight=\skip61
 \mem@maxfootheight=\skip62
 \headwidth=\skip63
-\c@storedpagenumber=\count280
-\memPD=\dimen150
+\c@storedpagenumber=\count279
+\memPD=\dimen148
 \m@mabparskip=\skip64
 \thanksmarkwidth=\skip65
 \thanksmarksep=\skip66
 \droptitle=\skip67
-\c@book=\count281
-\c@part=\count282
-\c@chapter=\count283
-\c@section=\count284
-\c@subsection=\count285
-\c@subsubsection=\count286
-\c@paragraph=\count287
-\c@subparagraph=\count288
+\c@book=\count280
+\c@part=\count281
+\c@chapter=\count282
+\c@section=\count283
+\c@subsection=\count284
+\c@subsubsection=\count285
+\c@paragraph=\count286
+\c@subparagraph=\count287
 \beforechapskip=\skip68
 \midchapskip=\skip69
 \afterchapskip=\skip70
@@ -90,10 +91,10 @@ File: mem12.clo 2022/07/29 v0.5 memoir class 12pt size option
 \beforesubparaskip=\skip86
 \aftersubparaskip=\skip87
 \pfbreakskip=\skip88
-\c@@ppsavesec=\count289
-\c@@ppsaveapp=\count290
-\ragrparindent=\dimen151
-\everylistparindent=\dimen152
+\c@@ppsavesec=\count288
+\c@@ppsaveapp=\count289
+\ragrparindent=\dimen149
+\everylistparindent=\dimen150
 \parsepi=\skip89
 \topsepi=\skip90
 \itemsepi=\skip91
@@ -109,85 +110,85 @@ File: mem12.clo 2022/07/29 v0.5 memoir class 12pt size option
 \@enLab=\toks17
 \abstitleskip=\skip101
 \absleftindent=\skip102
-\abs@leftindent=\dimen153
+\abs@leftindent=\dimen151
 \absrightindent=\skip103
 \absparindent=\skip104
 \absparsep=\skip105
-\c@vslineno=\count291
-\c@poemline=\count292
-\c@modulo@vs=\count293
-\c@memfvsline=\count294
+\c@vslineno=\count290
+\c@poemline=\count291
+\c@modulo@vs=\count292
+\c@memfvsline=\count293
 \vleftskip=\skip106
 \vrightskip=\skip107
 \stanzaskip=\skip108
 \versewidth=\skip109
 \vgap=\skip110
 \vindent=\skip111
-\vleftmargin=\dimen154
-\c@verse=\count295
-\c@chrsinstr=\count296
+\vleftmargin=\dimen152
+\c@verse=\count294
+\c@chrsinstr=\count295
 \beforepoemtitleskip=\skip112
 \afterpoemtitleskip=\skip113
-\c@poem=\count297
+\c@poem=\count296
 \beforePoemTitleskip=\skip114
 \midPoemTitleskip=\skip115
 \afterPoemTitleskip=\skip116
 
-(/home/pet/.miktex/texmfs/install/tex/latex/tools/array.sty
-Package: array 2026/02/24 v2.7b Tabular extension package (FMi)
-\col@sep=\dimen155
+(c:/texlive/2025/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen153
 \ar@mcellbox=\box53
-\extrarowheight=\dimen156
+\extrarowheight=\dimen154
 \NC@list=\toks18
 \extratabsurround=\skip117
 \backup@length=\skip118
 \ar@cellbox=\box54
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/tools/dcolumn.sty
+(c:/texlive/2025/texmf-dist/tex/latex/tools/dcolumn.sty
 Package: dcolumn 2025/10/21 v1.06 decimal alignment package (DPC)
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/tools/delarray.sty
+(c:/texlive/2025/texmf-dist/tex/latex/tools/delarray.sty
 Package: delarray 2014/10/28 v1.01 array delimiter package (DPC)
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/tools/tabularx.sty
+(c:/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
-\TX@col@width=\dimen157
-\TX@old@table=\dimen158
-\TX@old@col=\dimen159
-\TX@target=\dimen160
-\TX@delta=\dimen161
-\TX@cols=\count298
+\TX@col@width=\dimen155
+\TX@old@table=\dimen156
+\TX@old@col=\dimen157
+\TX@target=\dimen158
+\TX@delta=\dimen159
+\TX@cols=\count297
 \TX@ftn=\toks19
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty
+(c:/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen162
-\lightrulewidth=\dimen163
-\cmidrulewidth=\dimen164
-\belowrulesep=\dimen165
-\belowbottomsep=\dimen166
-\aboverulesep=\dimen167
-\abovetopsep=\dimen168
-\cmidrulesep=\dimen169
-\cmidrulekern=\dimen170
-\defaultaddspace=\dimen171
-\@cmidla=\count299
-\@cmidlb=\count300
-\@aboverulesep=\dimen172
-\@belowrulesep=\dimen173
-\@thisruleclass=\count301
-\@lastruleclass=\count302
-\@thisrulewidth=\dimen174
+\heavyrulewidth=\dimen160
+\lightrulewidth=\dimen161
+\cmidrulewidth=\dimen162
+\belowrulesep=\dimen163
+\belowbottomsep=\dimen164
+\aboverulesep=\dimen165
+\abovetopsep=\dimen166
+\cmidrulesep=\dimen167
+\cmidrulekern=\dimen168
+\defaultaddspace=\dimen169
+\@cmidla=\count298
+\@cmidlb=\count299
+\@aboverulesep=\dimen170
+\@belowrulesep=\dimen171
+\@thisruleclass=\count300
+\@lastruleclass=\count301
+\@thisrulewidth=\dimen172
 )
 \ctableftskip=\skip119
 \ctabrightskip=\skip120
-\abovecolumnspenalty=\count303
-\@linestogo=\count304
-\@cellstogo=\count305
-\@cellsincolumn=\count306
+\abovecolumnspenalty=\count302
+\@linestogo=\count303
+\@cellstogo=\count304
+\@cellsincolumn=\count305
 \crtok=\toks20
-\@mincolumnwidth=\dimen175
-\c@newflo@tctr=\count307
+\@mincolumnwidth=\dimen173
+\c@newflo@tctr=\count306
 \mem@margin@floatbox=\box55
 \@contcwidth=\skip121
 \@contindw=\skip122
@@ -198,54 +199,55 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \subfloatcaptopadj=\skip127
 \subfloatbottomskip=\skip128
 \subfloatlabelskip=\skip129
-\subfloatcapmargin=\dimen176
-\c@@contsubnum=\count308
+\subfloatcapmargin=\dimen174
+\c@@contsubnum=\count307
 \m@mscap@capbox=\box56
 \m@mscap@fbox=\box57
-\sidecapsep=\dimen177
-\sidecapwidth=\dimen178
-\m@m@tempdima=\dimen179
-\m@mscapraise=\dimen180
-\sidecapraise=\dimen181
-\m@mscapmainwidth=\dimen182
-\m@mscaplkern=\dimen183
+\sidecapsep=\dimen175
+\sidecapwidth=\dimen176
+\m@m@tempdima=\dimen177
+\m@mscapraise=\dimen178
+\sidecapraise=\dimen179
+\m@mscapmainwidth=\dimen180
+\m@mscaplkern=\dimen181
 \beforeepigraphskip=\skip130
 \afterepigraphskip=\skip131
 \epigraphwidth=\skip132
 \epigraphrule=\skip133
 
-(/home/pet/.miktex/texmfs/install/tex/latex/hyperref/nameref.sty
-Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+(c:/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
 
-(/home/pet/.miktex/texmfs/install/tex/latex/refcount/refcount.sty
+(c:/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 
-(/home/pet/.miktex/texmfs/install/tex/generic/ltxcmds/ltxcmds.sty
+(c:/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 )
-(/home/pet/.miktex/texmfs/install/tex/generic/infwarerr/infwarerr.sty
+(c:/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 ))
-(/home/pet/.miktex/texmfs/install/tex/generic/gettitlestring/gettitlestring.sty
+(c:/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-(/home/pet/.miktex/texmfs/install/tex/latex/kvoptions/kvoptions.sty
+
+(c:/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics/keyval.sty
-Package: keyval 2026-05-17 v1.15 key=value parser (DPC)
+(c:/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks21
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/kvsetkeys/kvsetkeys.sty
+(c:/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )))
-\c@section@level=\count309
+\c@section@level=\count308
 )
 \tocentryskip=\skip134
 \tocbaseline=\skip135
 \cftparskip=\skip136
 \cftbeforebookskip=\skip137
-\cftbookindent=\dimen184
-\cftbooknumwidth=\dimen185
+\cftbookindent=\dimen182
+\cftbooknumwidth=\dimen183
 \cftbeforepartskip=\skip138
 \cftpartindent=\skip139
 \cftpartnumwidth=\skip140
@@ -267,9 +269,9 @@ Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 \cftbeforesubparagraphskip=\skip156
 \cftsubparagraphindent=\skip157
 \cftsubparagraphnumwidth=\skip158
-\prechapterprecisshift=\dimen186
-\c@maxsecnumdepth=\count310
-\bibindent=\dimen187
+\prechapterprecisshift=\dimen184
+\c@maxsecnumdepth=\count309
+\bibindent=\dimen185
 \bibitemsep=\skip159
 \indexcolsep=\skip160
 \indexrule=\skip161
@@ -277,8 +279,8 @@ Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 \@indexbox=\insert252
 LaTeX Info: Redefining \raggedbottom on input line 8095.
 LaTeX Info: Redefining \flushbottom on input line 8099.
-\glossarycolsep=\dimen188
-\glossaryrule=\dimen189
+\glossarycolsep=\dimen186
+\glossaryrule=\dimen187
 \sideparvshift=\skip162
 \sideins=\insert251
 \sidebartopsep=\skip163
@@ -291,8 +293,8 @@ LaTeX Info: Redefining \flushbottom on input line 8099.
 \footinsdim=\skip170
 \footinsv@r=\insert250
 \@mpfootinsv@r=\insert249
-\m@m@k=\count311
-\m@m@h=\dimen190
+\m@m@k=\count310
+\m@m@h=\dimen188
 \m@mipn@skip=\skip171
 \sidefootins=\insert248
 \sidefootadjust=\skip172
@@ -301,15 +303,15 @@ LaTeX Info: Redefining \flushbottom on input line 8099.
 \sidefootvsep=\skip175
 \sidefootwidth=\skip176
 \m@mdownsf=\skip177
-\c@sidefootnote=\count312
+\c@sidefootnote=\count311
 \sidefootmarkwidth=\skip178
 \sidefootmarksep=\skip179
 \sidefootparindent=\skip180
-\c@pagenote=\count313
-\c@pagenoteshadow=\count314
+\c@pagenote=\count312
+\c@pagenoteshadow=\count313
 \mem@pn@lastkern=\skip181
 
-(/home/pet/.miktex/texmfs/install/tex/latex/tools/verbatim.sty
+(c:/texlive/2025/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks23
 \verbatim@line=\toks24
@@ -318,40 +320,40 @@ Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
 \verbatimindent=\skip182
 \verbatim@out=\write3
 
-(/home/pet/.miktex/texmfs/install/tex/latex/base/shortvrb.sty
-Package: shortvrb 2026-03-13 v3.0r Standard LaTeX documentation package V3 (FMi
+(c:/texlive/2025/texmf-dist/tex/latex/base/shortvrb.sty
+Package: shortvrb 2024/12/25 v3.0q Standard LaTeX documentation package V3 (FMi
 )
 )
 \bvboxsep=\skip183
-\c@memfbvline=\count315
-\c@bvlinectr=\count316
+\c@memfbvline=\count314
+\c@bvlinectr=\count315
 \bvnumlength=\skip184
-\fb@frw=\dimen191
-\fb@frh=\dimen192
-\FrameRule=\dimen193
-\FrameSep=\dimen194
-\c@cp@cntr=\count317
-\c@ism@mctr=\count318
-\c@xsm@mctr=\count319
-\c@csm@mctr=\count320
-\c@ksm@mctr=\count321
-\c@xksm@mctr=\count322
-\c@cksm@mctr=\count323
-\c@msm@mctr=\count324
-\c@xmsm@mctr=\count325
-\c@cmsm@mctr=\count326
-\c@bsm@mctr=\count327
-\c@workm@mctr=\count328
-\c@sheetsequence=\count329
-\c@lastsheet=\count330
-\c@lastpage=\count331
-\c@figure=\count332
-\c@lofdepth=\count333
+\fb@frw=\dimen189
+\fb@frh=\dimen190
+\FrameRule=\dimen191
+\FrameSep=\dimen192
+\c@cp@cntr=\count316
+\c@ism@mctr=\count317
+\c@xsm@mctr=\count318
+\c@csm@mctr=\count319
+\c@ksm@mctr=\count320
+\c@xksm@mctr=\count321
+\c@cksm@mctr=\count322
+\c@msm@mctr=\count323
+\c@xmsm@mctr=\count324
+\c@cmsm@mctr=\count325
+\c@bsm@mctr=\count326
+\c@workm@mctr=\count327
+\c@sheetsequence=\count328
+\c@lastsheet=\count329
+\c@lastpage=\count330
+\c@figure=\count331
+\c@lofdepth=\count332
 \cftbeforefigureskip=\skip185
 \cftfigureindent=\skip186
 \cftfigurenumwidth=\skip187
-\c@table=\count334
-\c@lotdepth=\count335
+\c@table=\count333
+\c@lotdepth=\count334
 \cftbeforetableskip=\skip188
 \cfttableindent=\skip189
 \cfttablenumwidth=\skip190
@@ -383,271 +385,245 @@ Package tocloft [2008/07/23] emulated by memoir.
 Package tocvsec2 [2008/07/23] emulated by memoir.
 Package verse [2008/07/23] emulated by memoir.
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/textcase/textcase.sty
+(c:/texlive/2025/texmf-dist/tex/latex/textcase/textcase.sty
 Package: textcase 2025/02/16 v1.05 Text only upper/lower case changing (DPC)
 Package textcase Info: Defining Legacy names on input line 20.
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2026-04-24 v7.01q Hypertext links for LaTeX
+(c:/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
 
-(/home/pet/.miktex/texmfs/install/tex/generic/kvdefinekeys/kvdefinekeys.sty
+(c:/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(/home/pet/.miktex/texmfs/install/tex/generic/pdfescape/pdfescape.sty
+(c:/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 
-(/home/pet/.miktex/texmfs/install/tex/generic/pdftexcmds/pdftexcmds.sty
+(c:/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 ))
-(/home/pet/.miktex/texmfs/install/tex/latex/hycolor/hycolor.sty
+(c:/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(/home/pet/.miktex/texmfs/install/tex/generic/stringenc/stringenc.sty
+(c:/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
-\@linkdim=\dimen195
-\Hy@linkcounter=\count336
-\Hy@pagecounter=\count337
+\@linkdim=\dimen193
+\Hy@linkcounter=\count335
+\Hy@pagecounter=\count336
 
-(/home/pet/.miktex/texmfs/install/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2026-04-24 v7.01q Hyperref: PDFDocEncoding definition (HO)
+(c:/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(/home/pet/.miktex/texmfs/install/tex/generic/intcalc/intcalc.sty
+(c:/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count338
+\Hy@SavedSpaceFactor=\count337
 
-(/home/pet/.miktex/texmfs/install/tex/latex/hyperref/puenc.def
-File: puenc.def 2026-04-24 v7.01q Hyperref: PDF Unicode definition (HO)
+(c:/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4199.
-Package hyperref Info: Link nesting OFF on input line 4204.
-Package hyperref Info: Hyper index ON on input line 4207.
-Package hyperref Info: Plain pages OFF on input line 4214.
-Package hyperref Info: Backreferencing OFF on input line 4219.
+Package hyperref Info: Hyper figures OFF on input line 4195.
+Package hyperref Info: Link nesting OFF on input line 4200.
+Package hyperref Info: Hyper index ON on input line 4203.
+Package hyperref Info: Plain pages OFF on input line 4210.
+Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4466.
-\c@Hy@tempcnt=\count339
+Package hyperref Info: Bookmarks ON on input line 4462.
+\c@Hy@tempcnt=\count338
 
-(/home/pet/.miktex/texmfs/install/tex/latex/url/url.sty
+(c:/texlive/2025/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4805.
-\XeTeXLinkMargin=\dimen196
+LaTeX Info: Redefining \url on input line 4801.
+\XeTeXLinkMargin=\dimen194
 
-(/home/pet/.miktex/texmfs/install/tex/generic/bitset/bitset.sty
+(c:/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(/home/pet/.miktex/texmfs/install/tex/generic/bigintcalc/bigintcalc.sty
+(c:/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count340
-\Field@Width=\dimen197
-\Fld@charsize=\dimen198
-Package hyperref Info: Hyper figures OFF on input line 6091.
-Package hyperref Info: Link nesting OFF on input line 6096.
-Package hyperref Info: Hyper index ON on input line 6099.
-Package hyperref Info: backreferencing OFF on input line 6106.
-Package hyperref Info: Link coloring OFF on input line 6111.
-Package hyperref Info: Link coloring with OCG OFF on input line 6116.
-Package hyperref Info: PDF/A mode OFF on input line 6121.
-\Hy@abspage=\count341
-\c@Item=\count342
-\c@Hfootnote=\count343
+\Fld@menulength=\count339
+\Field@Width=\dimen195
+\Fld@charsize=\dimen196
+Package hyperref Info: Hyper figures OFF on input line 6078.
+Package hyperref Info: Link nesting OFF on input line 6083.
+Package hyperref Info: Hyper index ON on input line 6086.
+Package hyperref Info: backreferencing OFF on input line 6093.
+Package hyperref Info: Link coloring OFF on input line 6098.
+Package hyperref Info: Link coloring with OCG OFF on input line 6103.
+Package hyperref Info: PDF/A mode OFF on input line 6108.
+\Hy@abspage=\count340
+\c@Item=\count341
+\c@Hfootnote=\count342
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2026-04-24 v7.01q Hyperref driver for pdfTeX
-\Fld@listcount=\count344
-\c@bookmark@seq@number=\count345
+(c:/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+\Fld@listcount=\count343
+\c@bookmark@seq@number=\count344
 
-(/home/pet/.miktex/texmfs/install/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(c:/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 
-(/home/pet/.miktex/texmfs/install/tex/generic/uniquecounter/uniquecounter.sty
+(c:/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 84.
 )
 \Hy@SectionHShift=\skip191
-) (/home/pet/.miktex/texmfs/install/tex/latex/memoir/memhfixc.sty
+)
+(c:/texlive/2025/texmf-dist/tex/latex/memoir/memhfixc.sty
 Package: memhfixc 2025/09/16 v1.24 hyperref package fixes for memoir class
-\c@memhycontfloat=\count346
-\c@mem@Hpagenote=\count347
+\c@memhycontfloat=\count345
+\c@mem@Hpagenote=\count346
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/bookmark/bookmark.sty
-Package: bookmark 2026-05-21 v1.32 PDF bookmarks (HO)
+(c:/texlive/2025/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 
-(/home/pet/.miktex/texmfs/install/tex/latex/bookmark/bkm-pdftex.def
-File: bkm-pdftex.def 2026-05-21 v1.32 bookmark driver for pdfTeX (HO)
-\BKM@id=\count348
+(c:/texlive/2025/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
+)
+\BKM@id=\count347
 ))
-(/home/pet/.miktex/texmfs/install/tex/generic/babel/babel.sty
-Package: babel 2026/05/20 v26.8 The multilingual framework for LuaLaTeX, pdfLaT
-eX and XeLaTeX
-\babel@savecnt=\count349
+(c:/texlive/2025/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2025/11/09 v25.15 The multilingual framework for LuaLaTeX, pdfLa
+TeX and XeLaTeX
+\babel@savecnt=\count348
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
-ne 2084.
+ne 2050.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
-ne 2086.
+ne 2052.
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
-e 2088.
+e 2054.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
-e 2089.
+e 2055.
 LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
-on input line 2090.
+on input line 2056.
 LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
-on input line 2092.
+on input line 2058.
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
-on input line 2117.
-\U@D=\dimen199
-\l@unhyphenated=\language1
+on input line 2083.
+\U@D=\dimen197
+\l@unhyphenated=\language90
 
-(/home/pet/.miktex/texmfs/install/tex/generic/babel/txtbabel.def)
+(c:/texlive/2025/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read3
-\bbl@dirlevel=\count350
-Package babel Info: Configuration files are deprecated, as
-(babel)             they can break document portability.
-(babel)             Reported on input line 4228.
+\bbl@dirlevel=\count349
 
-*************************************
-* Local config file bblopts.cfg used
-*
-(/home/pet/.miktex/texmfs/install/tex/latex/arabi/bblopts.cfg
-File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
- babel
-)
-(/home/pet/.miktex/texmfs/install/tex/generic/babel/locale/en/babel-english.tex
-)
-(/home/pet/.miktex/texmfs/install/tex/generic/babel/locale/fr/babel-french.tex)
-
-(/home/pet/.miktex/texmfs/install/tex/generic/babel/locale/es/babel-spanish.tex
-)
-(/home/pet/.miktex/texmfs/install/tex/generic/babel/locale/pt/babel-brazilian.t
-ex)
-(/home/pet/.miktex/texmfs/install/tex/generic/babel/locale/invalid/babel-brazil
-.tex)
+(c:/texlive/2025/texmf-dist/tex/generic/babel/locale/en/babel-english.tex)
+(c:/texlive/2025/texmf-dist/tex/generic/babel/locale/fr/babel-french.tex)
+(c:/texlive/2025/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex)
+(c:/texlive/2025/texmf-dist/tex/generic/babel/locale/pt/babel-brazilian.tex)
+(c:/texlive/2025/texmf-dist/tex/generic/babel/locale/invalid/babel-brazil.tex)
 Package babel Info: Importing font and identification data for english
-(babel)             from babel-en.ini. Reported on input line 4356.
- (/home/pet/.miktex/texmfs/install/tex/latex/babel-english/english.ldf
+(babel)             from babel-en.ini. Reported on input line 4298.
+
+(c:/texlive/2025/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language22). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language22). Reported on input line 108.
 )
 Package babel Info: Importing font and identification data for french
-(babel)             from babel-fr.ini. Reported on input line 4356.
+(babel)             from babel-fr.ini. Reported on input line 4298.
 
-(/home/pet/.miktex/texmfs/install/tex/generic/babel-french/french.ldf
-Language: french 2026-06-06 v4.1a French support from the babel system
+(c:/texlive/2025/texmf-dist/tex/generic/babel-french/french.ldf
+Language: french 2025-08-15 v4.0e French support from the babel system
 
-(/home/pet/.miktex/texmfs/install/tex/generic/babel-french/french3.ldf
-Language: french 2026-06-06 v3.7f French support from the babel system
-
-
-Package babel Warning: No hyphenation patterns were preloaded for
-(babel)                the language 'French' into the format.
-(babel)                Please, configure your TeX system to add them and
-(babel)                rebuild the format. Now I will use the patterns
-(babel)                preloaded for \language=nohyphenation instead on input l
-ine 87.
-
-\FB@stdchar=\count351
-Package babel Info: Making : an active character on input line 266.
-Package babel Info: Making ; an active character on input line 267.
-Package babel Info: Making ! an active character on input line 268.
-Package babel Info: Making ? an active character on input line 269.
-\FBguill@level=\count352
+(c:/texlive/2025/texmf-dist/tex/generic/babel-french/french3.ldf
+Language: french 2025-08-15 v3.7e French support from the babel system
+\FB@stdchar=\count350
+Package babel Info: Making : an active character on input line 273.
+Package babel Info: Making ; an active character on input line 274.
+Package babel Info: Making ! an active character on input line 275.
+Package babel Info: Making ? an active character on input line 276.
+\FBguill@level=\count351
 \FBold@everypar=\toks25
-\FB@Mht=\dimen256
-\mc@charclass=\count353
-\mc@charfam=\count354
-\mc@charslot=\count355
-\std@mcc=\count356
-\dec@mcc=\count357
-\listindentFB=\dimen257
-\descindentFB=\dimen258
+\FB@Mht=\dimen198
+\mc@charclass=\count352
+\mc@charfam=\count353
+\mc@charslot=\count354
+\std@mcc=\count355
+\dec@mcc=\count356
+\FB@pardim=\dimen199
+\listindentFB=\dimen256
+\descindentFB=\dimen257
+\labelindentFB=\dimen258
 \labelwidthFB=\dimen259
-\labelfullwidthFB=\dimen260
-\FB@pardim=\dimen261
-\parindentFFN=\dimen262
-\FBfnindent=\dimen263
+\leftmarginFB=\dimen260
+\parindentFFN=\dimen261
+\FBfnindent=\dimen262
 ))
 Package babel Info: Importing font and identification data for spanish
-(babel)             from babel-es.ini. Reported on input line 4356.
- (/home/pet/.miktex/texmfs/install/tex/latex/babel-spanish/spanish.ldf
+(babel)             from babel-es.ini. Reported on input line 4298.
+
+(c:/texlive/2025/texmf-dist/tex/generic/babel-spanish/spanish.ldf
 Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
-
-
-Package babel Warning: No hyphenation patterns were preloaded for
-(babel)                the language 'Spanish' into the format.
-(babel)                Please, configure your TeX system to add them and
-(babel)                rebuild the format. Now I will use the patterns
-(babel)                preloaded for \language=nohyphenation instead on input l
-ine 51.
-
 \es@quottoks=\toks26
-\es@quotdepth=\count358
+\es@quotdepth=\count357
 Package babel Info: Making " an active character on input line 570.
 Package babel Info: Making . an active character on input line 675.
 Package babel Info: Making < an active character on input line 722.
 Package babel Info: Making > an active character on input line 722.
 )
 Package babel Info: Importing font and identification data for brazilian
-(babel)             from babel-pt-BR.ini. Reported on input line 4356.
- (/home/pet/.miktex/texmfs/install/tex/latex/babel-portuges/brazilian.ldf
-Language: portuges 2026/01/24 v1.2u Portuguese support from the babel system
+(babel)             from babel-pt-BR.ini. Reported on input line 4298.
 
-
-Package babel Warning: No hyphenation patterns were preloaded for
-(babel)                the language 'Portuguese' into the format.
-(babel)                Please, configure your TeX system to add them and
-(babel)                rebuild the format. Now I will use the patterns
-(babel)                preloaded for \language=nohyphenation instead on input l
-ine 42.
-
+(c:/texlive/2025/texmf-dist/tex/generic/babel-portuges/brazilian.ldf
+Language: portuges 2021/07/09 v1.2t Portuguese support from the babel system
+Package babel Info: Hyphen rules for 'brazilian' set to \l@portuguese
+(babel)             (\language72). Reported on input line 111.
 )
 
 Package babel Warning: Name 'brazil' is deprecated.
 (babel)                Use 'brazilian' instead.
-(babel)                Reported on input line 4356.
+(babel)                Reported on input line 4298.
 
 Package babel Info: Importing font and identification data for brazil
-(babel)             from babel-pt-BR.ini. Reported on input line 4356.
-(/home/pet/.miktex/texmfs/install/tex/latex/babel-portuges/brazilian.ldf
-Language: portuges 2026/01/24 v1.2u Portuguese support from the babel system
+(babel)             from babel-pt-BR.ini. Reported on input line 4298.
+(c:/texlive/2025/texmf-dist/tex/generic/babel-portuges/brazilian.ldf
+Language: portuges 2021/07/09 v1.2t Portuguese support from the babel system
+Package babel Info: Hyphen rules for 'brazil' set to \l@portuguese
+(babel)             (\language72). Reported on input line 111.
 ))
-(/home/pet/.miktex/texmfs/install/tex/latex/carlisle/scalefnt.sty)
-(/home/pet/.miktex/texmfs/install/tex/latex/enumitem/enumitem.sty
+(c:/texlive/2025/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(c:/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip192
-\enit@outerparindent=\dimen264
+\enit@outerparindent=\dimen263
 \enit@toks=\toks27
 \enit@inbox=\box58
-\enit@count@id=\count359
-\enitdp@description=\count360
+\enit@count@id=\count358
+\enitdp@description=\count359
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/tools/calc.sty
+(c:/texlive/2025/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
-\calc@Acount=\count361
-\calc@Bcount=\count362
-\calc@Adimen=\dimen265
-\calc@Bdimen=\dimen266
+\calc@Acount=\count360
+\calc@Bcount=\count361
+\calc@Adimen=\dimen264
+\calc@Bdimen=\dimen265
 \calc@Askip=\skip193
 \calc@Bskip=\skip194
 LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
-\calc@Ccount=\count363
+\calc@Ccount=\count362
 \calc@Cskip=\skip195
 )
 
@@ -670,7 +646,7 @@ Sidefoothsep and sidefootwidth: 7pt and 42pt
 Sidefootvsep and sidefootheight: 14.5pt and 590.14995pt
 ******************************************************
 
-\c@abntex@bookmarkcounter=\count364
+\c@abntex@bookmarkcounter=\count363
 \cftlastnumwidth=\skip196
 
 Class memoir Warning: \settocpreprocessor is marked deprecated and will be
@@ -681,17 +657,17 @@ Class memoir Warning: \settocpreprocessor is marked deprecated and will be
 
 \chapternamenumlength=\skip197
 \ABNTEXcitacaorecuo=\skip198
-\c@alineasi=\count365
-\c@alineasii=\count366
-\enitdp@alineas=\count367
-\c@subalineasi=\count368
-\enitdp@subalineas=\count369
-\c@incisosi=\count370
-\enitdp@incisos=\count371
+\c@alineasi=\count364
+\c@alineasii=\count365
+\enitdp@alineas=\count366
+\c@subalineasi=\count367
+\enitdp@subalineas=\count368
+\c@incisosi=\count369
+\enitdp@incisos=\count370
 \ABNTEXsignwidth=\skip199
 \ABNTEXsignthickness=\skip256
 \ABNTEXsignskip=\skip257
-) (preamble.tex (/home/pet/.miktex/texmfs/install/tex/latex/lm/lmodern.sty
+) (./preamble.tex (c:/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -726,68 +702,68 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/base/fontenc.sty
+(c:/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
 6.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/lm/t1lmr.fd
+(c:/texlive/2025/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
-(/home/pet/.miktex/texmfs/install/tex/latex/base/inputenc.sty
+(c:/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks28
 \inpenc@posthook=\toks29
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/tools/indentfirst.sty
+(c:/texlive/2025/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 2023/07/02 v1.03 Indent first paragraph (DPC)
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics/color.sty
-Package: color 2026-05-17 v1.3f Standard LaTeX Color (DPC)
+(c:/texlive/2025/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2025/01/14 v1.3e Standard LaTeX Color (DPC)
 
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics-cfg/color.cfg
+(c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics-def/pdftex.def
+(c:/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics/mathcolor.ltx))
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics/graphicx.sty
-Package: graphicx 2026-05-17 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+(c:/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(c:/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics/graphics.sty
-Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+(c:/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
 
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics/trig.sty
+(c:/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/graphics-cfg/graphics.cfg
+(c:/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
 )
-\Gin@req@height=\dimen267
-\Gin@req@width=\dimen268
+\Gin@req@height=\dimen266
+\Gin@req@width=\dimen267
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/microtype/microtype.sty
-Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+(c:/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2025/07/09 v3.2b Micro-typographical refinements (RS)
 \MT@toks=\toks30
 \MT@tempbox=\box59
-\MT@count=\count372
-LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
-LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@count=\count371
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
+LaTeX Info: Redefining \leftprotrusion on input line 1088.
 \MT@prot@toks=\toks31
-LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \rightprotrusion on input line 1107.
 LaTeX Info: Redefining \textls on input line 1449.
-\MT@outer@kern=\dimen269
+\MT@outer@kern=\dimen268
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
-\MT@listname@count=\count373
+\MT@listname@count=\count372
 
-(/home/pet/.miktex/texmfs/install/tex/latex/microtype/microtype-pdftex.def
-File: microtype-pdftex.def 2026/03/01 v3.2d Definitions specific to pdftex (RS)
+(c:/texlive/2025/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2025/07/09 v3.2b Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 944.
 LaTeX Info: Redefining \lslig on input line 944.
@@ -795,45 +771,45 @@ LaTeX Info: Redefining \lslig on input line 944.
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+(c:/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2025/07/09 v3.2b microtype main configuration file (RS)
 )
 LaTeX Info: Redefining \microtypesetup on input line 3065.
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/base/latexsym.sty
+(c:/texlive/2025/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2026/05/19 v2.18d AMS math features
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip259
 
 For additional information on amsmath, use the `?' option.
-(/home/pet/.miktex/texmfs/install/tex/latex/amsmath/amstext.sty
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
 
-(/home/pet/.miktex/texmfs/install/tex/latex/amsmath/amsgen.sty
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks32
-\ex@=\dimen270
+\ex@=\dimen269
 ))
-(/home/pet/.miktex/texmfs/install/tex/latex/amsmath/amsbsy.sty
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen271
+\pmbraise@=\dimen270
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/amsmath/amsopn.sty
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count374
+\inf@bad=\count373
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count375
-\leftroot@=\count376
+\uproot@=\count374
+\leftroot@=\count375
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count377
-\DOTSCASE@=\count378
+\classnum@=\count376
+\DOTSCASE@=\count377
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -843,38 +819,38 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen272
+\big@size=\dimen271
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count379
+\macc@depth=\count378
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count380
+\c@MaxMatrixCols=\count379
 \dotsspace@=\muskip18
-\c@parentequation=\count381
-\dspbrk@lvl=\count382
+\c@parentequation=\count380
+\dspbrk@lvl=\count381
 \tag@help=\toks33
-\row@=\count383
-\column@=\count384
-\maxfields@=\count385
+\row@=\count382
+\column@=\count383
+\maxfields@=\count384
 \andhelp@=\toks34
-\eqnshift@=\dimen273
-\alignsep@=\dimen274
-\tagshift@=\dimen275
-\tagwidth@=\dimen276
-\totwidth@=\dimen277
-\lineht@=\dimen278
+\eqnshift@=\dimen272
+\alignsep@=\dimen273
+\tagshift@=\dimen274
+\tagwidth@=\dimen275
+\totwidth@=\dimen276
+\lineht@=\dimen277
 \@envbody=\toks35
 \multlinegap=\skip260
 \multlinetaggap=\skip261
 \mathdisplay@stack=\toks36
-LaTeX Info: Redefining \[ on input line 2965.
-LaTeX Info: Redefining \] on input line 2966.
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/amscls/amsthm.sty
+(c:/texlive/2025/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks37
 \thm@bodyfont=\toks38
@@ -886,10 +862,10 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headsep=\skip264
 \dth@everypar=\toks42
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/amsfonts/amssymb.sty
+(c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/home/pet/.miktex/texmfs/install/tex/latex/amsfonts/amsfonts.sty
+(c:/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup5
 \symAMSb=\mathgroup6
@@ -897,14 +873,14 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/home/pet/.miktex/texmfs/install/tex/latex/amsmath/amscd.sty
+(c:/texlive/2025/texmf-dist/tex/latex/amsmath/amscd.sty
 Package: amscd 2017/04/14 v2.1 AMS Commutative Diagrams
 \athelp@=\toks43
-\minaw@=\dimen279
-\bigaw@=\dimen280
-\minCDarrowwidth=\dimen281
+\minaw@=\dimen278
+\bigaw@=\dimen279
+\minCDarrowwidth=\dimen280
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/tools/bm.sty
+(c:/texlive/2025/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2025/10/21 v1.2g Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup7
 \symboldletters=\mathgroup8
@@ -915,87 +891,122 @@ Package bm Info: No bold for \U/msa/m/n, using \pmb.
 Package bm Info: No bold for \U/msb/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/here/here.sty)
-(/home/pet/.miktex/texmfs/install/tex/latex/float/float.sty
+(c:/texlive/2025/texmf-dist/tex/latex/here/here.sty)
+(c:/texlive/2025/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count386
+\c@float@type=\count385
 \float@exts=\toks44
 \float@box=\box62
 \@float@everytoks=\toks45
 \@floatcapt=\box63
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/lipsum/lipsum.sty
-(/home/pet/.miktex/texmfs/install/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+(c:/texlive/2025/texmf-dist/tex/latex/lipsum/lipsum.sty
+(c:/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count387
-\l__lipsum_a_int=\count388
-\l__lipsum_b_int=\count389
+\g__lipsum_par_int=\count386
+\l__lipsum_a_int=\count387
+\l__lipsum_b_int=\count388
 
-(/home/pet/.miktex/texmfs/install/tex/latex/lipsum/lipsum.ltd.tex))
-(/home/pet/.miktex/texmfs/install/tex/latex/multirow/multirow.sty
+(c:/texlive/2025/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))
+(c:/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip265
-\multirow@cntb=\count390
+\multirow@cntb=\count389
 \multirow@dima=\skip266
-\bigstrutjot=\dimen282
+\bigstrutjot=\dimen281
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/siunitx/siunitx.sty
-Package: siunitx 2026-05-15 v3.5.5 A comprehensive (SI) units package
-\l__siunitx_number_uncert_offset_int=\count391
-\l__siunitx_number_exponent_fixed_int=\count392
-\l__siunitx_number_min_decimal_int=\count393
-\l__siunitx_number_min_integer_int=\count394
-\l__siunitx_number_round_precision_int=\count395
-\l__siunitx_number_lower_threshold_int=\count396
-\l__siunitx_number_upper_threshold_int=\count397
-\l__siunitx_number_group_first_int=\count398
-\l__siunitx_number_group_size_int=\count399
-\l__siunitx_number_group_min_int=\count400
-\l__siunitx_number_group_minimum_int=\count401
-\l__siunitx_compound_count_int=\count402
+(c:/texlive/2025/texmf-dist/tex/latex/siunitx/siunitx.sty
+Package: siunitx 2025-07-09 v3.4.14 A comprehensive (SI) units package
+\l__siunitx_number_uncert_offset_int=\count390
+\l__siunitx_number_exponent_fixed_int=\count391
+\l__siunitx_number_min_decimal_int=\count392
+\l__siunitx_number_min_integer_int=\count393
+\l__siunitx_number_round_precision_int=\count394
+\l__siunitx_number_lower_threshold_int=\count395
+\l__siunitx_number_upper_threshold_int=\count396
+\l__siunitx_number_group_first_int=\count397
+\l__siunitx_number_group_size_int=\count398
+\l__siunitx_number_group_minimum_int=\count399
+\l__siunitx_angle_tmp_dim=\dimen282
+\l__siunitx_angle_marker_box=\box64
+\l__siunitx_angle_unit_box=\box65
+\l__siunitx_compound_count_int=\count400
 
-(/home/pet/.miktex/texmfs/install/tex/latex/translations/translations.sty
+(c:/texlive/2025/texmf-dist/tex/latex/translations/translations.sty
 Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages
  (CN)
 )
-\l__siunitx_table_tmp_box=\box64
+\l__siunitx_table_tmp_box=\box66
 \l__siunitx_table_tmp_dim=\dimen283
 \l__siunitx_table_column_width_dim=\dimen284
-\l__siunitx_table_integer_box=\box65
-\l__siunitx_table_decimal_box=\box66
-\l__siunitx_table_uncert_box=\box67
-\l__siunitx_table_before_box=\box68
-\l__siunitx_table_after_box=\box69
+\l__siunitx_table_integer_box=\box67
+\l__siunitx_table_decimal_box=\box68
+\l__siunitx_table_uncert_box=\box69
+\l__siunitx_table_before_box=\box70
+\l__siunitx_table_after_box=\box71
 \l__siunitx_table_before_dim=\dimen285
 \l__siunitx_table_carry_dim=\dimen286
-\l__siunitx_unit_tmp_int=\count403
-\l__siunitx_unit_position_int=\count404
-\l__siunitx_unit_total_int=\count405
-\l__siunitx_sexagesimal_tmp_dim=\dimen287
-\l__siunitx_sexagesimal_marker_box=\box70
-\l__siunitx_sexagesimal_unit_box=\box71
+\l__siunitx_unit_tmp_int=\count401
+\l__siunitx_unit_position_int=\count402
+\l__siunitx_unit_total_int=\count403
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/hyperref/backref.sty
+(c:/texlive/2025/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+
+(c:/texlive/2025/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(c:/texlive/2025/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen287
+\captionmargin=\dimen288
+\caption@leftmargin=\dimen289
+\caption@rightmargin=\dimen290
+\caption@width=\dimen291
+\caption@indent=\dimen292
+\caption@parindent=\dimen293
+\caption@hangindent=\dimen294
+Package caption Info: memoir document class detected.
+Package caption Info: french babel package is loaded.
+
+(c:/texlive/2025/texmf-dist/tex/latex/caption/caption-memoir.sto
+File: caption-memoir.sto 2023/09/08 v2.2c Adaption of the caption package to th
+e memoir document class (AR)
+))
+\c@caption@flags=\count404
+\c@continuedfloat=\count405
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen295
+\caption@adjustwidth@linewidth=\dimen296
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count406
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count407
+)
+(c:/texlive/2025/texmf-dist/tex/latex/hyperref/backref.sty
 Package: backref 2025-06-21 v1.45 Bibliographical back referencing
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/abntex2/abntex2cite.sty
+(c:/texlive/2025/texmf-dist/tex/latex/abntex2/abntex2cite.sty
 Package: abntex2cite 2018/11/24 v-1.9.7 abnTeX2
 
-(/home/pet/.miktex/texmfs/install/tex/latex/abntex2/abntex2abrev.sty)
+(c:/texlive/2025/texmf-dist/tex/latex/abntex2/abntex2abrev.sty)
 \minimumbiblabelwidth=\skip267
 \ABCIauxlen=\skip268
-\c@ABCIaux=\count406
-\c@ABCImax=\count407
+\c@ABCIaux=\count408
+\c@ABCImax=\count409
 
-(/home/pet/.miktex/texmfs/install/tex/generic/iftex/ifpdf.sty
+(c:/texlive/2025/texmf-dist/tex/generic/iftex/ifpdf.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 )
-(/home/pet/.miktex/texmfs/install/tex/generic/iftex/ifxetex.sty
+(c:/texlive/2025/texmf-dist/tex/generic/iftex/ifxetex.sty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/relsize/relsize.sty
+(c:/texlive/2025/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
 \biblabelsep=\skip269
@@ -1003,20 +1014,29 @@ LaTeX Info: Redefining \newblock on input line 591.
 LaTeX Info: Redefining \cite on input line 618.
 \ABCItoken=\toks46
 )
-Package color Info: Redefining color blue on input line 39.
-Package hyperref Info: Option `colorlinks' set `true' on input line 53.
+Package color Info: Redefining color blue on input line 40.
+Package hyperref Info: Option `colorlinks' set `true' on input line 54.
 )
 \main@idxfile=\write4
 \openout4 = `main.idx'.
 
 
 Writing index file main.idx 
-(main.aux
+(./main.aux
 Package babel Info: 'brazil' activates 'portuges' shorthands.
 (babel)             Reported on input line 19.
 Package babel Info: 'brazilian' activates 'portuges' shorthands.
 (babel)             Reported on input line 20.
- (sections/01-introducao.aux) (sections/02-referencial.aux))
+ (./sections/01-introducao.aux) (./sections/02-referencial.aux)
+(./sections/03-metodologia.aux
+
+LaTeX Warning: Label `subsec:tsrv' multiply defined.
+
+
+LaTeX Warning: Label `eq:tsrv' multiply defined.
+
+) (./sections/04-resultados.aux) (./sections/05-conclusao.aux)
+(./sections/apendice_a.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
@@ -1042,26 +1062,27 @@ LaTeX Info: Redefining \degres on input line 29.
 \myptabbox=\box72
 \myptabboxwidth=\skip270
 
-(/home/pet/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
+(c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count408
-\scratchdimen=\dimen288
+\scratchcounter=\count410
+\scratchdimen=\dimen297
 \scratchbox=\box73
-\nofMPsegments=\count409
-\nofMParguments=\count410
+\nofMPsegments=\count411
+\nofMParguments=\count412
 \everyMPshowfont=\toks47
-\MPscratchCnt=\count411
-\MPscratchDim=\dimen289
-\MPnumerator=\count412
-\makeMPintoPDFobject=\count413
+\MPscratchCnt=\count413
+\MPscratchDim=\dimen298
+\MPnumerator=\count414
+\makeMPintoPDFobject=\count415
 \everyMPtoPDFconversion=\toks48
-) (/home/pet/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
+) (c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+(c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
 ))
 LaTeX Info: Redefining \microtypecontext on input line 29.
 Package microtype Info: Applying patch `item' on input line 29.
@@ -1081,46 +1102,48 @@ Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/microtype/mt-cmr.cfg
+(c:/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/translations/dicts/translations-bas
-ic-dictionary-brazil.trsl
+(c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionar
+y-brazil.trsl
 File: translations-basic-dictionary-brazil.trsl (brazil translation file `trans
 lations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `brazil'. on input line 29.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/translations/dicts/translations-bas
-ic-dictionary-spanish.trsl
+(c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionar
+y-spanish.trsl
 File: translations-basic-dictionary-spanish.trsl (spanish translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `spanish'. on input line 29.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/translations/dicts/translations-bas
-ic-dictionary-french.trsl
+(c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionar
+y-french.trsl
 File: translations-basic-dictionary-french.trsl (french translation file `trans
 lations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `french'. on input line 29.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/translations/dicts/translations-bas
-ic-dictionary-english.trsl
+(c:/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionar
+y-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
 or `english'. on input line 29.
- (sections/00-pre-textual.tex
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+ (./sections/00-pre-textual.tex
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 2
 .
 
-(/home/pet/.miktex/texmfs/install/tex/latex/lm/t1lmss.fd
+(c:/texlive/2025/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
@@ -1129,30 +1152,29 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
  [1
 
-{/home/pet/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}{/home/pet/.miktex/t
-exmfs/install/fonts/enc/dvips/lm/lm-ec.enc}]
+{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/
+texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}]
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4
 .
-
-(/home/pet/.miktex/texmfs/install/tex/latex/lm/ot1lmr.fd
+ (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4
 .
 
-(/home/pet/.miktex/texmfs/install/tex/latex/lm/omllmm.fd
+(c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
 4.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/lm/omslmsy.fd
+(c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
 4.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/lm/omxlmex.fd
+(c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1164,23 +1186,23 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    Trying to load font information for U+lasy on input line 4.
 
 
-(/home/pet/.miktex/texmfs/install/tex/latex/base/ulasy.fd
+(c:/texlive/2025/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
+(c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/microtype/mt-msa.cfg
+(c:/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
+(c:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-(/home/pet/.miktex/texmfs/install/tex/latex/microtype/mt-msb.cfg
+(c:/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
@@ -1197,14 +1219,21 @@ l.4
 
 
 
-] (main.lof) [2
+] (./main.lof
+Overfull \hbox (12.15483pt too wide) in paragraph at lines 11--11
+ [][] [][][]\T1/lmr/m/n/12 (-20) Diagnósticos de ajuste e dis-tri-bu-i-ção dos 
+re-sí-duos --- \T1/lmr/m/it/12 (-20) Time Bars \T1/lmr/m/n/12 (-20) GARCH(1,1).
+[][] []  
+ []
 
-] (main.lot) [3
+) [2
+
+] (./main.lot) [3
 
 ] [4
 
 
-] (main.toc
+] (./main.toc
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
 (Font)              Font shape `T1/lmss/m/sl' tried instead on input line 43.
  [5
@@ -1213,337 +1242,76 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <10.95> not available
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
 9.
 
-(/home/pet/.miktex/texmfs/install/tex/latex/lm/t1lmtt.fd
+(c:/texlive/2025/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+ [6{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/te
+xmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 78.
+(Font)              <14.4> on input line 99.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 78.
+(Font)              <10> on input line 99.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 78.
+(Font)              <7> on input line 99.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <7> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 78.
-LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 78.
- [6{/home/pet/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-rm.enc}{/home/pet/.m
-iktex/texmfs/install/fonts/enc/dvips/lm/lm-mathit.enc}]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 94.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 99.
 ) [7])
 \openout2 = `sections/01-introducao.aux'.
 
- (sections/01-introducao.tex
+ (./sections/01-introducao.tex
 Cap\'{\i }tulo 1.
-
-LaTeX Warning: Citation `tsay2010' on page 8 undefined on input line 10.
-
-
-LaTeX Warning: Citation `engle1982' on page 8 undefined on input line 11.
-
-
-LaTeX Warning: Citation `bollerslev1986' on page 8 undefined on input line 12.
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 8 undefined on input line 2
-2.
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 8 undefined on input line 4
-3.
-
 [8
 
 
 
 ]
-Overfull \hbox (7.15474pt too wide) in paragraph at lines 70--72
-[]\T1/lmr/m/n/12 (-20) Ajustar modelos ARMA-GARCH conjuntos sobre ambos os tipo
-s de barra, selecionando
- []
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 9 undefined on input line 8
-5.
-
-
-Overfull \hbox (2.28075pt too wide) in paragraph at lines 82--89
-[]\T1/lmr/m/n/12 (-20) A escolha do método de amostragem de dados financeiros é
- uma decisão metodológica
- []
-
 Package babel Info: 'brazilian' activates 'portuges' shorthands.
 (babel)             Reported on input line 102.
-[9]) [10]
+ [9]) [10]
 \openout2 = `sections/02-referencial.aux'.
 
- (sections/02-referencial.tex
+ (./sections/02-referencial.tex
 Cap\'{\i }tulo 2.
-
-LaTeX Warning: Reference `sec:cpcv' on page 11 undefined on input line 15.
-
-
-LaTeX Warning: Reference `sec:metricas' on page 11 undefined on input line 18.
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 11 undefined on input line 
-30.
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 11 undefined on input line 
-43.
-
-
-Overfull \hbox (0.70296pt too wide) in paragraph at lines 38--44
-[]\T1/lmr/m/it/12 (-20) Time bars \T1/lmr/m/n/12 (-20) constituem o método mais
- tradicional de amostragem de dados financeiros,
- []
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 11 undefined on input line 
-64.
-
-
-Overfull \hbox (21.28468pt too wide) in paragraph at lines 63--65
-[]\T1/lmr/m/n/12 (-20) Apesar de amplamente utilizadas, as \T1/lmr/m/it/12 (-20
-) time bars \T1/lmr/m/n/12 (-20) apresentam limitações bem documentadas
- []
-
 [11
 
 
 
 
-{/home/pet/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathsy.enc}{/home/pet/.
-miktex/texmfs/install/fonts/enc/dvips/lm/lm-mathex.enc}]
-
-LaTeX Warning: Citation `lopez2018advances' on page 12 undefined on input line 
-89.
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 12 undefined on input line 
-117.
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 12 undefined on input line 
-120.
-
-[12]
-
-LaTeX Warning: Citation `bollerslev1986' on page 13 undefined on input line 148
-.
-
-
-LaTeX Warning: Citation `tsay2010' on page 13 undefined on input line 148.
-
-
-LaTeX Warning: Citation `box1970' on page 13 undefined on input line 156.
-
+{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/t
+exmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}] [12]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 72.
-(/home/pet/.miktex/texmfs/install/tex/latex/lm/ts1lmr.fd
+
+(c:/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-
-LaTeX Warning: Citation `box1970' on page 13 undefined on input line 185.
-
-
-LaTeX Warning: Citation `akaike1974' on page 13 undefined on input line 192.
-
-
-LaTeX Warning: Citation `schwarz1978' on page 13 undefined on input line 192.
-
-[13{/home/pet/.miktex/texmfs/install/fonts/enc/dvips/lm/lm-ts1.enc}]
-
-LaTeX Warning: Citation `bollerslev1986' on page 14 undefined on input line 208
-.
-
-
-LaTeX Warning: Citation `engle1982' on page 14 undefined on input line 209.
-
-
-LaTeX Warning: Citation `bollerslev1986' on page 14 undefined on input line 230
-.
-
-
-LaTeX Warning: Citation `tsay2010' on page 14 undefined on input line 230.
-
-
-LaTeX Warning: Citation `bollerslev1992' on page 14 undefined on input line 254
-.
-
-
-Overfull \hbox (4.08733pt too wide) in paragraph at lines 250--255
-[]\T1/lmr/m/n/12 (-20) Na prática, a equação da média e a equação da variância 
-são estimadas conjuntamente
- []
-
-[14]
-
-LaTeX Warning: Citation `tsay2010' on page 15 undefined on input line 291.
-
-
-LaTeX Warning: Citation `engle1982' on page 15 undefined on input line 302.
-
-
-LaTeX Warning: Citation `andersen2003' on page 15 undefined on input line 326.
-
-
-LaTeX Warning: Citation `andersen2003' on page 15 undefined on input line 349.
-
-[15]
-
-LaTeX Warning: Citation `zhang2005' on page 16 undefined on input line 357.
-
-
-LaTeX Warning: Citation `zhang2005' on page 16 undefined on input line 365.
-
-
-Overfull \hbox (1.67702pt too wide) in paragraph at lines 364--370
-\T1/lmr/m/n/12 (-20) propuseram o estimador \T1/lmr/bx/n/12 (-20) Two-Scale Rea
-lized Volatility \T1/lmr/m/n/12 (-20) (TSRV), que combina estimativas
- []
-
-<../images/TSRV_Ilustration.jpg, id=324, 1027.84pt x 561.09625pt>
+) [13{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [14] [15] [16]
+<../images/TSRV_Ilustration.jpg, id=451, 1027.84pt x 561.09625pt>
 File: ../images/TSRV_Ilustration.jpg Graphic file (type jpg)
 <use ../images/TSRV_Ilustration.jpg>
 Package pdftex.def Info: ../images/TSRV_Ilustration.jpg  used on input line 402
 .
 (pdftex.def)             Requested size: 432.24861pt x 235.96703pt.
-[16]
-
-LaTeX Warning: Citation `zhang2005' on page 17 undefined on input line 409.
-
 
 Overfull \hbox (1.03395pt too wide) in paragraph at lines 433--433
-[]\T1/lmss/m/n/17.28 (-20) VALIDAÇÃO CRUZADA COMBINATÓRIA PURGADA (CPCV) 
+[]\T1/lmss/m/n/17.28 (-20) VALIDAÇÃO CRU-ZADA COM-BI-NA-TÓ-RIA PUR-GADA (CPCV) 
+
  []
 
-
-LaTeX Warning: Citation `lopez2018advances' on page 17 undefined on input line 
-443.
-
-[17
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.445 A
-        ValidaÃ§Ã£o Cruzada CombinatÃ³ria Purgada (\emph{Combinatorial Purged <
-../images/TSRV_Ilustration.jpg>]
-
-LaTeX Warning: Citation `lopez2018advances' on page 18 undefined on input line 
-447.
-
-
+[17 <../images/TSRV_Ilustration.jpg>]
 Overfull \hbox (5.13336pt too wide) in paragraph at lines 445--450
-[]\T1/lmr/m/n/12 (-20) A Validação Cruzada Combinatória Purgada (\T1/lmr/m/it/1
-2 (-20) Combinatorial Purged Cross-Validation
+[]\T1/lmr/m/n/12 (-20) A Va-li-da-ção Cru-zada Com-bi-na-tó-ria Pur-gada (\T1/l
+mr/m/it/12 (-20) Com-bi-na-to-rial Pur-ged Cross-Validation
  []
 
-
-Overfull \hbox (2.64063pt too wide) in paragraph at lines 474--479
-[]\T1/lmr/bx/n/12 (-20) Embargo\T1/lmr/m/n/12 (-20) : adicionalmente, remove-se
- do conjunto de treino um número de observações
- []
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 18 undefined on input line 
-489.
-
-
-Overfull \hbox (23.1323pt too wide) in paragraph at lines 502--502
-[]\T1/lmss/m/n/17.28 (-20) MÉTRICAS DE AVALIAÇÃO DE PREVISÕES DE VOLATILIDADE 
- []
-
-
-LaTeX Warning: Citation `patton2011' on page 18 undefined on input line 508.
-
-[18]
-
-LaTeX Warning: Citation `patton2011' on page 19 undefined on input line 539.
-
-
-LaTeX Warning: Citation `patton2011' on page 19 undefined on input line 558.
-
-
-Overfull \hbox (36.81253pt too wide) in paragraph at lines 567--573
-\T1/lmr/m/n/12 (-20) A QLIKE é especialmente relevante porque seu \T1/lmr/m/it/
-12 (-20) ranking \T1/lmr/m/n/12 (-20) de modelos é preservado independentemente
-
- []
-
-
-LaTeX Warning: Citation `mincer1969' on page 19 undefined on input line 579.
-
-[19]
-Overfull \hbox (12.52054pt too wide) in paragraph at lines 603--608
-\T1/lmr/m/n/12 (-20) como medida de poder preditivo. Um $\OML/lmm/m/it/12 R[]$ 
-\T1/lmr/m/n/12 (-20) elevado indica que o modelo captura satisfatoriamente
- []
-
-
-LaTeX Warning: Citation `diebold1995' on page 20 undefined on input line 614.
-
-
-LaTeX Warning: Citation `efron1993' on page 20 undefined on input line 649.
-
-[20])
-Overfull \hbox (4.23798pt too wide) in paragraph at lines 670--41
-\T1/lmr/m/n/12 (-20) normal neste contexto, pois as perdas de previsão de volat
-ilidade são tipicamente assimétricas
- []
-
-[21]
+[18] [19] [20]) [21]
 \openout2 = `sections/03-metodologia.aux'.
 
- (sections/03-metodologia.tex
+ (./sections/03-metodologia.tex
 Cap\'{\i }tulo 3.
-
-LaTeX Warning: Reference `sec:met_dados' on page 22 undefined on input line 12.
-
-
-
-LaTeX Warning: Reference `sec:met_exploratoria' on page 22 undefined on input l
-ine 13.
-
-
-LaTeX Warning: Reference `sec:met_retornos' on page 22 undefined on input line 
-14.
-
-
-LaTeX Warning: Reference `sec:met_split' on page 22 undefined on input line 15.
-
-
-
-LaTeX Warning: Reference `sec:met_cpcv' on page 22 undefined on input line 16.
-
-
-LaTeX Warning: Reference `sec:met_estimacao' on page 22 undefined on input line
- 17.
-
-
-LaTeX Warning: Reference `sec:met_agregacao' on page 22 undefined on input line
- 18.
-
-
-LaTeX Warning: Reference `sec:met_metricas' on page 22 undefined on input line 
-19.
-
-
-LaTeX Warning: Reference `sec:met_implementacao' on page 22 undefined on input 
-line 20.
-
-
-Overfull \hbox (28.79544pt too wide) in paragraph at lines 48--48
-[]\T1/lmss/m/n/14.4 (-20) COLETA E PRÉ-PROCESSAMENTO DOS DADOS DE ALTA FREQUÊNC
-IA 
- []
-
 [22
 
 
@@ -1551,180 +1319,30 @@ IA
 
 ]
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <12> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 56.
-
-Overfull \hbox (0.84799pt too wide) in paragraph at lines 84--85
-\T1/lmr/m/n/12 (-20) propriedades estatísticas --- média, variância, percentis 
-e perfil intradiário --- são acumuladas
- []
-
-[23]
-
-LaTeX Warning: Citation `andersen2003' on page 24 undefined on input line 96.
-
-
-LaTeX Warning: Citation `zhang2005' on page 24 undefined on input line 111.
-
-[24]
-Overfull \hbox (8.49931pt too wide) in paragraph at lines 135--138
-\OT1/lmr/m/n/12 (-20) ([]\OML/lmm/m/it/12 =n\OT1/lmr/m/n/12 (-20) ) [][]$ \T1/l
-mr/m/n/12 (-20) estima a contribuição do ruído à RV na escala completa, que é p
-roporcional
- []
-
-
-LaTeX Warning: Citation `zhang2005' on page 25 undefined on input line 140.
-
-
-Overfull \hbox (7.48315pt too wide) in paragraph at lines 161--162
-\T1/lmr/m/n/12 (-20) arquivo Parquet via filtros aplicados diretamente no disco
- (\T1/lmtt/m/n/12 pyarrow.parquet.read_parquet
- []
-
-
-Overfull \hbox (21.75583pt too wide) in paragraph at lines 161--162
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 55.
+ [23] [24]
+Overfull \hbox (21.75583pt too wide) in paragraph at lines 160--161
 \T1/lmtt/m/n/12 Price \T1/lmr/m/n/12 (-20) e \T1/lmtt/m/n/12 Qty \T1/lmr/m/n/12
- (-20) referentes a um único dia de negociação. Para cada dia, a função \T1/lmt
-t/m/n/12 compute_daily_rv
+ (-20) re-fe-ren-tes a um único dia de ne-go-ci-a-ção. Para cada dia, a fun-ção
+ \T1/lmtt/m/n/12 compute_daily_rv
  []
 
-[25]
-
-LaTeX Warning: Citation `lopez2018advances' on page 26 undefined on input line 
-208.
-
-
-LaTeX Warning: Reference `cap:resultados' on page 26 undefined on input line 21
-0.
-
-[26]
-Overfull \hbox (83.19017pt too wide) in paragraph at lines 213--213
-[]\T1/lmss/m/n/14.4 (-20) TESTES DE NORMALIDADE, ESTACIONARIEDADE E HETEROSCEDA
-STICIDADE 
- []
-
-
-LaTeX Warning: Citation `tsay2010' on page 27 undefined on input line 226.
-
-
-LaTeX Warning: Reference `cap:resultados' on page 27 undefined on input line 24
-6.
-
-[27]
-
-LaTeX Warning: Reference `tab:split' on page 28 undefined on input line 278.
-
-
-LaTeX Warning: Reference `sec:met_cpcv' on page 28 undefined on input line 309.
-
-
-
-LaTeX Warning: Reference `sec:cpcv' on page 28 undefined on input line 321.
-
-
-Overfull \hbox (13.75781pt too wide) in paragraph at lines 318--323
-\T1/lmr/m/n/12 (-20) Combinatória Purgada (CPCV), descrito na []. Este procedim
-ento foi aplicado exclusivamente
- []
-
-[28
-pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) h
-as been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.332     \item \textbf
-                       {NÃºmero de grupos}: $N = 10$ (o conjunto de treino Ã©]
-
-LaTeX Warning: Reference `subsec:cpcv_formulacao' on page 29 undefined on input
- line 346.
-
-
-LaTeX Warning: Reference `cap:resultados' on page 29 undefined on input line 38
-0.
-
-
-LaTeX Warning: Reference `cap:resultados' on page 29 undefined on input line 39
-1.
-
-[29]
-
-LaTeX Warning: Reference `sec:met_split' on page 30 undefined on input line 429
-.
-
-
-LaTeX Warning: Reference `sec:metricas' on page 30 undefined on input line 442.
-
-
-
-LaTeX Warning: Reference `eq:mse' on page 30 undefined on input line 450.
-
-
-LaTeX Warning: Reference `eq:mae' on page 30 undefined on input line 451.
-
-
-LaTeX Warning: Reference `eq:qlike' on page 30 undefined on input line 451.
-
-[30]
-
-LaTeX Warning: Reference `eq:mz' on page 31 undefined on input line 455.
-
-
-LaTeX Warning: Reference `cap:resultados' on page 31 undefined on input line 46
-0.
-
-
-LaTeX Warning: Reference `subsec:diebold_mariano' on page 31 undefined on input
- line 468.
-
-
-LaTeX Warning: Reference `cap:resultados' on page 31 undefined on input line 47
-3.
-
-
-LaTeX Warning: Reference `subsec:bootstrap_ic' on page 31 undefined on input li
-ne 482.
-
-
-LaTeX Warning: Reference `cap:resultados' on page 31 undefined on input line 48
-4.
-
-) [31]
+[25] [26] [27] [28] [29] [30]) [31]
 \openout2 = `sections/04-resultados.aux'.
 
- (sections/04-resultados.tex
+ (./sections/04-resultados.tex
 Cap\'{\i }tulo 4.
-
-Overfull \hbox (20.23729pt too wide) in paragraph at lines 10--10
-[]\T1/lmss/m/n/17.28 (-20) PROPRIEDADES ESTATÍSTICAS COMPARATIVAS DAS SÉRIES 
- []
-
-
-LaTeX Warning: Reference `tab:descritivas' on page 32 undefined on input line 1
-4.
-
-
-Overfull \hbox (1.13072pt too wide) in paragraph at lines 13--17
-[]\T1/lmr/m/n/12 (-20) A análise exploratória das séries de retornos logarítmic
-os revela diferenças estruturais
- []
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 32 undefined on input line 
-44.
-
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 80.
+LaTeX Font Info:    Font shape `U/lasy/b/n' in size <5> not available
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 80.
 [32
 
 
 
 
-
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.2}) h
-as been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.83 
-     ]
-<../analise_inicial/graficos/Dollar_Bars_5m_normalidade.png, id=443, 1011.78pt 
+]
+<../analise_inicial/graficos/Dollar_Bars_5m_normalidade.png, id=633, 1011.78pt 
 x 361.35pt>
 File: ../analise_inicial/graficos/Dollar_Bars_5m_normalidade.png Graphic file (
 type png)
@@ -1732,7 +1350,7 @@ type png)
 Package pdftex.def Info: ../analise_inicial/graficos/Dollar_Bars_5m_normalidade
 .png  used on input line 86.
 (pdftex.def)             Requested size: 432.24861pt x 154.37396pt.
-<../analise_inicial/graficos/Time_Bars_5m_normalidade.png, id=445, 1011.78pt x 
+<../analise_inicial/graficos/Time_Bars_5m_normalidade.png, id=635, 1011.78pt x 
 361.35pt>
 File: ../analise_inicial/graficos/Time_Bars_5m_normalidade.png Graphic file (ty
 pe png)
@@ -1740,7 +1358,7 @@ pe png)
 Package pdftex.def Info: ../analise_inicial/graficos/Time_Bars_5m_normalidade.p
 ng  used on input line 93.
 (pdftex.def)             Requested size: 432.24861pt x 154.37396pt.
-<../analise_inicial/graficos/Dollar_Bars_5m_acf_pacf_retornos2.png, id=446, 101
+<../analise_inicial/graficos/Dollar_Bars_5m_acf_pacf_retornos2.png, id=636, 101
 1.78pt x 361.35pt>
 File: ../analise_inicial/graficos/Dollar_Bars_5m_acf_pacf_retornos2.png Graphic
  file (type png)
@@ -1748,27 +1366,9 @@ File: ../analise_inicial/graficos/Dollar_Bars_5m_acf_pacf_retornos2.png Graphic
 Package pdftex.def Info: ../analise_inicial/graficos/Dollar_Bars_5m_acf_pacf_re
 tornos2.png  used on input line 100.
 (pdftex.def)             Requested size: 432.24861pt x 154.37396pt.
- [33
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.3}) h
-as been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.104 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.104 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.104 
-       <../analise_inicial/graficos/Dollar_Bars_5m_normalidade.png> <../analise
-_inicial/graficos/Time_Bars_5m_normalidade.png>]
-<../analise_inicial/graficos/Time_Bars_5m_acf_pacf_retornos2.png, id=457, 1011.
+ [33 <../analise_inicial/graficos/Dollar_Bars_5m_normalidade.png> <../analise_i
+nicial/graficos/Time_Bars_5m_normalidade.png>]
+<../analise_inicial/graficos/Time_Bars_5m_acf_pacf_retornos2.png, id=645, 1011.
 78pt x 361.35pt>
 File: ../analise_inicial/graficos/Time_Bars_5m_acf_pacf_retornos2.png Graphic f
 ile (type png)
@@ -1776,29 +1376,9 @@ ile (type png)
 Package pdftex.def Info: ../analise_inicial/graficos/Time_Bars_5m_acf_pacf_reto
 rnos2.png  used on input line 107.
 (pdftex.def)             Requested size: 432.24861pt x 154.37396pt.
-
-
-LaTeX Warning: Reference `tab:testes' on page 34 undefined on input line 112.
-
-
-LaTeX Warning: Citation `lopez2018advances' on page 34 undefined on input line 
-126.
-
-[34
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4.4}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.131 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4.5}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.131 
-       <../analise_inicial/graficos/Dollar_Bars_5m_acf_pacf_retornos2.png> <../
-analise_inicial/graficos/Time_Bars_5m_acf_pacf_retornos2.png>]
-<../modelagem/resultados_s1/comparacao_modelos/cpcv_01_aic_por_fold.png, id=466
+ [34 <../analise_inicial/graficos/Dollar_Bars_5m_acf_pacf_retornos2.png> <../an
+alise_inicial/graficos/Time_Bars_5m_acf_pacf_retornos2.png>]
+<../modelagem/resultados_s1/comparacao_modelos/cpcv_01_aic_por_fold.png, id=655
 , 1004.7939pt x 353.8821pt>
 File: ../modelagem/resultados_s1/comparacao_modelos/cpcv_01_aic_por_fold.png Gr
 aphic file (type png)
@@ -1806,166 +1386,326 @@ aphic file (type png)
 Package pdftex.def Info: ../modelagem/resultados_s1/comparacao_modelos/cpcv_01_
 aic_por_fold.png  used on input line 161.
 (pdftex.def)             Requested size: 432.24861pt x 152.23651pt.
- [35
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.4}) h
-as been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.184 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4.6}) 
-has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.184 
-       <../modelagem/resultados_s1/comparacao_modelos/cpcv_01_aic_por_fold.png>
-]
+ [35 <../modelagem/resultados_s1/comparacao_modelos/cpcv_01_aic_por_fold.png>] 
+[36]
+<../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dol
+lar_Bars_5m_01_residuos_tempo.png, id=670, 1004.91435pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_01_residuos_tempo.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_01_residuos_tempo.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Dollar_Bar
+s_5m/forecast_errors_Dollar_Bars_5m_01_residuos_tempo.png  used on input line 2
+56.
+(pdftex.def)             Requested size: 218.39806pt x 76.4905pt.
+<../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dol
+lar_Bars_5m_08_previsao_vs_observado.png, id=671, 571.6557pt x 569.12625pt>
+File: ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_08_previsao_vs_observado.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_08_previsao_vs_observado.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Dollar_Bar
+s_5m/forecast_errors_Dollar_Bars_5m_08_previsao_vs_observado.png  used on input
+ line 263.
+(pdftex.def)             Requested size: 218.39806pt x 217.4339pt.
 
-LaTeX Warning: Citation `diebold2015' on page 36 undefined on input line 205.
-
-
-LaTeX Warning: Reference `tab:modelo_final' on page 36 undefined on input line 
-208.
-
-[36
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.5}) h
-as been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.236 
-      ]
-
-LaTeX Warning: Reference `tab:metricas' on page 37 undefined on input line 260.
-
-
-
-LaTeX Warning: Citation `patton2011' on page 37 undefined on input line 269.
-
-
-LaTeX Warning: Citation `mincer1969' on page 37 undefined on input line 281.
-
-[37
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.6}) h
-as been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.287 
-      ]
-
-LaTeX Warning: Citation `andersen2003' on page 38 undefined on input line 293.
-
-
-Overfull \hbox (1.43178pt too wide) in paragraph at lines 288--294
-[]\T1/lmr/m/n/12 (-20) O modelo baseado em dollar bars explica, portanto, 66,7%
- da variação da volatilidade
+Underfull \hbox (badness 10000) in paragraph at lines 264--264
+[][]|\T1/lmr/m/n/10.95 (+20) Pre-vi-são ver-sus va-ri-ân-cia re-a-li-zada
  []
 
-
-LaTeX Warning: Citation `diebold1995' on page 38 undefined on input line 310.
-
-
-Overfull \hbox (18.03569pt too wide) in paragraph at lines 314--319
-\T1/lmr/m/n/12 (-20) DM confirma que o modelo estimado com dollar bars apresent
-a perdas (MSE) significativamente
- []
-
-[38]
-
-LaTeX Warning: Reference `tab:bootstrap' on page 39 undefined on input line 356
+<../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dol
+lar_Bars_5m_04_residuos_vs_ajustados.png, id=672, 643.56435pt x 424.2249pt>
+File: ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_04_residuos_vs_ajustados.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_04_residuos_vs_ajustados.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Dollar_Bar
+s_5m/forecast_errors_Dollar_Bars_5m_04_residuos_vs_ajustados.png  used on input
+ line 271.
+(pdftex.def)             Requested size: 218.39806pt x 143.96268pt.
+<../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dol
+lar_Bars_5m_02_histograma.png, id=673, 643.203pt x 424.2249pt>
+File: ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_02_histograma.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_02_histograma.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Dollar_Bar
+s_5m/forecast_errors_Dollar_Bars_5m_02_histograma.png  used on input line 278.
+(pdftex.def)             Requested size: 218.39806pt x 144.04683pt.
+[37]
+<../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dol
+lar_Bars_5m_03_qqplot_normal.png, id=678, 499.02435pt x 497.57895pt>
+File: ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_03_qqplot_normal.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_03_qqplot_normal.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Dollar_Bar
+s_5m/forecast_errors_Dollar_Bars_5m_03_qqplot_normal.png  used on input line 29
+0.
+(pdftex.def)             Requested size: 218.39806pt x 217.76617pt.
+<../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dol
+lar_Bars_5m_05_acf_residuos.png, id=679, 715.473pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_05_acf_residuos.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_05_acf_residuos.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Dollar_Bar
+s_5m/forecast_errors_Dollar_Bars_5m_05_acf_residuos.png  used on input line 297
 .
+(pdftex.def)             Requested size: 218.39806pt x 107.42932pt.
+<../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dol
+lar_Bars_5m_06_pacf_residuos.png, id=680, 715.473pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_06_pacf_residuos.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_06_pacf_residuos.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Dollar_Bar
+s_5m/forecast_errors_Dollar_Bars_5m_06_pacf_residuos.png  used on input line 30
+5.
+(pdftex.def)             Requested size: 218.39806pt x 107.42932pt.
+<../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dol
+lar_Bars_5m_07_acf_residuos_quadrado.png, id=681, 715.473pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_07_acf_residuos_quadrado.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_07_acf_residuos_quadrado.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Dollar_Bar
+s_5m/forecast_errors_Dollar_Bars_5m_07_acf_residuos_quadrado.png  used on input
+ line 312.
+(pdftex.def)             Requested size: 218.39806pt x 107.42932pt.
+ [38 <../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_error
+s_Dollar_Bars_5m_01_residuos_tempo.png> <../modelagem/resultados_s1/analise_res
+iduos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_08_previsao_vs_observado.pn
+g> <../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_
+Dollar_Bars_5m_04_residuos_vs_ajustados.png> <../modelagem/resultados_s1/analis
+e_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_02_histograma.png>]
+<../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_
+Bars_5m_01_residuos_tempo.png, id=690, 1004.91435pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_01_residuos_tempo.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_T
+ime_Bars_5m_01_residuos_tempo.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Time_Bars_
+5m/forecast_errors_Time_Bars_5m_01_residuos_tempo.png  used on input line 328.
+(pdftex.def)             Requested size: 218.39806pt x 76.4905pt.
+<../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_
+Bars_5m_08_previsao_vs_observado.png, id=691, 571.6557pt x 569.12625pt>
+File: ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_08_previsao_vs_observado.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_T
+ime_Bars_5m_08_previsao_vs_observado.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Time_Bars_
+5m/forecast_errors_Time_Bars_5m_08_previsao_vs_observado.png  used on input lin
+e 335.
+(pdftex.def)             Requested size: 218.39806pt x 217.4339pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 336--336
+[][]|\T1/lmr/m/n/10.95 (+20) Pre-vi-são ver-sus va-ri-ân-cia re-a-li-zada
+ []
 
-LaTeX Warning: Citation `patton2011' on page 39 undefined on input line 377.
-
-[39
-pdfTeX warning (ext4): destination with the same identifier (name{table.4.7}) h
-as been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.386 
-      ]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 409.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\bool_gset_true:N' on input line 409.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\g__siunitx_unit_warning_\bar_bool' on inpu
-t line 409.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\msg_warning:nnnn' on input line 409.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 409.
-
-[40]) [41]
+<../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_
+Bars_5m_04_residuos_vs_ajustados.png, id=692, 643.203pt x 424.2249pt>
+File: ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_04_residuos_vs_ajustados.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_T
+ime_Bars_5m_04_residuos_vs_ajustados.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Time_Bars_
+5m/forecast_errors_Time_Bars_5m_04_residuos_vs_ajustados.png  used on input lin
+e 343.
+(pdftex.def)             Requested size: 218.39806pt x 144.04683pt.
+<../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_
+Bars_5m_02_histograma.png, id=693, 643.203pt x 424.2249pt>
+File: ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_02_histograma.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_T
+ime_Bars_5m_02_histograma.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Time_Bars_
+5m/forecast_errors_Time_Bars_5m_02_histograma.png  used on input line 350.
+(pdftex.def)             Requested size: 218.39806pt x 144.04683pt.
+[39 <../modelagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors
+_Dollar_Bars_5m_03_qqplot_normal.png> <../modelagem/resultados_s1/analise_resid
+uos/Dollar_Bars_5m/forecast_errors_Dollar_Bars_5m_05_acf_residuos.png> <../mode
+lagem/resultados_s1/analise_residuos/Dollar_Bars_5m/forecast_errors_Dollar_Bars
+_5m_06_pacf_residuos.png> <../modelagem/resultados_s1/analise_residuos/Dollar_B
+ars_5m/forecast_errors_Dollar_Bars_5m_07_acf_residuos_quadrado.png>]
+<../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_
+Bars_5m_03_qqplot_normal.png, id=702, 499.02435pt x 497.57895pt>
+File: ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_03_qqplot_normal.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_T
+ime_Bars_5m_03_qqplot_normal.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Time_Bars_
+5m/forecast_errors_Time_Bars_5m_03_qqplot_normal.png  used on input line 362.
+(pdftex.def)             Requested size: 218.39806pt x 217.76617pt.
+<../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_
+Bars_5m_05_acf_residuos.png, id=703, 715.473pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_05_acf_residuos.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_T
+ime_Bars_5m_05_acf_residuos.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Time_Bars_
+5m/forecast_errors_Time_Bars_5m_05_acf_residuos.png  used on input line 369.
+(pdftex.def)             Requested size: 218.39806pt x 107.42932pt.
+<../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_
+Bars_5m_06_pacf_residuos.png, id=704, 715.473pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_06_pacf_residuos.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_T
+ime_Bars_5m_06_pacf_residuos.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Time_Bars_
+5m/forecast_errors_Time_Bars_5m_06_pacf_residuos.png  used on input line 377.
+(pdftex.def)             Requested size: 218.39806pt x 107.42932pt.
+<../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_
+Bars_5m_07_acf_residuos_quadrado.png, id=705, 715.473pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_07_acf_residuos_quadrado.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_T
+ime_Bars_5m_07_acf_residuos_quadrado.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_residuos/Time_Bars_
+5m/forecast_errors_Time_Bars_5m_07_acf_residuos_quadrado.png  used on input lin
+e 384.
+(pdftex.def)             Requested size: 218.39806pt x 107.42932pt.
+ [40 <../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_01_residuos_tempo.png> <../modelagem/resultados_s1/analise_residuo
+s/Time_Bars_5m/forecast_errors_Time_Bars_5m_08_previsao_vs_observado.png> <../m
+odelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_
+5m_04_residuos_vs_ajustados.png> <../modelagem/resultados_s1/analise_residuos/T
+ime_Bars_5m/forecast_errors_Time_Bars_5m_02_histograma.png>]
+<../modelagem/resultados_s1/analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_01_s
+erie_temporal_ic.png, id=714, 1149.093pt x 424.2249pt>
+File: ../modelagem/resultados_s1/analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m
+_01_serie_temporal_ic.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_
+01_serie_temporal_ic.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_previsao/Dollar_Bar
+s_5m/Dollar_Bars_5m_01_serie_temporal_ic.png  used on input line 407.
+(pdftex.def)             Requested size: 218.39806pt x 80.62946pt.
+<../modelagem/resultados_s1/analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_02_e
+rro_previsao.png, id=715, 1149.093pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m
+_02_erro_previsao.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_
+02_erro_previsao.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_previsao/Dollar_Bar
+s_5m/Dollar_Bars_5m_02_erro_previsao.png  used on input line 414.
+(pdftex.def)             Requested size: 218.39806pt x 66.8936pt.
+ [41 <../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_
+Time_Bars_5m_03_qqplot_normal.png> <../modelagem/resultados_s1/analise_residuos
+/Time_Bars_5m/forecast_errors_Time_Bars_5m_05_acf_residuos.png> <../modelagem/r
+esultados_s1/analise_residuos/Time_Bars_5m/forecast_errors_Time_Bars_5m_06_pacf
+_residuos.png> <../modelagem/resultados_s1/analise_residuos/Time_Bars_5m/foreca
+st_errors_Time_Bars_5m_07_acf_residuos_quadrado.png>]
+<../modelagem/resultados_s1/analise_previsao/Time_Bars_5m/Time_Bars_5m_01_serie
+_temporal_ic.png, id=724, 1149.093pt x 424.2249pt>
+File: ../modelagem/resultados_s1/analise_previsao/Time_Bars_5m/Time_Bars_5m_01_
+serie_temporal_ic.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_previsao/Time_Bars_5m/Time_Bars_5m_01_s
+erie_temporal_ic.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_previsao/Time_Bars_
+5m/Time_Bars_5m_01_serie_temporal_ic.png  used on input line 429.
+(pdftex.def)             Requested size: 218.39806pt x 80.62946pt.
+<../modelagem/resultados_s1/analise_previsao/Time_Bars_5m/Time_Bars_5m_02_erro_
+previsao.png, id=725, 1149.45435pt x 351.9549pt>
+File: ../modelagem/resultados_s1/analise_previsao/Time_Bars_5m/Time_Bars_5m_02_
+erro_previsao.png Graphic file (type png)
+<use ../modelagem/resultados_s1/analise_previsao/Time_Bars_5m/Time_Bars_5m_02_e
+rro_previsao.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/analise_previsao/Time_Bars_
+5m/Time_Bars_5m_02_erro_previsao.png  used on input line 436.
+(pdftex.def)             Requested size: 218.39806pt x 66.87212pt.
+ [42 <../modelagem/resultados_s1/analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m
+_01_serie_temporal_ic.png> <../modelagem/resultados_s1/analise_previsao/Dollar_
+Bars_5m/Dollar_Bars_5m_02_erro_previsao.png> <../modelagem/resultados_s1/analis
+e_previsao/Time_Bars_5m/Time_Bars_5m_01_serie_temporal_ic.png> <../modelagem/re
+sultados_s1/analise_previsao/Time_Bars_5m/Time_Bars_5m_02_erro_previsao.png>] [
+43] [44]
+<../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_01_boots
+trap_mse.png, id=762, 570.2103pt x 424.58624pt>
+File: ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_01_
+bootstrap_mse.png Graphic file (type png)
+<use ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_01_b
+ootstrap_mse.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m
+/Dollar_Bars_5m_01_bootstrap_mse.png  used on input line 603.
+(pdftex.def)             Requested size: 218.39806pt x 162.62074pt.
+<../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_01_bootstrap
+_mse.png, id=763, 570.933pt x 424.58624pt>
+File: ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_01_boot
+strap_mse.png Graphic file (type png)
+<use ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_01_boots
+trap_mse.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/T
+ime_Bars_5m_01_bootstrap_mse.png  used on input line 609.
+(pdftex.def)             Requested size: 218.39806pt x 162.41342pt.
+<../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_02_boots
+trap_mae.png, id=764, 571.29436pt x 424.58624pt>
+File: ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_02_
+bootstrap_mae.png Graphic file (type png)
+<use ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_02_b
+ootstrap_mae.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m
+/Dollar_Bars_5m_02_bootstrap_mae.png  used on input line 620.
+(pdftex.def)             Requested size: 218.39806pt x 162.31624pt.
+<../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_02_bootstrap
+_mae.png, id=765, 570.933pt x 424.58624pt>
+File: ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_02_boot
+strap_mae.png Graphic file (type png)
+<use ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_02_boots
+trap_mae.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/T
+ime_Bars_5m_02_bootstrap_mae.png  used on input line 626.
+(pdftex.def)             Requested size: 218.39806pt x 162.41342pt.
+ [45 <../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_01_
+bootstrap_mse.png> <../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_B
+ars_5m_01_bootstrap_mse.png>]
+<../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_03_boots
+trap_qlike.png, id=773, 570.933pt x 424.58624pt>
+File: ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_03_
+bootstrap_qlike.png Graphic file (type png)
+<use ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_03_b
+ootstrap_qlike.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m
+/Dollar_Bars_5m_03_bootstrap_qlike.png  used on input line 637.
+(pdftex.def)             Requested size: 218.39806pt x 162.41342pt.
+<../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_03_bootstrap
+_qlike.png, id=774, 570.933pt x 424.58624pt>
+File: ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_03_boot
+strap_qlike.png Graphic file (type png)
+<use ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_Bars_5m_03_boots
+trap_qlike.png>
+Package pdftex.def Info: ../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/T
+ime_Bars_5m_03_bootstrap_qlike.png  used on input line 643.
+(pdftex.def)             Requested size: 218.39806pt x 162.41342pt.
+ [46 <../modelagem/resultados_s1/bootstrap_ic/Dollar_Bars_5m/Dollar_Bars_5m_02_
+bootstrap_mae.png> <../modelagem/resultados_s1/bootstrap_ic/Time_Bars_5m/Time_B
+ars_5m_02_bootstrap_mae.png> <../modelagem/resultados_s1/bootstrap_ic/Dollar_Ba
+rs_5m/Dollar_Bars_5m_03_bootstrap_qlike.png> <../modelagem/resultados_s1/bootst
+rap_ic/Time_Bars_5m/Time_Bars_5m_03_bootstrap_qlike.png>]) [47] [48]
 \openout2 = `sections/05-conclusao.aux'.
 
- (sections/05-conclusao.tex
+ (./sections/05-conclusao.tex
 Cap\'{\i }tulo 5.
-
-LaTeX Warning: Citation `Prado2018' on page 42 undefined on input line 21.
-
-
-LaTeX Warning: Citation `ZhangMyklandAit2005' on page 42 undefined on input lin
-e 30.
-
-[42
+[49
 
 
 
 
-]
-
-LaTeX Warning: Citation `Prado2018' on page 43 undefined on input line 80.
-
-
-LaTeX Warning: Citation `patton2011' on page 43 undefined on input line 86.
-
-[43]
-
-LaTeX Warning: Citation `Prado2018' on page 44 undefined on input line 109.
-
-
-Overfull \hbox (6.8135pt too wide) in paragraph at lines 105--111
-[]\T1/lmr/m/n/12 (-20) A segunda contribuição é empírica. O presente trabalho o
-ferece a primeira comparação
- []
-
-[44]
-
-LaTeX Warning: Citation `Prado2018' on page 45 undefined on input line 148.
-
-
-LaTeX Warning: Citation `Nelson1991' on page 45 undefined on input line 156.
-
-
-LaTeX Warning: Citation `GlostenJagannathanRunkle1993' on page 45 undefined on 
-input line 156.
-
-) [45] (main.bbl (main.brf)
+] [50] [51]) [52] (./main.bbl (./main.brf)
 \tf@brf=\write5
 \openout5 = `main.brf'.
 
 
 bibitemlist
-) [46
+[53
 
 
 
-]
+]) [54]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\uppercase' on input line 53.
 
-[47
+[55
 
 
 ]
@@ -1982,110 +1722,90 @@ No file sections/apendice_a.tex.
 \tf@toc=\write8
 \openout8 = `main.toc'.
 
-(main.aux (sections/01-introducao.aux) (sections/02-referencial.aux)
-(sections/03-metodologia.aux) (sections/04-resultados.aux)
-(sections/05-conclusao.aux) (sections/apendice_a.aux))
+(./main.aux (./sections/01-introducao.aux) (./sections/02-referencial.aux)
+(./sections/03-metodologia.aux) (./sections/04-resultados.aux)
+(./sections/05-conclusao.aux) (./sections/apendice_a.aux))
  ***********
-LaTeX2e <2026-06-01>
+LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 
 Package rerunfilecheck Warning: File `main.brf' has changed.
 (rerunfilecheck)                Rerun to get bibliographical references right.
 
 Package rerunfilecheck Info: Checksums for `main.brf':
-(rerunfilecheck)             Before: CCAB54B9D7DEEF407E3B1C464B0FCB7D;3304
-(rerunfilecheck)             After:  363FBB411F148FFD6FC18F6B80A6183F;3185.
+(rerunfilecheck)             Before: 35CC0F57828B8AF22DD158E356EA7816;3243
+(rerunfilecheck)             After:  93C750576D2BB6ACABADD2E19EF172FA;3242.
  ) 
 Here is how much of TeX's memory you used:
- 26953 strings out of 469446
- 533830 string characters out of 5460994
- 1028063 words of memory out of 5000000
- 54883 multiletter control sequences out of 15000+600000
- 765920 words of font info for 313 fonts, out of 8000000 for 9000
- 0 hyphenation exceptions out of 8191
- 99i,13n,107p,1003b,1298s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 28491 strings out of 467538
+ 576546 string characters out of 5423724
+ 1068375 words of memory out of 5000000
+ 56284 multiletter control sequences out of 15000+600000
+ 771037 words of font info for 319 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 99i,13n,107p,1001b,1339s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-pdfTeX warning (dest): name{subsection.3.5.3} has been referenced but does not 
+pdfTeX warning (dest): name{section*.36} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section*.35} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{table.caption.28} has been referenced but does not 
 exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.3.7} has been referenced but does not exist, 
-replaced by a fixed one
+pdfTeX warning (dest): name{table.caption.27} has been referenced but does not 
+exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.3.6} has been referenced but does not exist, 
-replaced by a fixed one
+pdfTeX warning (dest): name{figure.caption.31} has been referenced but does not
+ exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.3.5} has been referenced but does not exist, 
-replaced by a fixed one
+pdfTeX warning (dest): name{figure.caption.30} has been referenced but does not
+ exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.3.4} has been referenced but does not exist, 
-replaced by a fixed one
+pdfTeX warning (dest): name{figure.caption.26} has been referenced but does not
+ exist, replaced by a fixed one
 
 
-pdfTeX warning (dest): name{table.3.3} has been referenced but does not exist, 
-replaced by a fixed one
+pdfTeX warning (dest): name{figure.caption.25} has been referenced but does not
+ exist, replaced by a fixed one
 
-
-pdfTeX warning (dest): name{table.3.2} has been referenced but does not exist, 
-replaced by a fixed one
-
-
-pdfTeX warning (dest): name{figure.3.6} has been referenced but does not exist,
- replaced by a fixed one
-
-
-pdfTeX warning (dest): name{figure.3.5} has been referenced but does not exist,
- replaced by a fixed one
-
-
-pdfTeX warning (dest): name{figure.3.4} has been referenced but does not exist,
- replaced by a fixed one
-
-
-pdfTeX warning (dest): name{figure.3.3} has been referenced but does not exist,
- replaced by a fixed one
-
-
-pdfTeX warning (dest): name{figure.3.2} has been referenced but does not exist,
- replaced by a fixed one
-
-</home/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmbx12.pfb></home/pet/.
-miktex/texmfs/install/fonts/type1/public/lm/lmbxi10.pfb></home/pet/.miktex/texm
-fs/install/fonts/type1/public/lm/lmex10.pfb></home/pet/.miktex/texmfs/install/f
-onts/type1/public/lm/lmmi10.pfb></home/pet/.miktex/texmfs/install/fonts/type1/p
-ublic/lm/lmmi12.pfb></home/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmm
-i6.pfb></home/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmmi8.pfb></home
-/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmmib10.pfb></home/pet/.mikte
-x/texmfs/install/fonts/type1/public/lm/lmr10.pfb></home/pet/.miktex/texmfs/inst
-all/fonts/type1/public/lm/lmr12.pfb></home/pet/.miktex/texmfs/install/fonts/typ
-e1/public/lm/lmr6.pfb></home/pet/.miktex/texmfs/install/fonts/type1/public/lm/l
-mr7.pfb></home/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmr8.pfb></home
-/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmri10.pfb></home/pet/.miktex
-/texmfs/install/fonts/type1/public/lm/lmri12.pfb></home/pet/.miktex/texmfs/inst
-all/fonts/type1/public/lm/lmss10.pfb></home/pet/.miktex/texmfs/install/fonts/ty
-pe1/public/lm/lmss12.pfb></home/pet/.miktex/texmfs/install/fonts/type1/public/l
-m/lmss17.pfb></home/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmssbx10.p
-fb></home/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmsso10.pfb></home/p
-et/.miktex/texmfs/install/fonts/type1/public/lm/lmsso12.pfb></home/pet/.miktex/
-texmfs/install/fonts/type1/public/lm/lmsy10.pfb></home/pet/.miktex/texmfs/insta
-ll/fonts/type1/public/lm/lmsy6.pfb></home/pet/.miktex/texmfs/install/fonts/type
-1/public/lm/lmsy8.pfb></home/pet/.miktex/texmfs/install/fonts/type1/public/lm/l
-mtt10.pfb></home/pet/.miktex/texmfs/install/fonts/type1/public/lm/lmtt12.pfb></
-home/pet/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (48 pages, 1574809 bytes).
+<c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2025/t
+exmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/texlive/2025/texmf-dist/fonts/t
+ype1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmm
+i10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texliv
+e/2025/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2025/texmf-dist/f
+onts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/l
+m/lmmib10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/t
+exlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-d
+ist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/publ
+ic/lm/lmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/t
+exlive/2025/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2025/texmf-
+dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/p
+ublic/lm/lmss10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss12.pf
+b><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2025
+/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2025/texmf-dist/font
+s/type1/public/lm/lmsso10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm
+/lmsso12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/t
+exlive/2025/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2025/texmf-d
+ist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/pub
+lic/lm/lmtt10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (56 pages, 4241239 bytes).
 PDF statistics:
- 1012 PDF objects out of 1200 (max. 8388607)
- 249 named destinations out of 1000 (max. 500000)
- 75431 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 1348 PDF objects out of 1440 (max. 8388607)
+ 1157 compressed objects within 12 object streams
+ 270 named destinations out of 1000 (max. 500000)
+ 77657 words of extra memory for PDF output out of 89155 (max. 10000000)
 
