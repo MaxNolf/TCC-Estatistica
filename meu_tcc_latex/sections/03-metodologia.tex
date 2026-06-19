@@ -87,7 +87,24 @@ O componente de ruído é então estimado como o resíduo $\hat{\varepsilon}_t =
 
 Os \emph{kernels} de cálculo que envolvem laços internos sobre janelas móveis --- em particular, o estimador de Hasbrouck e a covariância serial do modelo de Roll --- foram decorados com a diretiva \texttt{@numba.njit} (modo \emph{nopython}), que instrui o compilador Numba a traduzir o código Python para código de máquina LLVM sem intermediação do interpretador CPython. O resultado é desempenho equivalente ao de C para laços numéricos intensivos, com o benefício de manter a legibilidade e a verificabilidade do código em Python. O ganho de velocidade observado em relação ao NumPy puro para janelas de comprimento $\sim$$10^4$ foi superior a uma ordem de grandeza, tornando o processamento da série completa viável em tempo compatível com o ciclo de pesquisa.
 
-% ----------------------------------------------------------
+\subsubsection{Backend de Estimação em Rust via PyO3}
+\label{subsubsec:rust_backend}
+
+A etapa de seleção de hiperparâmetros via CPCV (\autoref{sec:met_cpcv})
+demanda a estimação de $252 \times 144 = 36.288$ modelos GARCH por
+Maximização de Verossimilhança (MLE) para cada tipo de barra.
+Para viabilizar esse volume de cômputo em tempo compatível com o ciclo
+de pesquisa, o \emph{kernel} de otimização numérica da log-verossimilhança
+GARCH foi implementado em Rust e exposto ao Python por meio da biblioteca
+PyO3 (\emph{Python--Rust binding}). O restante da \emph{pipeline} ---
+particionamento dos folds, construção de retornos, agregação de resultados
+e avaliação de métricas --- permanece integralmente em Python/NumPy,
+preservando a legibilidade e a verificabilidade do código. A combinação
+resultante permitiu completar os 72.576 ajustes MLE do experimento
+completo (ambas as séries) em aproximadamente 17 minutos em hardware
+convencional (processador de 8 núcleos, sem GPU).
+
+
 \subsection{Estimação da Volatilidade Realizada}
 \label{subsec:met_rv_estimacao}
 % ----------------------------------------------------------
@@ -179,6 +196,14 @@ A volatilidade anualizada correspondente é obtida por:
     \label{eq:vol_anualizada}
     \hat{\sigma}_{\text{anual},d} = \sqrt{\widehat{RV}_{\text{consenso},d} \times 252}.
 \end{equation}
+%
+Embora o Bitcoin opere 24 horas por dia, sete dias por semana, o fator de anualização
+utilizado é $252$ (dias úteis), seguindo a convenção predominante na literatura de
+finanças quantitativas \cite{andersen2003}. A adoção de $365$ (dias corridos) seria
+igualmente defensável; contudo, a escolha de $252$ permite comparação direta com
+resultados reportados para ativos de mercados tradicionais e não altera a validade
+relativa das comparações entre os modelos, pois o mesmo fator é aplicado a ambas as
+séries.
 
 % ==========================================================
 \section{Análise Exploratória das Séries}

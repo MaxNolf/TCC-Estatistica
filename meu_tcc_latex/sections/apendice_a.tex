@@ -1,0 +1,30 @@
+% =============================================================================
+%  APÊNDICE A — Código-Fonte
+% =============================================================================
+
+\chapter{Código-Fonte e Recursos Complementares}
+\label{apendice:codigo}
+
+O código-fonte completo da \emph{pipeline} de modelagem --- incluindo os
+\emph{scripts} de coleta e pré-processamento dos dados, construção das
+barras, estimação da volatilidade realizada (TSRV), seleção de
+hiperparâmetros via CPCV e avaliação das previsões --- está disponível em
+repositório público no GitHub:
+
+\begin{center}
+    \url{https://github.com/MaxNolf/TCC-Estatistica}
+\end{center}
+
+O repositório contém:
+
+\begin{itemize}
+    \item \textbf{Módulo Python}: scripts de processamento de dados,
+          construção de barras e avaliação de métricas;
+    \item \textbf{Backend Rust (PyO3)}: \emph{kernel} de otimização
+          numérica da log-verossimilhança GARCH utilizado na etapa de
+          CPCV (\autoref{subsubsec:rust_backend});
+    \item \textbf{Notebooks}: reprodução das figuras e tabelas
+          apresentadas neste trabalho;
+    \item \textbf{Dados processados}: séries de barras e volatilidade
+          realizada em formato Parquet.
+\end{itemize}

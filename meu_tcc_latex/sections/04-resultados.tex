@@ -441,7 +441,7 @@ A avaliação dos resíduos padronizados para o modelo ajustado sobre as \emph{t
 
 A \autoref{fig:res_time_grid1} ilustra o comportamento geral do ajuste no tempo e suas características distributivas. Os resíduos padronizados (a) exibem homogeneidade ao redor de zero e não demonstram agrupamentos óbvios de alta volatilidade não explicada. A aderência da variância prevista em relação à volatilidade realizada (b) e a distribuição dos resíduos contra os valores ajustados (c) sinalizam a capacidade do modelo em capturar os choques de mercado. O histograma (d), entretanto, mais uma vez evidencia o desafio da premissa Gaussiana: os erros empíricos apresentam um pico excessivo e caudas mais alongadas (leptocurtose) se comparados à curva da distribuição normal esperada, um fenômeno amplamente documentado na modelagem de retornos de alta frequência.
 
-As implicações distributivas são nitidamente corroboradas na \autoref{fig:res_time_grid2}. Os marcantes desvios nas extremidades do QQ-Plot (a) ratificam que a distribuição normal subestima as realizações de cauda (eventos extremos) presentes na série amostrada no tempo. Por outro lado, do ponto de vista de autocorrelação, a filtragem alcança seus objetivos estatísticos: as Funções de Autocorrelação (FAC) e Autocorrelação Parcial (FACP) dos resíduos (b e c) não acusam *lags* significativos persistentes além do intervalo de confiança, sugerindo que qualquer dependência linear foi resolvida. Do mesmo modo, a ausência de correlações relevantes na FAC dos resíduos ao quadrado (d) confirma de maneira contundente que a estrutura GARCH(1,1) acomodou com sucesso a dependência condicional na série cronológica, eliminando as dinâmicas remanescentes de \textit{volatility clustering}.
+As implicações distributivas são nitidamente corroboradas na \autoref{fig:res_time_grid2}. Os marcantes desvios nas extremidades do QQ-Plot (a) ratificam que a distribuição normal subestima as realizações de cauda (eventos extremos) presentes na série amostrada no tempo. Por outro lado, do ponto de vista de autocorrelação, a filtragem alcança seus objetivos estatísticos: as Funções de Autocorrelação (FAC) e Autocorrelação Parcial (FACP) dos resíduos (b e c) não acusam *lags* significativos persistentes além do intervalo de confiança, sugerindo que qualquer dependência linear foi resolvida. Do mesmo modo, a ausência de correlações relevantes na FAC dos resíduos ao quadrado (d) indica que a estrutura GARCH(1,1) acomodou adequadamente a dependência condicional na série cronológica, eliminando as dinâmicas remanescentes de \textit{volatility clustering}.
 
 % -----------------------------------------------------------------------------
 \subsection{Métricas Pontuais}
@@ -490,11 +490,11 @@ confiabilidade do resultado.
 \label{subsec:mz}
 
 A regressão de Mincer-Zarnowitz \cite{mincer1969}, que regride a volatilidade
-realizada diária $\hat{\sigma}^2_{\text{RV},t}$ sobre a previsão do modelo
-$\hat{h}_t$, fornece um diagnóstico adicional sobre a qualidade e o viés das previsões.
+realizada diária (TSRV) $\xi_t$ sobre a previsão de variância condicional do modelo
+ $\hat{\sigma}^2_t$, fornece um diagnóstico adicional sobre a qualidade e o viés das previsões.
 Para as dollar bars, o coeficiente de determinação $R^2$ foi de 0,667 e o intercepto
-estimado de $\hat{\alpha} = -9{,}17 \times 10^{-5}$ (p-valor = 0,0168). Para as time bars,
-$R^2 = 0{,}493$ e $\hat{\alpha} = -2{,}54 \times 10^{-4}$ (p-valor = 0,0001).
+estimado de $\hat{\alpha} = -9{,}20 \times 10^{-5}$ (p-valor = 0,0168). Para as time bars,
+ $R^2 = 0{,}493$ e $\hat{\alpha} = -2{,}54 \times 10^{-4}$ (p-valor = 0,0001).
 
 O modelo baseado em dollar bars explica, portanto, 66,7\% da variação da volatilidade
 realizada diária, contra 49,3\% para as time bars. Essa diferença de aproximadamente
@@ -522,11 +522,11 @@ Diebold-Mariano \cite{diebold1995}. A estatística DM calculada sobre o subconju
 de 147 dias em que ambos os modelos produzem previsões sobrepostas foi de $-4{,}806$,
 com p-valor bilateral inferior a $0{,}001$.
 
-A interpretação desse resultado é direta e inequívoca. O sinal negativo da estatística
-DM confirma que o modelo estimado com dollar bars apresenta perdas (MSE) significativamente
-menores, em média, do que o modelo ajustado sobre time bars. O p-valor substancialmente
-menor que os níveis de significância convencionais (1\%, 5\% e 10\%) permite rejeitar
-com contundência a hipótese nula de igual capacidade preditiva.
+O sinal negativo da estatística DM indica que o modelo estimado com dollar bars apresenta
+perdas (MSE) significativamente menores, em média, do que o modelo ajustado sobre time bars.
+O p-valor substancialmente menor que os níveis de significância convencionais (1\%, 5\% e
+10\%) permite rejeitar a hipótese nula de igual capacidade preditiva a um nível de
+significância de 1\%.
 
 O fato de a rejeição ser estatisticamente forte mesmo em uma amostra de teste
 relativamente curta (147 dias de sobreposição) reforça a consistência da superioridade
@@ -696,4 +696,4 @@ e potencialmente alterar a magnitude e o sentido das diferenças entre os modelo
 \subsection{Intervalo de Confiança}
 \label{subsec: ic_bootstrap}
 
-Um ponto de atenção é sobre os intervalos de confiança, obtidos por meio bootstrap, é o fato de que a técnica assume que os dados amostrados são independentes e identicamente distribuídos (i.i.d.). Diante da natureza dos dados de série temporal, essa premissa pode não ser totalmente satisfeita, já que em uma análise nos resíduos de time bars \autoref{fig:acf_time_bars} e dollar bars \autoref{fig:acf_dollar_bars} podemos observar indícios de autocorrelação. 
+Um ponto de atenção sobre os intervalos de confiança, obtidos por meio de bootstrap, é o fato de que a técnica assume que os dados amostrados são independentes e identicamente distribuídos (i.i.d.). Diante da natureza dos dados de série temporal, essa premissa pode não ser totalmente satisfeita, porém observamos na análise nos resíduos de time bars (\autoref{fig:res_time_acf}) e dollar bars (\autoref{fig:res_dollar_acf}) que a autocorrelação é residual, não invalidando completamente o uso do bootstrap.

@@ -22,7 +22,7 @@
 \backcite {bollerslev1986,tsay2010}{{14}{2.2.2}{equation.2.7}}
 \backcite {bollerslev1992}{{14}{2.2.3}{subsection.2.2.3}}
 \backcite {tsay2010}{{15}{2.2.3}{equation.2.11}}
-\backcite {engle1982}{{15}{3}{Item.17}}
+\backcite {engle1982}{{15}{3}{Item.16}}
 \backcite {andersen2003}{{15}{2.3}{section.2.3}}
 \backcite {andersen2003}{{16}{2.3.1}{equation.2.12}}
 \backcite {zhang2005}{{16}{2.3.1}{equation.2.12}}
@@ -38,10 +38,11 @@
 \backcite {diebold1995}{{20}{2.5.3}{subsection.2.5.3}}
 \backcite {efron1993}{{21}{2.5.4}{subsection.2.5.4}}
 \backcite {andersen2003}{{24}{3.1.2}{subsection.3.1.2}}
-\backcite {zhang2005}{{24}{3.1.2.1}{subsubsection.3.1.2.1}}
+\backcite {zhang2005}{{25}{3.1.2.1}{subsubsection.3.1.2.1}}
 \backcite {zhang2005}{{25}{3.1.2.1}{equation.3.6}}
+\backcite {andersen2003}{{27}{3.1.2.4}{equation.3.9}}
 \backcite {lopez2018advances}{{27}{3.2.1}{subsection.3.2.1}}
-\backcite {tsay2010}{{27}{1}{Item.33}}
+\backcite {tsay2010}{{27}{1}{Item.32}}
 \backcite {lopez2018advances}{{32}{4.1}{table.caption.10}}
 \backcite {lopez2018advances}{{34}{4.1}{figure.caption.15}}
 \backcite {diebold2015}{{36}{4.2}{figure.caption.17}}

@@ -37,15 +37,14 @@ Em ambos os casos, a seleção foi estável e robusta ao longo dos folds.
 
 O quarto objetivo — avaliar e comparar o desempenho preditivo com MSE, MAE, QLIKE e
 a regressão de Mincer-Zarnowitz — foi atingido. As dollar bars dominaram em todas as
-quatro dimensões de avaliação. O coeficiente de determinação MZ foi de $R^2 = 0{,}655$
-para as dollar bars, contra $R^2 = 0{,}493$ para as time bars, diferença de 16,2 pontos
+quatro dimensões de avaliação. O coeficiente de determinação MZ foi de $R^2 = 0{,}667$
+para as dollar bars, contra $R^2 = 0{,}493$ para as time bars, diferença de 17,4 pontos
 percentuais.
 
 O quinto objetivo — comparar o desempenho preditivo tendo o estimador TSRV como
 referência — foi igualmente atingido. O TSRV serviu como benchmark de volatilidade diária;
 ambos os modelos GARCH apresentaram subestimação sistemática leve, evidenciada pelos
-interceptos negativos da regressão MZ ($\hat{\alpha}_{\text{DB}} = -1{,}08 \times 10^{-4}$
-e $\hat{\alpha}_{\text{TB}} = -2{,}54 \times 10^{-4}$). Esse padrão é característico de
+interceptos negativos da regressão MZ ($\hat{\alpha}_{\text{DB}} = -9{,}20 \times 10^{-5}$ e $\hat{\alpha}_{\text{TB}} = -2{,}54 \times 10^{-4}$). Esse padrão é característico de
 modelos GARCH paramétricos estimados com inovações gaussianas quando confrontados com
 estimadores não-paramétricos de alta frequência, que capturam componentes de variação
 intrajornada não presentes no modelo.
@@ -63,19 +62,15 @@ estatísticas das séries de retornos quanto o desempenho preditivo fora da amos
 modelos. No plano distribucional, a diferença é dramática: curtose 25 vezes menor e
 assimetria quase nula nas dollar bars, frente a caudas extremamente pesadas e assimetria
 negativa pronunciada nas time bars. No plano preditivo, a diferença é economicamente
-significativa: redução de 34\% no MSE, de 24\% no MAE e de 16 pontos percentuais no
+significativa: redução de 36\% no MSE, de 26\% no MAE e de 17 pontos percentuais no
 $R^2$ da regressão de Mincer-Zarnowitz, além de ICs bootstrap para o QLIKE que não
 se sobrepõem a 95\% de confiança.
 
-A significância estatística formal, avaliada pelo teste de Diebold-Mariano, não atinge
-o limiar convencional de 5\% (estatística DM = $-1{,}9578$, p-valor = 0,0503), mas
-o argumento baseado exclusivamente nessa fronteira seria epistemicamente incompleto.
-O poder do teste é limitado pelo número de dias de sobreposição entre os conjuntos de
-previsão (147 dias), e o p-valor de 0,0503 constitui evidência fraca contra a hipótese
-nula, não evidência a seu favor. A combinação de sinal inequívoco na estatística DM,
-dominância em todas as métricas pontuais e não sobreposição dos ICs bootstrap para o QLIKE
-configura evidência consistente — ainda que não conclusiva ao nível convencional — em
-favor das dollar bars.
+A significância estatística formal, avaliada pelo teste de Diebold-Mariano, atinge o limiar convencional de 1\% (estatística DM = $-4{,}806$, p-valor $< 0{,}001$). 
+O poder do teste é limitado pelo número de dias de sobreposição entre os conjuntos de 
+previsão (147 dias), mas a combinação de sinal inequívoco na estatística DM, domínio 
+em todas as métricas pontuais e não sobreposição dos ICs bootstrap para o QLIKE 
+configura evidência consistente e conclusiva, ao nível convencional, em favor das dollar bars.
 
 É importante destacar que este resultado não é apenas confirmatório de \citeonline{lopez2018advances}.
 O autor argumenta, no plano teórico e com ilustrações empíricas, que barras de informação
