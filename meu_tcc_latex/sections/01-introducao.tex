@@ -27,12 +27,14 @@ tradicionais. Como alternativa, o autor propôs as \emph{dollar bars},
 barras baseadas no volume financeiro transacionado, que produzem séries com
 propriedades estatísticas mais favoráveis à modelagem.
 
-A questão que surge naturalmente é: \emph{em que medida a escolha do método
-de amostragem --- \emph{time bars} versus \emph{dollar bars} --- afeta a
-qualidade das estimativas de volatilidade obtidas por modelos
-ARMA-GARCH?} Esta pergunta tem relevância prática direta, pois a
-estimativa da variância condicional é insumo para decisões de investimento,
-\emph{hedging} e controle de risco.
+A questão que surge naturalmente é: \emph{qual pipeline de modelagem ---
+\emph{time bars} com seleção de ordem ARMA-GARCH por critérios de
+informação versus \emph{dollar bars} com o mesmo procedimento --- produz
+previsões de volatilidade mais acuradas?} Em outras palavras, em que medida
+a interação entre o método de amostragem e a especificação do modelo afeta
+a qualidade preditiva da volatilidade estimada? Esta pergunta tem relevância
+prática direta, pois a estimativa da variância condicional é insumo para
+decisões de investimento, \emph{hedging} e controle de risco.
 
 Adicionalmente, a avaliação de modelos em séries temporais financeiras
 requer cuidados metodológicos específicos. A dependência temporal entre
@@ -41,8 +43,8 @@ de selecionar o ``melhor modelo'' com base em métricas \emph{in-sample}
 pode conduzir a sobreajuste (\emph{overfitting}). O arcabouço de Validação
 Cruzada Combinatória Purgada (CPCV), proposto por
 \citeonline{lopez2018advances}, endereça essas limitações ao gerar
-múltiplos caminhos de \emph{backtest} e permitir a estimação das estatísticas em séries
-temporais com maior rigor.
+múltiplos caminhos de \emph{backtest} e permitir a estimação das
+estatísticas em séries temporais com maior rigor.
 
 % ----------------------------------------------------------
 \section{Objetivos}
@@ -52,12 +54,12 @@ temporais com maior rigor.
 \subsection{Objetivo Geral}
 \label{subsec:objetivo_geral}
 
-Analisar o impacto da escolha do método de amostragem de dados financeiros
---- \emph{time bars} versus \emph{dollar bars} --- sobre as propriedades
-estatísticas das séries resultantes e sobre a qualidade preditiva de modelos
-ARMA-GARCH para a variância condicional de retornos, utilizando o
-estimador Two-Scale Realized Volatility (TSRV) para a variância realizada,
-como referência e o arcabouço CPCV para avaliação comparativa robusta.
+Comparar o desempenho preditivo de dois pipelines de modelagem de
+volatilidade --- \emph{time bars} com seleção automática de ordem
+ARMA-GARCH via critérios de informação versus \emph{dollar bars} com o
+mesmo procedimento --- utilizando o estimador Two-Scale Realized
+Volatility (TSRV) como referência e o arcabouço CPCV para avaliação
+comparativa robusta.
 
 \subsection{Objetivos Específicos}
 \label{subsec:objetivos_especificos}
@@ -67,10 +69,16 @@ como referência e o arcabouço CPCV para avaliação comparativa robusta.
           \emph{dollar bars} para um ativo financeiro selecionado, comparando
           suas propriedades estatísticas descritivas;
     \item Estimar a variância realizada por meio do estimador TSRV;
-    \item Ajustar modelos ARMA-GARCH conjuntos sobre ambos os tipos de
-          barra, selecionando as ordens ótimas por critérios de informação;
-    \item Avaliar e comparar o desempenho preditivo dos modelos utilizando métricas de erro de previsão de
-          volatilidade (MSE, MAE, QLIKE, MZ).
+    \item Ajustar modelos ARMA-GARCH sobre cada tipo de barra
+          independentemente, selecionando as ordens ótimas por critérios de
+          informação (AIC/BIC) específicos para cada série, de modo a
+          capturar a especificação mais adequada a cada método de
+          amostragem;
+    \item Avaliar e comparar o desempenho preditivo dos dois pipelines de
+          modelagem utilizando métricas de erro de previsão de volatilidade
+          (MSE, MAE, QLIKE, MZ) fora da amostra, de modo a isolar a
+          comparação da acurácia preditiva das diferenças \emph{in-sample}
+          em tamanho amostral e escala;
     \item Comparar o desempenho preditivo dos modelos com o estimador TSRV.
 \end{enumerate}
 
@@ -92,11 +100,20 @@ Este trabalho justifica-se pela necessidade de:
 \begin{enumerate}
     \item \textbf{Preencher uma lacuna metodológica}: a maioria dos estudos
           que empregam modelos GARCH utiliza \emph{time bars} sem questionar
-          as implicações dessa escolha. Uma análise comparativa rigorosa
-          contribui para a compreensão de como o método de amostragem afeta
-          as estimativas de volatilidade;
-    \item \textbf{Adotar uma avaliação robusta}: o uso do CPCV representa uma abordagem metodologicamente
-          superior ao \emph{walk-forward} simples, comumente empregado em
-          trabalhos aplicados;
-    \item \textbf{Integrar estimadores eficientes}: o estimador TSRV é uma alternativa de estimação em cima de tick data para a estimação de variância realizada mais precisa do que o retorno quadrático simples, permitindo uma avaliação mais fidedigna dos modelos.
+          as implicações dessa escolha. Neste trabalho, adotamos uma
+          abordagem de sistemas comparativos: em vez de isolar o efeito da
+          amostragem, comparamos pipelines completos (amostragem + seleção
+          de modelo + estimação), refletindo a prática empírica em que o
+          pesquisador escolhe simultaneamente o método de agregação e a
+          especificação do modelo. Uma análise comparativa rigorosa
+          contribui para a compreensão de qual pipeline produz previsões
+          mais acuradas;
+    \item \textbf{Adotar uma avaliação robusta}: o uso do CPCV representa
+          uma abordagem metodologicamente superior ao \emph{walk-forward}
+          simples, comumente empregado em trabalhos aplicados;
+    \item \textbf{Integrar estimadores eficientes}: o estimador TSRV é uma
+          alternativa de estimação em cima de \emph{tick data} para a
+          estimação de variância realizada mais precisa do que o retorno
+          quadrático simples, permitindo uma avaliação mais fidedigna dos
+          modelos.
 \end{enumerate}

@@ -66,34 +66,30 @@
 \contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase []{Resultados e Discussão}}{32}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Propriedades Estatísticas Comparativas das Séries}{32}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Seleção de Modelos via CPCV}{35}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Desempenho Preditivo Fora da Amostra}{37}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Análise de Resíduos}{37}{subsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.1.1}Dollar Bars --- GARCH(1,2)}{38}{subsubsection.4.3.1.1}%
-\contentsline {subsubsection}{\numberline {4.3.1.2}Time Bars --- GARCH(1,1)}{40}{subsubsection.4.3.1.2}%
-\contentsline {subsection}{\numberline {4.3.2}Visualização das Previsões}{41}{subsection.4.3.2}%
-\contentsline {subsubsection}{\numberline {4.3.2.1}Dollar Bars --- GARCH(1,2)}{42}{subsubsection.4.3.2.1}%
-\contentsline {subsubsection}{\numberline {4.3.2.2}Time Bars --- GARCH(1,1)}{42}{subsubsection.4.3.2.2}%
+\contentsline {section}{\numberline {4.3}Desempenho Preditivo Fora da Amostra}{36}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Visualização das Previsões}{37}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Análise de Resíduos}{37}{subsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.3.3}Métricas Pontuais}{42}{subsection.4.3.3}%
 \contentsline {subsection}{\numberline {4.3.4}Regressão de Mincer-Zarnowitz}{43}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}Teste de Diebold-Mariano}{44}{subsection.4.3.5}%
+\contentsline {subsection}{\numberline {4.3.5}Teste de Diebold-Mariano}{43}{subsection.4.3.5}%
 \contentsline {subsection}{\numberline {4.3.6}Intervalos de Confiança Bootstrap}{44}{subsection.4.3.6}%
 \contentsline {section}{\numberline {4.4}Limitações e Ressalvas}{46}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}Ativo Único}{46}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Período Amostral}{47}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Calibração do Limiar $\bar {D}$}{47}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.2}Período Amostral}{46}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Calibração do Limiar $\bar {D}$}{46}{subsection.4.4.3}%
 \contentsline {subsection}{\numberline {4.4.4}Distribuição dos Erros}{47}{subsection.4.4.4}%
-\contentsline {section}{\numberline {4.5}Síntese do Capítulo}{47}{section.4.5}%
+\contentsline {subsection}{\numberline {4.4.5}Intervalo de Confiança}{47}{subsection.4.4.5}%
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Conclusão}}{49}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Retomada dos Objetivos Específicos}{49}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Resposta à Pergunta Central}{50}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Contribuições do Trabalho}{50}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Limitações}{51}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Agenda de Pesquisa Futura}{51}{section.5.5}%
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase []{Conclusão}}{48}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Retomada dos Objetivos Específicos}{48}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Resposta à Pergunta Central}{49}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Contribuições do Trabalho}{49}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Limitações}{50}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Agenda de Pesquisa Futura}{50}{section.5.5}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias Bibliogr\'aficas}}{53}{section*.33}%
+\contentsline {chapter}{\MakeTextUppercase []{Refer\^encias Bibliogr\'aficas}}{52}{section*.33}%
 \renewcommand *{\cftappendixname }{AP\^ENDICE \space }
 \setlength {\cftpartindent }{\cftlastnumwidth } \setlength {\cftpartnumwidth }{2em}
 \cftinsert {A}
-\contentsline {part}{\uppercase {Ap\^endices}}{55}{section*.34}%
+\contentsline {part}{\uppercase {Ap\^endices}}{54}{section*.34}%

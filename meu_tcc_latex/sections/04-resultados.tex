@@ -179,8 +179,7 @@ o modelo GARCH$(1,2)$ --- com um termo de inovação ao quadrado $(\alpha_1)$ e 
 de variância defasada $(\beta_1, \beta_2)$ --- foi escolhido em 233 dos 252 folds,
 correspondendo a 92,5\% de frequência de seleção. Para as time bars, o modelo GARCH$(1,1)$
 canônico foi selecionado na totalidade dos 252 folds (100,0\%). O AIC médio das time bars
-ao longo dos folds foi de $-859.083$, contra $-835.475$ para as dollar bars, indicando
-melhor ajuste \textit{in-sample} para a série temporal.
+ao longo dos folds foi de $-859.083$, contra $-835.475$ para as dollar bars.
 
 A necessidade de um termo $\beta_2$ adicional nas dollar bars tem uma interpretação
 econômica plausível. Por construção, as dollar bars possuem espaçamento temporal irregular:
@@ -235,6 +234,53 @@ as dollar bars (2025-07-14 a 2025-12-31) e 147 dias para as time bars
 realizada como benchmark.
 
 % -----------------------------------------------------------------------------
+\subsection{Visualização das Previsões}
+\label{subsec:visualizacao_previsao}
+
+Os gráficos a seguir apresentam a série temporal das previsões de variância
+condicional agregada ao nível diário em comparação à volatilidade realizada
+(TSRV), bem como os erros de previsão ao longo do período de teste.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_01_serie_temporal_ic.png}
+        \subcaption{Série temporal com IC \textit{bootstrap} (95\%).}
+        \label{fig:prev_dollar_serie}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_02_erro_previsao.png}
+        \subcaption{Erros de previsão.}
+        \label{fig:prev_dollar_erro}
+    \end{minipage}
+    \caption{Previsão da variância condicional versus variância realizada (TSRV) --- \emph{Dollar Bars} GARCH(1,2), período de teste (14/jul/2025--31/dez/2025).}
+    \label{fig:prev_dollar_grid}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_previsao/Time_Bars_5m/Time_Bars_5m_01_serie_temporal_ic.png}
+        \subcaption{Série temporal com IC \textit{bootstrap} (95\%).}
+        \label{fig:prev_time_serie}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{analise_previsao/Time_Bars_5m/Time_Bars_5m_02_erro_previsao.png}
+        \subcaption{Erros de previsão.}
+        \label{fig:prev_time_erro}
+    \end{minipage}
+    \caption{Previsão da variância condicional versus variância realizada (TSRV) --- \emph{Time Bars} GARCH(1,1), período de teste (07/ago/2025--31/dez/2025).}
+    \label{fig:prev_time_grid}
+\end{figure}
+
+
+% -----------------------------------------------------------------------------
 \subsection{Análise de Resíduos}
 \label{subsec:analise_residuos}
 
@@ -246,8 +292,6 @@ ausência de autocorrelação serial, distribuição aproximadamente
 normal e ausência de efeitos ARCH remanescentes.
 
 % --------------------------------------------------
-\subsubsection{Dollar Bars --- GARCH(1,2)}
-\label{subsubsec:residuos_dollar}
 
 \begin{figure}[H]
     \centering
@@ -313,13 +357,17 @@ normal e ausência de efeitos ARCH remanescentes.
         \subcaption{FAC dos resíduos ao quadrado.}
         \label{fig:res_dollar_acf_sq}
     \end{minipage}
-    \caption{Diagnósticos de normalidade e dependência --- \emph{Dollar Bars} GARCH(1,2). A ausência de autocorrelações significativas em (d) indica que o modelo capturou adequadamente os efeitos de \textit{volatility clustering}.}
+    \caption{Diagnósticos de normalidade e dependência --- \emph{Dollar Bars} GARCH(1,2).}
     \label{fig:res_dollar_grid2}
 \end{figure}
 
+A análise gráfica dos resíduos padronizados do modelo ajustado sobre as \emph{dollar bars} (Figuras \ref{fig:res_dollar_grid1} e \ref{fig:res_dollar_grid2}) permite avaliar a adequação do GARCH(1,2) sob três aspectos principais: estabilidade temporal, distribuição dos erros e dependência serial.
+
+Com relação à estabilidade temporal e o ajuste geral (\autoref{fig:res_dollar_grid1}), observa-se que os resíduos padronizados (a) distribuem-se de maneira razoavelmente homogênea ao redor de zero, sem apresentar agrupamentos prolongados de alta variância não contabilizada. A dispersão da previsão versus a variância realizada (b) e contra os valores ajustados (c) evidencia a capacidade do modelo em acompanhar a trajetória da volatilidade (TSRV), porém indicando tendência (viés sistemático) em suas previsões. Por fim, o histograma (d) sobreposto à curva normal demonstra como a distribuição empírica dos erros se comporta em relação à distribuição Gaussiana assumida pela Máxima Verossimilhança.
+
+Essa divergência em relação à normalidade é mais claramente constatada nos diagnósticos da \autoref{fig:res_dollar_grid2}. O QQ-Plot (a) revela desvios notáveis nas caudas da distribuição teórica, um indicativo clássico de caudas pesadas (leptocurtose) comum a retornos financeiros, o qual persiste mesmo após a filtragem GARCH. Apesar dos desvios distribucionais nas extremidades, os filtros mostraram-se competentes na remoção da dependência serial: as Funções de Autocorrelação (FAC) e Autocorrelação Parcial (FACP) dos resíduos (b e c) apresentam coeficientes majoritariamente contidos no interior do intervalo de confiança de 95\%, corroborando a adequação da equação da média. Fundamentalmente, a FAC dos resíduos ao quadrado (d) opera como o diagnóstico de efeitos ARCH remanescentes. A ausência de autocorrelações significativas fora das faixas azuis assegura que a estrutura GARCH(1,2) capturou adequadamente a dinâmica de \textit{volatility clustering}, absorvendo a dependência não-linear da série de maneira eficaz.
+
 % --------------------------------------------------
-\subsubsection{Time Bars --- GARCH(1,1)}
-\label{subsubsec:residuos_time}
 
 \begin{figure}[H]
     \centering
@@ -385,61 +433,15 @@ normal e ausência de efeitos ARCH remanescentes.
         \subcaption{FAC dos resíduos ao quadrado.}
         \label{fig:res_time_acf_sq}
     \end{minipage}
-    \caption{Diagnósticos de normalidade e dependência --- \emph{Time Bars} GARCH(1,1). A ausência de autocorrelações significativas em (d) indica que o modelo capturou adequadamente os efeitos de \textit{volatility clustering}.}
+    \caption{Diagnósticos de normalidade e dependência --- \emph{Time Bars} GARCH(1,1).}
     \label{fig:res_time_grid2}
 \end{figure}
 
-% -----------------------------------------------------------------------------
-\subsection{Visualização das Previsões}
-\label{subsec:visualizacao_previsao}
+A avaliação dos resíduos padronizados para o modelo ajustado sobre as \emph{time bars} (Figuras \ref{fig:res_time_grid1} e \ref{fig:res_time_grid2}) segue os mesmos princípios diagnósticos aplicados anteriormente, atestando o desempenho e a adequação da especificação GARCH(1,1) selecionada.
 
-Os gráficos a seguir apresentam a série temporal das previsões de variância
-condicional agregada ao nível diário em comparação à volatilidade realizada
-(TSRV), bem como os erros de previsão ao longo do período de teste.
+A \autoref{fig:res_time_grid1} ilustra o comportamento geral do ajuste no tempo e suas características distributivas. Os resíduos padronizados (a) exibem homogeneidade ao redor de zero e não demonstram agrupamentos óbvios de alta volatilidade não explicada. A aderência da variância prevista em relação à volatilidade realizada (b) e a distribuição dos resíduos contra os valores ajustados (c) sinalizam a capacidade do modelo em capturar os choques de mercado. O histograma (d), entretanto, mais uma vez evidencia o desafio da premissa Gaussiana: os erros empíricos apresentam um pico excessivo e caudas mais alongadas (leptocurtose) se comparados à curva da distribuição normal esperada, um fenômeno amplamente documentado na modelagem de retornos de alta frequência.
 
-\subsubsection{Dollar Bars --- GARCH(1,2)}
-\label{subsubsec:prev_dollar}
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_01_serie_temporal_ic.png}
-        \subcaption{Série temporal com IC \textit{bootstrap} (95\%).}
-        \label{fig:prev_dollar_serie}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{analise_previsao/Dollar_Bars_5m/Dollar_Bars_5m_02_erro_previsao.png}
-        \subcaption{Erros de previsão.}
-        \label{fig:prev_dollar_erro}
-    \end{minipage}
-    \caption{Previsão da variância condicional versus variância realizada (TSRV) --- \emph{Dollar Bars} GARCH(1,2), período de teste (14/jul/2025--31/dez/2025).}
-    \label{fig:prev_dollar_grid}
-\end{figure}
-
-\subsubsection{Time Bars --- GARCH(1,1)}
-\label{subsubsec:prev_time}
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{analise_previsao/Time_Bars_5m/Time_Bars_5m_01_serie_temporal_ic.png}
-        \subcaption{Série temporal com IC \textit{bootstrap} (95\%).}
-        \label{fig:prev_time_serie}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{analise_previsao/Time_Bars_5m/Time_Bars_5m_02_erro_previsao.png}
-        \subcaption{Erros de previsão.}
-        \label{fig:prev_time_erro}
-    \end{minipage}
-    \caption{Previsão da variância condicional versus variância realizada (TSRV) --- \emph{Time Bars} GARCH(1,1), período de teste (07/ago/2025--31/dez/2025).}
-    \label{fig:prev_time_grid}
-\end{figure}
+As implicações distributivas são nitidamente corroboradas na \autoref{fig:res_time_grid2}. Os marcantes desvios nas extremidades do QQ-Plot (a) ratificam que a distribuição normal subestima as realizações de cauda (eventos extremos) presentes na série amostrada no tempo. Por outro lado, do ponto de vista de autocorrelação, a filtragem alcança seus objetivos estatísticos: as Funções de Autocorrelação (FAC) e Autocorrelação Parcial (FACP) dos resíduos (b e c) não acusam *lags* significativos persistentes além do intervalo de confiança, sugerindo que qualquer dependência linear foi resolvida. Do mesmo modo, a ausência de correlações relevantes na FAC dos resíduos ao quadrado (d) confirma de maneira contundente que a estrutura GARCH(1,1) acomodou com sucesso a dependência condicional na série cronológica, eliminando as dinâmicas remanescentes de \textit{volatility clustering}.
 
 % -----------------------------------------------------------------------------
 \subsection{Métricas Pontuais}
@@ -691,19 +693,7 @@ documentado --- especialmente expressivo nas time bars --- distribuições de ca
 como a t-Student ou a Distribuição de Erro Generalizado (GED), poderiam melhorar o ajuste
 e potencialmente alterar a magnitude e o sentido das diferenças entre os modelos.
 
-% -----------------------------------------------------------------------------
-\section{Síntese do Capítulo}
-\label{sec:sintese_cap4}
+\subsection{Intervalo de Confiança}
+\label{subsec: ic_bootstrap}
 
-Em conjunto, os resultados indicam que dollar bars produzem séries de retornos com
-propriedades estatísticas superiores e modelos GARCH com maior poder preditivo fora
-da amostra para o BTC/USDT no período 2024–2025. A evidência é consistente em direção
-— dominância em MSE, MAE, QLIKE e $R^2$ MZ — e materialmente relevante em magnitude,
-com reduções de 36\% no MSE e de 26\% no MAE, e uma diferença de 17,4 pontos percentuais
-no coeficiente de determinação da regressão de Mincer-Zarnowitz. A significância estatística
-formal é inequívoca: o teste de Diebold-Mariano rejeita a hipótese de igualdade preditiva
-a um nível de significância inferior a 1\% (p $<$ 0,001). Adicionalmente, a análise dos
-intervalos de confiança bootstrap não paramétricos para o MAE e para o QLIKE
-— esta última, a métrica teoricamente mais adequada para estimação da variância —
-revela intervalos de 95\% que sequer se sobrepõem, atestando em definitivo a
-vantagem das dollar bars sobre a amostragem em tempo para o ativo e período em questão.
+Um ponto de atenção é sobre os intervalos de confiança, obtidos por meio bootstrap, é o fato de que a técnica assume que os dados amostrados são independentes e identicamente distribuídos (i.i.d.). Diante da natureza dos dados de série temporal, essa premissa pode não ser totalmente satisfeita, já que em uma análise nos resíduos de time bars \autoref{fig:acf_time_bars} e dollar bars \autoref{fig:acf_dollar_bars} podemos observar indícios de autocorrelação. 
